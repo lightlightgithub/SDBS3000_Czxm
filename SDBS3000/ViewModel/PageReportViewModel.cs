@@ -178,13 +178,8 @@ namespace SDBS3000.ViewModel
         public PageReportViewModel()
         {
             result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Select, false, PageNum, PageSize);
-            TotalCount = result.Count;
-            PageCount = TotalCount % PageSize == 0 ? TotalCount / PageSize : (TotalCount / PageSize + 1);
-            BeginTime = DateTime.Now;
-            EndTime = DateTime.Now.AddDays(1);
+            GetPageData(result);
 
-            DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
-           
             LastPageCommand = new RelayCommand((age) =>
             {
                 if (PageNum-1 >0)

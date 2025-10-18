@@ -52,15 +52,16 @@ namespace SDBS3000.Services
                 var data = Entity.T_MeasureData.Where(p => p.isclear == 0);
                 var today = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"));
                 var yeasday = Convert.ToDateTime(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00"));
-                if (BeginTime != null && EndTime != null && BeginTime <= EndTime)
-                {
-                    BeginTime = Convert.ToDateTime(Convert.ToDateTime(BeginTime).ToString("yyyy-MM-dd 00:00:00"));
-                    EndTime = Convert.ToDateTime(Convert.ToDateTime(EndTime).ToString("yyyy-MM-dd 00:00:00"));
-                    data = data.Where(x => x.MODIFYTIME >= BeginTime && x.MODIFYTIME <= EndTime);
-                }
+               
                 switch (SelectType)
                 {
                     case (int)ListSelectType.Select:
+                        if (BeginTime != null && EndTime != null && BeginTime <= EndTime)
+                        {
+                            BeginTime = Convert.ToDateTime(Convert.ToDateTime(BeginTime).ToString("yyyy-MM-dd 00:00:00"));
+                            EndTime = Convert.ToDateTime(Convert.ToDateTime(EndTime).ToString("yyyy-MM-dd 00:00:00"));
+                        }
+                        data = data.Where(x => x.MODIFYTIME >= BeginTime && x.MODIFYTIME <= EndTime);
                         break;
                     case (int)ListSelectType.Today:
                         data = data.Where(x => x.MODIFYTIME == today);
