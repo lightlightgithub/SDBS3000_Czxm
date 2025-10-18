@@ -1,0 +1,1321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="save" xml:space="preserve">
+    <value>保存(S)</value>
+  </data>
+  <data name="Rotor Name" xml:space="preserve">
+    <value>转子名称</value>
+  </data>
+  <data name="Calculation Mode" xml:space="preserve">
+    <value>解算模式</value>
+    <comment>硬0软1</comment>
+  </data>
+  <data name="Measuring Mode" xml:space="preserve">
+    <value>测量模式</value>
+  </data>
+  <data name="Measuring unit" xml:space="preserve">
+    <value>尺寸单位</value>
+  </data>
+  <data name="Permissible amount unit" xml:space="preserve">
+    <value>允许量单位</value>
+  </data>
+  <data name="Permissible Unbalance on Plane 1" xml:space="preserve">
+    <value>平面1允许量</value>
+  </data>
+  <data name="Permissible Unbalance on Plane 2" xml:space="preserve">
+    <value>平面2允许量</value>
+  </data>
+  <data name="Static permissible amount" xml:space="preserve">
+    <value>静允许量</value>
+  </data>
+  <data name="Choose Rotor" xml:space="preserve">
+    <value>选择转子</value>
+  </data>
+  <data name="Hard bearing" xml:space="preserve">
+    <value>硬支撑</value>
+  </data>
+  <data name="Soft bearing" xml:space="preserve">
+    <value>软支撑</value>
+  </data>
+  <data name="two plane dynamic balance" xml:space="preserve">
+    <value>双面动平衡</value>
+  </data>
+  <data name="static balance" xml:space="preserve">
+    <value>静平衡</value>
+  </data>
+  <data name="dynamic/static balance" xml:space="preserve">
+    <value>动静平衡</value>
+  </data>
+  <data name="vertical two plane dynamic balance" xml:space="preserve">
+    <value>立式双面动平衡</value>
+  </data>
+  <data name="vertical dynamic/static balance" xml:space="preserve">
+    <value>立式动静平衡</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>新增(N)</value>
+  </data>
+  <data name="iso" xml:space="preserve">
+    <value>ISO计算(I)</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>删除(D)</value>
+  </data>
+  <data name="cutmode" xml:space="preserve">
+    <value>支撑方式</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="User Permissions" xml:space="preserve">
+    <value>用户权限</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="Inspector" xml:space="preserve">
+    <value>调试员</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>操作员</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="mes1" xml:space="preserve">
+    <value>MES用户名</value>
+  </data>
+  <data name="mes2" xml:space="preserve">
+    <value>MES用户密码</value>
+  </data>
+  <data name="modify" xml:space="preserve">
+    <value>修改(F)</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>当日</value>
+  </data>
+  <data name="yesterday" xml:space="preserve">
+    <value>昨日</value>
+  </data>
+  <data name="thismonth" xml:space="preserve">
+    <value>当月</value>
+  </data>
+  <data name="thisyear" xml:space="preserve">
+    <value>当年</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>导出至Excel</value>
+  </data>
+  <data name="measuringtimes" xml:space="preserve">
+    <value>测量次数</value>
+  </data>
+  <data name="refreshfrequency" xml:space="preserve">
+    <value>刷新频率</value>
+  </data>
+  <data name="revdiff" xml:space="preserve">
+    <value>转差范围</value>
+  </data>
+  <data name="workmode" xml:space="preserve">
+    <value>工作方式</value>
+  </data>
+  <data name="digitsdisplay" xml:space="preserve">
+    <value>显示位数</value>
+  </data>
+  <data name="cursormode" xml:space="preserve">
+    <value>光针模式</value>
+  </data>
+  <data name="safety" xml:space="preserve">
+    <value>安全门模式</value>
+  </data>
+  <data name="vectordir" xml:space="preserve">
+    <value>矢量图方向</value>
+  </data>
+  <data name="posmode" xml:space="preserve">
+    <value>定位模式</value>
+  </data>
+  <data name="workmode0" xml:space="preserve">
+    <value>连续普通测量</value>
+  </data>
+  <data name="workmode1" xml:space="preserve">
+    <value>普通测量停止</value>
+  </data>
+  <data name="workmode2" xml:space="preserve">
+    <value>测量定位</value>
+  </data>
+  <data name="digit0" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="nouse" xml:space="preserve">
+    <value>不使用</value>
+  </data>
+  <data name="use" xml:space="preserve">
+    <value>使用</value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>使用手动检测每转脉冲数</value>
+  </data>
+  <data name="meadel" xml:space="preserve">
+    <value>测量延时</value>
+  </data>
+  <data name="Clockwise" xml:space="preserve">
+    <value>顺时针</value>
+  </data>
+  <data name="Counterclockwise" xml:space="preserve">
+    <value>逆时针</value>
+  </data>
+  <data name="leftright" xml:space="preserve">
+    <value>先左后右</value>
+  </data>
+  <data name="left" xml:space="preserve">
+    <value>只左面</value>
+  </data>
+  <data name="right" xml:space="preserve">
+    <value>只右面</value>
+  </data>
+  <data name="autopul" xml:space="preserve">
+    <value>使用自动检测每转脉冲数</value>
+  </data>
+  <data name="posspeed" xml:space="preserve">
+    <value>定位转速</value>
+  </data>
+  <data name="pulseper" xml:space="preserve">
+    <value>每转脉冲数</value>
+  </data>
+  <data name="poscom" xml:space="preserve">
+    <value>定位补偿</value>
+  </data>
+  <data name="acctime" xml:space="preserve">
+    <value>加速时间</value>
+  </data>
+  <data name="dectime" xml:space="preserve">
+    <value>减速时间</value>
+  </data>
+  <data name="revdifcom" xml:space="preserve">
+    <value>转差补偿</value>
+  </data>
+  <data name="numofrotor" xml:space="preserve">
+    <value>转子槽数</value>
+  </data>
+  <data name="pluperrev" xml:space="preserve">
+    <value>检测脉冲数</value>
+  </data>
+  <data name="measuring" xml:space="preserve">
+    <value>检测中</value>
+  </data>
+  <data name="corotation" xml:space="preserve">
+    <value>正转</value>
+  </data>
+  <data name="reversal" xml:space="preserve">
+    <value>反转</value>
+  </data>
+  <data name="chadir" xml:space="preserve">
+    <value>转向</value>
+  </data>
+  <data name="switype" xml:space="preserve">
+    <value>开关类型</value>
+  </data>
+  <data name="phoswi" xml:space="preserve">
+    <value>光电开关</value>
+  </data>
+  <data name="proswi" xml:space="preserve">
+    <value>接近开关(数槽)</value>
+  </data>
+  <data name="candet" xml:space="preserve">
+    <value>取消检测(C)</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>帮助(F1)</value>
+  </data>
+  <data name="Lan" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>菜单扩展(F2)</value>
+  </data>
+  <data name="Secretkey" xml:space="preserve">
+    <value>密钥</value>
+  </data>
+  <data name="Addremoveweight" xml:space="preserve">
+    <value>加去重(F3)</value>
+  </data>
+  <data name="Electricalcomp" xml:space="preserve">
+    <value>电补偿(F4)</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登  录(Enter)</value>
+  </data>
+  <data name="pm1jz" xml:space="preserve">
+    <value>平面1加重(F10)</value>
+  </data>
+  <data name="pm2jz" xml:space="preserve">
+    <value>平面2加重(F11)</value>
+  </data>
+  <data name="jjz" xml:space="preserve">
+    <value>静加重(F12)</value>
+  </data>
+  <data name="pm1qz" xml:space="preserve">
+    <value>平面1去重(F10)</value>
+  </data>
+  <data name="pm2qz" xml:space="preserve">
+    <value>平面2去重(F11)</value>
+  </data>
+  <data name="jqz" xml:space="preserve">
+    <value>静去重(F12)</value>
+  </data>
+  <data name="TPrint" xml:space="preserve">
+    <value>打印(P)</value>
+  </data>
+  <data name="TStart" xml:space="preserve">
+    <value>开始测量(B)</value>
+  </data>
+  <data name="TStop" xml:space="preserve">
+    <value>停止(T)</value>
+  </data>
+  <data name="TCal" xml:space="preserve">
+    <value>标定(G)</value>
+  </data>
+  <data name="TRotorSet" xml:space="preserve">
+    <value>转子设置(Z)</value>
+  </data>
+  <data name="TMachSet" xml:space="preserve">
+    <value>机器设置(M)</value>
+  </data>
+  <data name="TClampComp" xml:space="preserve">
+    <value>夹具补偿(J)</value>
+  </data>
+  <data name="TKeyComp" xml:space="preserve">
+    <value>键补偿(K)</value>
+  </data>
+  <data name="TPositioning" xml:space="preserve">
+    <value>定位(L)</value>
+  </data>
+  <data name="TUserMgt" xml:space="preserve">
+    <value>用户管理(U)</value>
+  </data>
+  <data name="TRecord" xml:space="preserve">
+    <value>记录(R)</value>
+  </data>
+  <data name="TAlarm" xml:space="preserve">
+    <value>报警(W)</value>
+  </data>
+  <data name="TExit" xml:space="preserve">
+    <value>退出(E)</value>
+  </data>
+  <data name="fastpri" xml:space="preserve">
+    <value>快速打印</value>
+  </data>
+  <data name="logoset" xml:space="preserve">
+    <value>图标设置1</value>
+  </data>
+  <data name="typedata" xml:space="preserve">
+    <value>数据类型</value>
+  </data>
+  <data name="meares" xml:space="preserve">
+    <value>测量结果</value>
+  </data>
+  <data name="geo" xml:space="preserve">
+    <value>几何</value>
+  </data>
+  <data name="dynunb" xml:space="preserve">
+    <value>动态不平衡公差</value>
+  </data>
+  <data name="befcor" xml:space="preserve">
+    <value>校正前</value>
+  </data>
+  <data name="aftcor" xml:space="preserve">
+    <value>校正后</value>
+  </data>
+  <data name="con" xml:space="preserve">
+    <value>结论:</value>
+  </data>
+  <data name="rev" xml:space="preserve">
+    <value>审核员:</value>
+  </data>
+  <data name="primode" xml:space="preserve">
+    <value>打印模式</value>
+  </data>
+  <data name="donotusepri" xml:space="preserve">
+    <value>不使用打印机</value>
+  </data>
+  <data name="manpri" xml:space="preserve">
+    <value>手动打印平衡报告</value>
+  </data>
+  <data name="autpri" xml:space="preserve">
+    <value>自动打印平衡报告</value>
+  </data>
+  <data name="Measure Rev" xml:space="preserve">
+    <value>测量转速</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>量值</value>
+  </data>
+  <data name="Angle" xml:space="preserve">
+    <value>角度[°]</value>
+  </data>
+  <data name="Plane1" xml:space="preserve">
+    <value>校正平面1</value>
+  </data>
+  <data name="Plane2" xml:space="preserve">
+    <value>校正平面2</value>
+  </data>
+  <data name="Static Unbalance" xml:space="preserve">
+    <value>静平衡</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>当前值</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>上一次</value>
+  </data>
+  <data name="measure with no test-mass" xml:space="preserve">
+    <value>转子不加感量</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>测量</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="Plane 1 Add-weight on" xml:space="preserve">
+    <value>平面1相位加</value>
+  </data>
+  <data name="Plane 2 Add-weight on" xml:space="preserve">
+    <value>平面2相位加</value>
+  </data>
+  <data name="g  test-mass1" xml:space="preserve">
+    <value>g感量</value>
+  </data>
+  <data name="test-mass1" xml:space="preserve">
+    <value>感量1</value>
+  </data>
+  <data name="test-mass2" xml:space="preserve">
+    <value>感量2</value>
+  </data>
+  <data name="to the phase" xml:space="preserve">
+    <value>°相位</value>
+  </data>
+  <data name="Angle 1" xml:space="preserve">
+    <value>角度1</value>
+  </data>
+  <data name="Angle 2" xml:space="preserve">
+    <value>角度2</value>
+  </data>
+  <data name="cal2" xml:space="preserve">
+    <value>解算(C)</value>
+  </data>
+  <data name="g  test-mass2" xml:space="preserve">
+    <value>g感量</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>时间</value>
+  </data>
+  <data name="Alades" xml:space="preserve">
+    <value>报警描述</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>正式版V3.0.4</value>
+  </data>
+  <data name="isocal" xml:space="preserve">
+    <value>ISO公差计算</value>
+  </data>
+  <data name="calculate" xml:space="preserve">
+    <value>计算(C)</value>
+  </data>
+  <data name="balancinggrade" xml:space="preserve">
+    <value>平衡等级(G)</value>
+  </data>
+  <data name="workspeed" xml:space="preserve">
+    <value>工作转速(r/min)</value>
+  </data>
+  <data name="rotormass" xml:space="preserve">
+    <value>工件重量(KG)</value>
+  </data>
+  <data name="setspeed" xml:space="preserve">
+    <value>请设置转速</value>
+  </data>
+  <data name="Plane 1" xml:space="preserve">
+    <value>平面1相位</value>
+  </data>
+  <data name="Add-weight on" xml:space="preserve">
+    <value>加</value>
+  </data>
+  <data name="SaveCalSpeed" xml:space="preserve">
+    <value>保存标定转速(S)</value>
+  </data>
+  <data name="OpenCompensation" xml:space="preserve">
+    <value>开启补偿(O)</value>
+  </data>
+  <data name="ClearCompensation" xml:space="preserve">
+    <value>清除补偿(C)</value>
+  </data>
+  <data name="ResetCompensation" xml:space="preserve">
+    <value>重置(D)</value>
+  </data>
+  <data name="StartCompensation" xml:space="preserve">
+    <value>启动(S)</value>
+  </data>
+  <data name="NMB_Enter" xml:space="preserve">
+    <value>确定(Enter)</value>
+  </data>
+  <data name="NMB_Y" xml:space="preserve">
+    <value>是(Y)</value>
+  </data>
+  <data name="NMB_N" xml:space="preserve">
+    <value>否(N)</value>
+  </data>
+  <data name="NMB_Cancel" xml:space="preserve">
+    <value>取消(C)</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="Mode 1" xml:space="preserve">
+    <value>模式一</value>
+  </data>
+  <data name="Mode 2" xml:space="preserve">
+    <value>模式二</value>
+  </data>
+  <data name="Mode 3" xml:space="preserve">
+    <value>模式三</value>
+  </data>
+  <data name="Mode 4" xml:space="preserve">
+    <value>模式四</value>
+  </data>
+  <data name="Mode 5" xml:space="preserve">
+    <value>模式五</value>
+  </data>
+  <data name="Mode 6" xml:space="preserve">
+    <value>模式六</value>
+  </data>
+  <data name="Mode 7" xml:space="preserve">
+    <value>模式七</value>
+  </data>
+  <data name="Mode 8" xml:space="preserve">
+    <value>模式八</value>
+  </data>
+  <data name="Mode 9" xml:space="preserve">
+    <value>模式九</value>
+  </data>
+  <data name="Mode 10" xml:space="preserve">
+    <value>模式十</value>
+  </data>
+  <data name="Mode 11" xml:space="preserve">
+    <value>模式十一</value>
+  </data>
+  <data name="InputRotorName" xml:space="preserve">
+    <value>请输入转子名称</value>
+  </data>
+  <data name="InputAnotherRotorName" xml:space="preserve">
+    <value>与现有转子名称重复，请重新输入转子名称</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>保存成功</value>
+  </data>
+  <data name="KeepOneRotor" xml:space="preserve">
+    <value>请至少保留一个转子！</value>
+  </data>
+  <data name="ISOParaSetIsAbnormal" xml:space="preserve">
+    <value>ISO参数设置异常：</value>
+  </data>
+  <data name="NewTip" xml:space="preserve">
+    <value>消息提示</value>
+  </data>
+  <data name="WhetherOrNot" xml:space="preserve">
+    <value>是否保存 </value>
+  </data>
+  <data name="UnsavedItemsExistInTheSetting" xml:space="preserve">
+    <value>设置中存在未保存项，是否保存？</value>
+  </data>
+  <data name="CurrentRotorIsNotSaved" xml:space="preserve">
+    <value>当前转子未保存，请保存或切换其他转子</value>
+  </data>
+  <data name="EquipmentAuthorization" xml:space="preserve">
+    <value>设备授权</value>
+  </data>
+  <data name="HMI Serial Number" xml:space="preserve">
+    <value>HMI序列号</value>
+  </data>
+  <data name="KeyInformation" xml:space="preserve">
+    <value>密钥信息</value>
+  </data>
+  <data name="Data-storage mode" xml:space="preserve">
+    <value>数据保存方式</value>
+  </data>
+  <data name="NotStorage" xml:space="preserve">
+    <value>不记录</value>
+  </data>
+  <data name="Save all records" xml:space="preserve">
+    <value>每次记录</value>
+  </data>
+  <data name="Save each qualified record" xml:space="preserve">
+    <value>合格记录</value>
+  </data>
+  <data name="Save each unqualified record" xml:space="preserve">
+    <value>不合格记录</value>
+  </data>
+  <data name="manpriA4" xml:space="preserve">
+    <value>A4手动打印平衡报告</value>
+  </data>
+  <data name="ManualLP" xml:space="preserve">
+    <value>手动标签打印</value>
+  </data>
+  <data name="AutomaticLP" xml:space="preserve">
+    <value>自动标签打印</value>
+  </data>
+  <data name="autpriA4" xml:space="preserve">
+    <value>A4自动打印平衡报告</value>
+  </data>
+  <data name="Clear data" xml:space="preserve">
+    <value>清除数据</value>
+  </data>
+  <data name="PLCOnLine" xml:space="preserve">
+    <value>PLC在线</value>
+  </data>
+  <data name="PLCOffLine" xml:space="preserve">
+    <value>PLC掉线</value>
+  </data>
+  <data name="Running status" xml:space="preserve">
+    <value>运行状态：</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合计：</value>
+  </data>
+  <data name="FailedToLogin" xml:space="preserve">
+    <value>登录失败！请检查用户名和密码。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误提示</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>异常，请联系管理员!</value>
+  </data>
+  <data name="ErrSaveMeasureData" xml:space="preserve">
+    <value>存储测量数据报错：</value>
+  </data>
+  <data name="Presetdata" xml:space="preserve">
+    <value>预置数据不可删除</value>
+  </data>
+  <data name="DelCurrentUser" xml:space="preserve">
+    <value>删除当前用户，数据无法恢复</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="NumberOfFace1" xml:space="preserve">
+    <value>面一分度数量：</value>
+  </data>
+  <data name="BalanceSerialNumber" xml:space="preserve">
+    <value>平衡序号：</value>
+  </data>
+  <data name="BalanceQuality" xml:space="preserve">
+    <value>平衡质量：</value>
+  </data>
+  <data name="BalanceAngle" xml:space="preserve">
+    <value>平衡角度：</value>
+  </data>
+  <data name="NumberOfFace2" xml:space="preserve">
+    <value>面二分度数量：</value>
+  </data>
+  <data name="MillingACuttingParameters" xml:space="preserve">
+    <value>钻削参数</value>
+  </data>
+  <data name="Plane" xml:space="preserve">
+    <value>平面</value>
+  </data>
+  <data name="ToolRadius" xml:space="preserve">
+    <value>刀具半径(mm)</value>
+  </data>
+  <data name="SetTheToolRadiusSize" xml:space="preserve">
+    <value>设置刀具的半径，单位（mm）</value>
+  </data>
+  <data name="ToolConeAngle" xml:space="preserve">
+    <value>刀具锥角度(°)</value>
+  </data>
+  <data name="SetTheToolConeAngle" xml:space="preserve">
+    <value>设置刀具锥角度，单位°</value>
+  </data>
+  <data name="MaximumDepth" xml:space="preserve">
+    <value>最大深度(mm)</value>
+  </data>
+  <data name="SetMaximumDepth" xml:space="preserve">
+    <value>设置允许加工最大深度，单位mm</value>
+  </data>
+  <data name="WeightRemovalRadius" xml:space="preserve">
+    <value>去重半径</value>
+  </data>
+  <data name="SetWeightRemovalRadius" xml:space="preserve">
+    <value>设置工件加工时去重半径，单位（mm）</value>
+  </data>
+  <data name="Density" xml:space="preserve">
+    <value>密度</value>
+  </data>
+  <data name="ID号" xml:space="preserve">
+    <value>ID号</value>
+  </data>
+  <data name="转子id" xml:space="preserve">
+    <value>转子id</value>
+  </data>
+  <data name="操作者id" xml:space="preserve">
+    <value>操作者id</value>
+  </data>
+  <data name="测量转速" xml:space="preserve">
+    <value>测量转速</value>
+  </data>
+  <data name="左信号量" xml:space="preserve">
+    <value>左信号量</value>
+  </data>
+  <data name="右信号量" xml:space="preserve">
+    <value>右信号量</value>
+  </data>
+  <data name="左量值" xml:space="preserve">
+    <value>平面一量值</value>
+  </data>
+  <data name="左相位" xml:space="preserve">
+    <value>平面一相位</value>
+  </data>
+  <data name="右量值" xml:space="preserve">
+    <value>平面二量值</value>
+  </data>
+  <data name="右相位" xml:space="preserve">
+    <value>平面二相位</value>
+  </data>
+  <data name="静量值" xml:space="preserve">
+    <value>静量值</value>
+  </data>
+  <data name="静相位" xml:space="preserve">
+    <value>静相位</value>
+  </data>
+  <data name="是否合格" xml:space="preserve">
+    <value>是否合格</value>
+  </data>
+  <data name="转子名称" xml:space="preserve">
+    <value>转子名称</value>
+  </data>
+  <data name="支撑方式" xml:space="preserve">
+    <value>支撑方式</value>
+  </data>
+  <data name="解算模式" xml:space="preserve">
+    <value>解算模式</value>
+  </data>
+  <data name="测量模式" xml:space="preserve">
+    <value>测量模式</value>
+  </data>
+  <data name="测量单位" xml:space="preserve">
+    <value>测量单位</value>
+  </data>
+  <data name="允许量单位" xml:space="preserve">
+    <value>允许量单位</value>
+  </data>
+  <data name="平面一允许量" xml:space="preserve">
+    <value>平面一允许量</value>
+  </data>
+  <data name="平面二允许量" xml:space="preserve">
+    <value>平面二允许量</value>
+  </data>
+  <data name="静允许量" xml:space="preserve">
+    <value>静允许量</value>
+  </data>
+  <data name="设置转速" xml:space="preserve">
+    <value>设置转速</value>
+  </data>
+  <data name="静加去重" xml:space="preserve">
+    <value>静加去重</value>
+  </data>
+  <data name="平面一加去重" xml:space="preserve">
+    <value>平面一加去重</value>
+  </data>
+  <data name="平面二加去重" xml:space="preserve">
+    <value>平面二加去重</value>
+  </data>
+  <data name="保存时间" xml:space="preserve">
+    <value>保存时间</value>
+  </data>
+  <data name="序号" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="A" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="C" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="R1" xml:space="preserve">
+    <value>R1</value>
+  </data>
+  <data name="R2" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>无数据</value>
+  </data>
+  <data name="SetSensity" xml:space="preserve">
+    <value>设置工件的密度，单位（g/mm³）</value>
+  </data>
+  <data name="CalculateTo" xml:space="preserve">
+    <value>计算到(g·mm)</value>
+  </data>
+  <data name="unitg" xml:space="preserve">
+    <value>单位（g.mm）</value>
+  </data>
+  <data name="CuttingFactor" xml:space="preserve">
+    <value>切削系数</value>
+  </data>
+  <data name="SetCuttingFactor" xml:space="preserve">
+    <value>设置切削系数</value>
+  </data>
+  <data name="Hole-to-Hole" xml:space="preserve">
+    <value>孔与孔的间距</value>
+  </data>
+  <data name="SetHole-to-Hole" xml:space="preserve">
+    <value>设置孔与孔之间的中心距离,单位（°）</value>
+  </data>
+  <data name="LimitMode" xml:space="preserve">
+    <value>限制模式</value>
+  </data>
+  <data name="LimitMode12" xml:space="preserve">
+    <value>1=孔数限制 2=角度范围限制</value>
+  </data>
+  <data name="NumberOfHoles" xml:space="preserve">
+    <value>最大孔数量</value>
+  </data>
+  <data name="SetNumberOfHoles" xml:space="preserve">
+    <value>设置最大孔数（当模式为1时须设置）</value>
+  </data>
+  <data name="ProcessingAngleRangeDegrees" xml:space="preserve">
+    <value>加工角度范围(°)</value>
+  </data>
+  <data name="SetProcessingAngleRangeDegrees" xml:space="preserve">
+    <value>设置角度范围，当模式为2时需设置，单位(°)</value>
+  </data>
+  <data name="RepeatabilityAccuracy" xml:space="preserve">
+    <value>重复精度</value>
+  </data>
+  <data name="SetRepeatabilityAccuracy" xml:space="preserve">
+    <value>设置重复性精度,单位:g.mm</value>
+  </data>
+  <data name="PermissibleValue" xml:space="preserve">
+    <value>允许量</value>
+  </data>
+  <data name="SetPermissibleValue" xml:space="preserve">
+    <value>设置允许值，单位（g.mm）</value>
+  </data>
+  <data name="DistanceBTDP" xml:space="preserve">
+    <value>两基准面间距(mm)</value>
+  </data>
+  <data name="SetDistanceBTDP" xml:space="preserve">
+    <value>设置两基准面间距，单位:(mm)</value>
+  </data>
+  <data name="Savedd" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="NumberOfDivisions" xml:space="preserve">
+    <value>分度数量</value>
+  </data>
+  <data name="Angle0" xml:space="preserve">
+    <value>角度0</value>
+  </data>
+  <data name="Angle1" xml:space="preserve">
+    <value>角度1</value>
+  </data>
+  <data name="Angle2" xml:space="preserve">
+    <value>角度2</value>
+  </data>
+  <data name="Angle3" xml:space="preserve">
+    <value>角度3</value>
+  </data>
+  <data name="Angle4" xml:space="preserve">
+    <value>角度4</value>
+  </data>
+  <data name="Angle5" xml:space="preserve">
+    <value>角度5</value>
+  </data>
+  <data name="Angle6" xml:space="preserve">
+    <value>角度6</value>
+  </data>
+  <data name="Angle7" xml:space="preserve">
+    <value>角度7</value>
+  </data>
+  <data name="Angle8" xml:space="preserve">
+    <value>角度8</value>
+  </data>
+  <data name="Angle9" xml:space="preserve">
+    <value>角度9</value>
+  </data>
+  <data name="Angle10" xml:space="preserve">
+    <value>角度10</value>
+  </data>
+  <data name="Angle11" xml:space="preserve">
+    <value>角度11</value>
+  </data>
+  <data name="Angle12" xml:space="preserve">
+    <value>角度12</value>
+  </data>
+  <data name="Angle13" xml:space="preserve">
+    <value>角度13</value>
+  </data>
+  <data name="Angle14" xml:space="preserve">
+    <value>角度14</value>
+  </data>
+  <data name="Angle15" xml:space="preserve">
+    <value>角度15</value>
+  </data>
+  <data name="Angle16" xml:space="preserve">
+    <value>角度16</value>
+  </data>
+  <data name="Angle17" xml:space="preserve">
+    <value>角度17</value>
+  </data>
+  <data name="Angle18" xml:space="preserve">
+    <value>角度18</value>
+  </data>
+  <data name="Angle19" xml:space="preserve">
+    <value>角度19</value>
+  </data>
+  <data name="Angle20" xml:space="preserve">
+    <value>角度20</value>
+  </data>
+  <data name="Angle21" xml:space="preserve">
+    <value>角度21</value>
+  </data>
+  <data name="Angle22" xml:space="preserve">
+    <value>角度22</value>
+  </data>
+  <data name="Angle23" xml:space="preserve">
+    <value>角度23</value>
+  </data>
+  <data name="Angle24" xml:space="preserve">
+    <value>角度24</value>
+  </data>
+  <data name="Angle25" xml:space="preserve">
+    <value>角度25</value>
+  </data>
+  <data name="Angle26" xml:space="preserve">
+    <value>角度26</value>
+  </data>
+  <data name="Angle27" xml:space="preserve">
+    <value>角度27</value>
+  </data>
+  <data name="Angle28" xml:space="preserve">
+    <value>角度28</value>
+  </data>
+  <data name="Angle29" xml:space="preserve">
+    <value>角度29</value>
+  </data>
+  <data name="Angle30" xml:space="preserve">
+    <value>角度30</value>
+  </data>
+  <data name="Angle31" xml:space="preserve">
+    <value>角度31</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Elctcomp" xml:space="preserve">
+    <value>电补偿</value>
+  </data>
+  <data name="Measuringing" xml:space="preserve">
+    <value>正在测量</value>
+  </data>
+  <data name="MeasuringCompleted" xml:space="preserve">
+    <value>测量完成</value>
+  </data>
+  <data name="MeasuringPC" xml:space="preserve">
+    <value>测量定位完成</value>
+  </data>
+  <data name="WorkpieceDriveMode" xml:space="preserve">
+    <value>工件驱动模式</value>
+  </data>
+  <data name="Servo" xml:space="preserve">
+    <value>伺服</value>
+  </data>
+  <data name="NormalMotor" xml:space="preserve">
+    <value>普通电机</value>
+  </data>
+  <data name="self-driven" xml:space="preserve">
+    <value>自驱动</value>
+  </data>
+  <data name="AlgorithmSelection" xml:space="preserve">
+    <value>算法选择</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>分度算法</value>
+  </data>
+  <data name="DrillingAlgorithm" xml:space="preserve">
+    <value>钻孔算法</value>
+  </data>
+  <data name="CompensationTimes" xml:space="preserve">
+    <value>补偿次数</value>
+  </data>
+  <data name="KeyCTesting..." xml:space="preserve">
+    <value>正在检测键补偿...</value>
+  </data>
+  <data name="ClampCTesting.." xml:space="preserve">
+    <value>正在检测夹具补偿...</value>
+  </data>
+  <data name="ClampCTC" xml:space="preserve">
+    <value>夹具补偿检测完成</value>
+  </data>
+  <data name="KCTC" xml:space="preserve">
+    <value>键补偿检测完成</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>安放置好工件“启动”夹具自动夹紧。待数据稳定后自动停止运转。</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>步骤</value>
+  </data>
+  <data name="Turn the rotor" xml:space="preserve">
+    <value>将工件旋转 </value>
+  </data>
+  <data name="degree" xml:space="preserve">
+    <value>度后再“启动”夹具自动夹紧，待数据稳定后自动停止运转。</value>
+  </data>
+  <data name="Step2" xml:space="preserve">
+    <value>待数据稳定后自动停止运转夹具补偿完成。</value>
+  </data>
+  <data name="This" xml:space="preserve">
+    <value>该次夹具补偿已完成，请重置。</value>
+  </data>
+  <data name="FisTO" xml:space="preserve">
+    <value>夹具补偿已启动</value>
+  </data>
+  <data name="FisTOff" xml:space="preserve">
+    <value>夹具补偿已关闭</value>
+  </data>
+  <data name="TKCTurnon" xml:space="preserve">
+    <value>键补偿已开启</value>
+  </data>
+  <data name="TKCTurnOff" xml:space="preserve">
+    <value>键补偿已关闭</value>
+  </data>
+  <data name="KStep1" xml:space="preserve">
+    <value>步骤1：无键测试，待数据稳定后自动停止运转。</value>
+  </data>
+  <data name="KStep2" xml:space="preserve">
+    <value>步骤2：带键测试，待数据稳定后自动停止运转。</value>
+  </data>
+  <data name="TheUsername" xml:space="preserve">
+    <value>用户名、密码、用户权限不可为空！</value>
+  </data>
+  <data name="SDate" xml:space="preserve">
+    <value>开始日期不得晚于结束日期</value>
+  </data>
+  <data name="CalculationSuccessful" xml:space="preserve">
+    <value>解算成功</value>
+  </data>
+  <data name="Crnt1" xml:space="preserve">
+    <value>当前为： 无键测试</value>
+  </data>
+  <data name="Crnt2" xml:space="preserve">
+    <value>当前为： 带键测试</value>
+  </data>
+  <data name="Ranging1~50" xml:space="preserve">
+    <value>设置范围1~50</value>
+  </data>
+  <data name="Ranging2~64" xml:space="preserve">
+    <value>设置范围2~64</value>
+  </data>
+  <data name="RevDiffRange" xml:space="preserve">
+    <value>测量时的转速范围差 单位%</value>
+  </data>
+  <data name="BatchPS" xml:space="preserve">
+    <value>参数批量设置</value>
+  </data>
+  <data name="Multi-stageC" xml:space="preserve">
+    <value>多段标定</value>
+  </data>
+  <data name="CalibrationSpeed" xml:space="preserve">
+    <value>标定转速</value>
+  </data>
+  <data name="HardSF1" xml:space="preserve">
+    <value>硬支撑系数1</value>
+  </data>
+  <data name="HardSF2" xml:space="preserve">
+    <value>硬支撑系数2</value>
+  </data>
+  <data name="HardSF3" xml:space="preserve">
+    <value>硬支撑系数3</value>
+  </data>
+  <data name="HardSF4" xml:space="preserve">
+    <value>硬支撑系数4</value>
+  </data>
+  <data name="LicensingJudgment" xml:space="preserve">
+    <value>许可判断</value>
+  </data>
+  <data name="UsageDays" xml:space="preserve">
+    <value>使用天数</value>
+  </data>
+  <data name="AuthorizationCode" xml:space="preserve">
+    <value>授权码</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>授权</value>
+  </data>
+  <data name="ABCR1" xml:space="preserve">
+    <value>A、B、C、R1、R2等单位</value>
+  </data>
+  <data name="LoadISO" xml:space="preserve">
+    <value>加载ISO配置、窗口异常：</value>
+  </data>
+  <data name="ParaOfDivision" xml:space="preserve">
+    <value>分度参数</value>
+  </data>
+  <data name="UsePlan1D" xml:space="preserve">
+    <value>使用平面一数据</value>
+  </data>
+  <data name="Jj" xml:space="preserve">
+    <value>夹具补偿</value>
+  </data>
+  <data name="J" xml:space="preserve">
+    <value>键补偿</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>请重置</value>
+  </data>
+  <data name="ParameterOfBalancingPlane" xml:space="preserve">
+    <value>较正面参数</value>
+  </data>
+  <data name="QualificatoryCriterion" xml:space="preserve">
+    <value>合格判定标准</value>
+  </data>
+  <data name="LeftPlane" xml:space="preserve">
+    <value>左允许不平衡量</value>
+  </data>
+  <data name="RightPlane" xml:space="preserve">
+    <value>右允许不平衡量</value>
+  </data>
+  <data name="Static" xml:space="preserve">
+    <value>静允许不平衡量</value>
+  </data>
+  <data name="TestingData" xml:space="preserve">
+    <value>测试数据</value>
+  </data>
+  <data name="LeftMass" xml:space="preserve">
+    <value>左量值</value>
+  </data>
+  <data name="LeftPhase" xml:space="preserve">
+    <value>左相位</value>
+  </data>
+  <data name="RightMass" xml:space="preserve">
+    <value>右量值</value>
+  </data>
+  <data name="RightPhase" xml:space="preserve">
+    <value>右相位</value>
+  </data>
+  <data name="StaticMass" xml:space="preserve">
+    <value>静量值</value>
+  </data>
+  <data name="StaticPhase" xml:space="preserve">
+    <value>静相位</value>
+  </data>
+  <data name="Standard" xml:space="preserve">
+    <value>执行标准: IES 7.22/ISO 1940</value>
+  </data>
+  <data name="Rev1" xml:space="preserve">
+    <value>转速</value>
+  </data>
+  <data name="MeasuringData" xml:space="preserve">
+    <value>测量数据</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>动 平 衡 测 量 报 告</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Qualified" xml:space="preserve">
+    <value>合格</value>
+  </data>
+  <data name="Unqualified" xml:space="preserve">
+    <value>不合格</value>
+  </data>
+  <data name="Auditor" xml:space="preserve">
+    <value>审核员</value>
+  </data>
+  <data name="CardOnLine" xml:space="preserve">
+    <value>采集板在线</value>
+  </data>
+  <data name="CardOffLine" xml:space="preserve">
+    <value>采集板掉线</value>
+  </data>
+  <data name="ConCardOnLine" xml:space="preserve">
+    <value>控制板在线</value>
+  </data>
+  <data name="ConCardOffLine" xml:space="preserve">
+    <value>控制板掉线</value>
+  </data>
+  <data name="timefcom" xml:space="preserve">
+    <value>预热时间</value>
+  </data>
+  <data name="heat" xml:space="preserve">
+    <value>热机</value>
+  </data>
+  <data name="Restime" xml:space="preserve">
+    <value>剩余时间</value>
+  </data>
+  <data name="Manual-driven" xml:space="preserve">
+    <value>手动驱动</value>
+  </data>
+  <data name="stepthrough" xml:space="preserve">
+    <value>单步调试(T)</value>
+  </data>
+  <data name="mStop" xml:space="preserve">
+    <value>电机急停</value>
+  </data>
+  <data name="mReset" xml:space="preserve">
+    <value>电机复位</value>
+  </data>
+  <data name="cRelease" xml:space="preserve">
+    <value>气缸松开</value>
+  </data>
+  <data name="cClamp" xml:space="preserve">
+    <value>气缸夹紧</value>
+  </data>
+  <data name="AandD" xml:space="preserve">
+    <value>启停加减速</value>
+  </data>
+  <data name="accdecel" xml:space="preserve">
+    <value>加减速时间</value>
+  </data>
+  <data name="coSpeed" xml:space="preserve">
+    <value>转速系数</value>
+  </data>
+</root>

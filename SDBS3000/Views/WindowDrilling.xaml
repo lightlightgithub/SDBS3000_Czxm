@@ -1,0 +1,462 @@
+﻿<Window x:Class="SDBS3000.Views.WindowDrilling"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:loc="clr-namespace:SDBS3000.Resources"
+        xmlns:local="clr-namespace:SDBS3000.Views"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" Name="dri"
+        Title="WindowDrilling" WindowState="Maximized"
+        WindowStyle="None" ResizeMode="NoResize" BorderThickness="1,0,1,1" WindowStartupLocation="CenterScreen"
+        BorderBrush="Transparent" Background="Transparent" AllowsTransparency="True">
+    <Window.Resources>
+     
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="10">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollStyle_Mobile}"></Style>
+        <!--纵向滚动条宽度-->
+        <sys:Double   x:Key="VerticalScrollBarThickness">10</sys:Double>
+        <!--纵向滑块圆角-->
+        <CornerRadius x:Key="VerticalThumbCornerRadius"  >5</CornerRadius>
+        <!--横向滚动条宽度-->
+        <sys:Double   x:Key="HorizontalScrollBarThickness">12</sys:Double>
+        <!--横向滑块圆角-->
+        <CornerRadius x:Key="HorizontalThumbCornerRadius"  >5</CornerRadius>
+        <Style TargetType="TextBlock" x:Key="txt">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="txt1">
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="InputScope" Value="Number" />
+            <Setter Property="InputMethod.IsInputMethodEnabled" Value="false"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+    </Window.Resources>
+
+    <Viewbox>
+        <Grid Width="1920" Height="1080">
+            <Border CornerRadius="20" Background="{DynamicResource tipBg1}" Width="1520" Height="910">
+                <Grid Width="1520" Height="910">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="{DynamicResource tipBg}" Opacity="0.8" CornerRadius="10,10,0,0"/>
+                    <Label Content="{Binding [BatchPS], Source={x:Static loc:LanguageManager.Instance}}" Foreground="{DynamicResource txtColor1}" FontSize="27" VerticalContentAlignment="Center" Padding="45,5,0,0" FontWeight="Bold"/>
+                    <Button Grid.Column="2" Style="{StaticResource NormalButtonStyle}" Height="40" Width="40" HorizontalAlignment="Right" Margin="0,0,30,0" Click="Button_Click">
+                        <Canvas>
+                            <Line X1="-15" Y1="-15" X2="15" Y2="15" Fill="{DynamicResource txtColor1}" Stroke="{DynamicResource txtColor1}" StrokeThickness="2"/>
+                            <Line X1="-15"  Y1="15"  X2="15" Y2="-15" Fill="{DynamicResource txtColor1}" Stroke="{DynamicResource txtColor1}" StrokeThickness="2"/>
+                        </Canvas>
+                    </Button>
+                    <UniformGrid Grid.Row="1" Rows="2" Columns="1">
+                        <StackPanel Margin="20">
+                            <Label Content="{Binding [MillingACuttingParameters], Source={x:Static loc:LanguageManager.Instance}}"
+                                   Foreground="{DynamicResource txtColor1}" FontSize="27" VerticalContentAlignment="Center" Padding="20,5,0,20" FontWeight="Bold"/>
+                            <DataGrid AutoGenerateColumns="False" Width="1450" Height="180"
+                                      CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False"
+                                      CanUserReorderColumns="False" CanUserResizeColumns="True"
+                                      CanUserResizeRows="False" ColumnHeaderHeight="40" HorizontalScrollBarVisibility="Visible"
+                                      FontSize="20" GridLinesVisibility="All" AlternatingRowBackground="{DynamicResource  tipBg3}" RowBackground="{DynamicResource  tipBg4}"
+                                      HeadersVisibility="Column" IsReadOnly="False" Name="datagrid" BorderThickness="2"
+                                      RowHeight="40" Style="{DynamicResource DataGridStyle1}">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Height" Value="40"/>
+                                        <Setter Property="MinWidth" Value="120"/>
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <!--<DataTemplate>
+                                    <TextBlock Text="{Binding}">
+                                        <TextBlock.ToolTip>
+                                            <ToolTip Content="这是你的工具提示内容"/>
+                                        </TextBlock.ToolTip>
+                                    </TextBlock>
+                                </DataTemplate>-->
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Height" Value="40"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                        <Setter Property="Padding" Value="2,10,0,0"/>
+                                        <Style.Triggers>
+                                            <MultiTrigger>
+                                                <!-- 失去焦点时背景颜色 -->
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true"/>
+                                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}"  EditingElementStyle="{StaticResource txt}" Binding="{Binding whichp}" Header="{Binding [Plane],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding rT}" Header="{Binding [ToolRadius],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetTheToolRadiusSize],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding angT}" Header="{Binding [ToolConeAngle],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetTheToolConeAngle],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding depMax}" Header="{Binding [MaximumDepth],Source={x:Static loc:LanguageManager.Instance}}" >
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetMaximumDepth],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding R}" Header="{Binding [WeightRemovalRadius],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetWeightRemovalRadius],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding density}" Header="{Binding [Density],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetSensity],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding remnant}" Header="{Binding [CalculateTo],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [unitg], Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding factor}" Header="{Binding [CuttingFactor], Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetCuttingFactor], Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding angDis}" Header="{Binding [Hole-to-Hole], Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetHole-to-Hole], Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding calMode}" Header="{Binding [LimitMode], Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [LimitMode12], Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding nHoleMax}" Header="{Binding [NumberOfHoles],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetNumberOfHoles],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding rangeMax}" Header="{Binding [ProcessingAngleRangeDegrees],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetProcessingAngleRangeDegrees],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding errMea}" Header="{Binding [RepeatabilityAccuracy],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetRepeatabilityAccuracy],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding allow}" Header="{Binding [PermissibleValue],Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetPermissibleValue],Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding b}" Header="{Binding [DistanceBTDP], Source={x:Static loc:LanguageManager.Instance}}">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}">
+                                                    <TextBlock.ToolTip>
+                                                        <ToolTip Content="{Binding [SetDistanceBTDP], Source={x:Static loc:LanguageManager.Instance}}" FontSize="18"/>
+                                                    </TextBlock.ToolTip>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.CellStyle>
+                                            <Style TargetType="DataGridCell">
+                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                <Setter Property="Height" Value="40"/>
+                                                <Setter Property="BorderBrush" Value="LightBlue"/>
+                                                <Setter Property="BorderThickness" Value="0.5"/>
+                                                <Setter Property="Padding" Value="2,10,0,0"/>
+                                                <Style.Triggers>
+                                                    <MultiTrigger>
+                                                        <!-- 失去焦点时背景颜色 -->
+                                                        <MultiTrigger.Conditions>
+                                                            <Condition Property="IsSelected" Value="true"/>
+                                                            <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                                        </MultiTrigger.Conditions>
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                        <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                                    </MultiTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </DataGridTextColumn.CellStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <WrapPanel Margin="20" HorizontalAlignment="Right">
+                                <Button Margin="0,0,100,0" Content="{Binding [Savedd], Source={x:Static loc:LanguageManager.Instance}}" BorderBrush="#35BAFF" Background="{StaticResource confirm}" Click="Button_Click_1"/>
+                            </WrapPanel>
+                        </StackPanel>
+
+                        <!--分度表-->
+                        <StackPanel Margin="20">
+                            <Label Content="{Binding [ParaOfDivision], Source={x:Static loc:LanguageManager.Instance}}"  Foreground="{DynamicResource txtColor1}" FontSize="27" VerticalContentAlignment="Center" Padding="20,5,0,20" FontWeight="Bold"/>
+                            <DataGrid AutoGenerateColumns="False" Width="1450" Height="180"
+                                      CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False"
+                                      CanUserReorderColumns="False" CanUserResizeColumns="True"
+                                      CanUserResizeRows="False" ColumnHeaderHeight="40" HorizontalScrollBarVisibility="Visible"
+                                      FontSize="20" GridLinesVisibility="All" AlternatingRowBackground="{DynamicResource  tipBg3}" RowBackground="{DynamicResource  tipBg4}"
+                                      HeadersVisibility="Column" IsReadOnly="False" Name="datagrid2" BorderThickness="2"
+                                      RowHeight="40" Style="{DynamicResource DataGridStyle1}">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Height" Value="40"/>
+                                        <Setter Property="MinWidth" Value="100"/>
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Height" Value="40"/>
+                                        <Setter Property="BorderBrush" Value="LightBlue"/>
+                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                        <Setter Property="Padding" Value="2,10,0,0"/>
+                                        <Style.Triggers>
+                                            <MultiTrigger>
+                                                <!-- 失去焦点时背景颜色 -->
+                                                <MultiTrigger.Conditions>
+                                                    <Condition Property="IsSelected" Value="true"/>
+                                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                                </MultiTrigger.Conditions>
+                                                <Setter Property="Background" Value="Transparent"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                            </MultiTrigger>
+                                        </Style.Triggers>
+
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}"  EditingElementStyle="{StaticResource txt}" Binding="{Binding whichp}" 
+                                                        Header="{Binding [Plane], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding posnum}" 
+                                                        Header="{Binding [NumberOfDivisions], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos0}" 
+                                                        Header="{Binding [Angle0],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos1}"
+                                                        Header="{Binding [Angle1],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos2}"
+                                                        Header="{Binding [Angle2],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos3}"
+                                                        Header="{Binding [Angle3],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos4}"
+                                                        Header="{Binding [Angle4],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos5}"
+                                                        Header="{Binding [Angle5],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos6}" 
+                                                        Header="{Binding [Angle6],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos7}" 
+                                                        Header="{Binding [Angle7],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos8}" 
+                                                        Header="{Binding [Angle8],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos9}" 
+                                                        Header="{Binding [Angle9],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos10}" 
+                                                        Header="{Binding [Angle10],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos11}" 
+                                                        Header="{Binding [Angle11],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos12}" 
+                                                        Header="{Binding [Angle12],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos13}" 
+                                                        Header="{Binding [Angle13],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos14}" 
+                                                        Header="{Binding [Angle14],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos15}" 
+                                                        Header="{Binding [Angle15],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos16}" 
+                                                        Header="{Binding [Angle16],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos17}" 
+                                                        Header="{Binding [Angle17],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos18}" 
+                                                        Header="{Binding [Angle18],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos19}" 
+                                                        Header="{Binding [Angle19],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos20}" 
+                                                        Header="{Binding [Angle20],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos21}" 
+                                                        Header="{Binding [Angle21],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos22}" 
+                                                        Header="{Binding [Angle22],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos23}" 
+                                                        Header="{Binding [Angle23],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos24}" 
+                                                        Header="{Binding [Angle24],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos25}" 
+                                                        Header="{Binding [Angle25],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos26}" 
+                                                        Header="{Binding [Angle26],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos27}" 
+                                                        Header="{Binding [Angle27],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos28}" 
+                                                        Header="{Binding [Angle28],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos29}" 
+                                                        Header="{Binding [Angle29],Source={x:Static loc:LanguageManager.Instance}}"/>
+
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos30}" 
+                                                        Header="{Binding [Angle30],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                    <DataGridTextColumn ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding pos31}" 
+                                                        Header="{Binding [Angle31],Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <WrapPanel Margin="20" HorizontalAlignment="Right">
+                                <Button Content="{Binding [UsePlan1D], Source={x:Static loc:LanguageManager.Instance}}" Margin="0,0,100,0" BorderBrush="#35BAFF" Background="{DynamicResource confirm}" Click="Button_Click_3"  Width="217"/>
+                                <Button Content="{Binding [Savedd], Source={x:Static loc:LanguageManager.Instance}}" Margin="0,0,100,0" BorderBrush="#35BAFF" Background="{DynamicResource confirm}" Click="Button_Click_2"/>
+                            </WrapPanel>
+                        </StackPanel>
+                    </UniformGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
+</Window>

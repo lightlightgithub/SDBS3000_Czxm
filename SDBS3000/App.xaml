@@ -1,0 +1,33 @@
+<Application
+    x:Class="SDBS3000.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:SDBS3000.Utils.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:SDBS3000"
+    d1p1:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Utils/Themes/Icon.xaml" />
+                <ResourceDictionary Source="Utils/Themes/Login.xaml" />
+                <ResourceDictionary Source="Utils/Themes/Measure.xaml" />
+
+                <ResourceDictionary Source="Utils/Themes/MainStyle.xaml" />
+                <ResourceDictionary Source="Utils/Themes/Datagrid.xaml" />
+                <ResourceDictionary Source="Utils/Themes/LightStyle.xaml" />
+                <!--<ResourceDictionary Source="Utils/Themes/Darkstyle.xaml" />-->
+                
+                <!--<ResourceDictionary Source="Utils/Themes/FlatDatePicker.xaml"/>-->
+                <!--<ResourceDictionary Source="/pack://application:,,,/SDBS3000.Ucs;component/Themes/FlatDatePickerStyle.xaml"/>-->
+                <!--<ResourceDictionary Source="pack://application:,,,/SDBS3000.Ucs;component/FontSpace.xaml"/>FlatDatePicker-->
+            </ResourceDictionary.MergedDictionaries>
+            <vm:ViewModelLocator
+                xmlns:vm="clr-namespace:SDBS3000.ViewModel"
+                x:Key="Locator"
+                d:IsDataSource="True" />
+            <converters:GetNegateBool x:Key="GetNegateBool" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

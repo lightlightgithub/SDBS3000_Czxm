@@ -1,0 +1,15 @@
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\SDBSEntity.dll.config
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\SDBSEntity.dll
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\SDBSEntity.pdb
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\EntityFramework.dll
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\EntityFramework.SqlServer.dll
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\EntityFramework.xml
+D:\SDBS3000_Czxm\SDBSEntity\bin\Release\EntityFramework.SqlServer.xml
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.csproj.AssemblyReference.cache
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.Migrations.InitialCreate.resources
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.Migrations.InitialCreate1.resources
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.csproj.GenerateResource.cache
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.csproj.CoreCompileInputs.cache
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.csproj.Up2Date
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.dll
+D:\SDBS3000_Czxm\SDBSEntity\obj\Release\SDBSEntity.pdb

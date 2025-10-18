@@ -1,0 +1,68 @@
+﻿<Page x:Class="SDBS3000.Views.PageHorThree"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDBS3000.Views"
+      xmlns:uc1="clr-namespace:SDBS3000.Ucs;assembly=SDBS3000.Ucs"
+      xmlns:loc="clr-namespace:SDBS3000.Resources"
+      xmlns:converters="clr-namespace:SDBS3000.Utils.Converters"
+      DataContext="{Binding Source={StaticResource Locator},Path=WinMeasure}"
+      mc:Ignorable="d"
+      d:DesignHeight="880" d:DesignWidth="1920"
+      Title="PageHorThree">
+    <Page.Resources>
+        <converters:Getcutimage x:Key="cutmode"/>
+    </Page.Resources>
+    <Grid>
+        <Viewbox Stretch="Fill" StretchDirection="Both">
+            <Grid Height="880" Width="1920">
+                <Popup IsOpen="{Binding OK}" Placement="Center" x:Name="okpop" StaysOpen="False" VerticalOffset="-150">
+                    <Grid Background="#1FD83F" Width="400" Height="300">
+                        <Label Content="OK" FontSize="200" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Popup>
+                <Popup IsOpen="{Binding NG}" Placement="Center"  x:Name="ngpop" StaysOpen="False" VerticalOffset="-150">
+                    <Grid Background="#FF0000" Width="400" Height="300">
+                        <Label Content="NG" FontSize="200" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Popup>
+                <Image Width="57" Height="26" Margin="66,140,1796,711" Source="{Binding Cut1,Mode=TwoWay,Converter={StaticResource cutmode}}"/>
+                <ProgressBar x:Name="leftpro" Style="{StaticResource ProgressBarStyle1}" Margin="66,188,1796,416" Value="{Binding Data0.singleL}"/>
+                <Image Width="57" Height="26" Margin="1796,140,66,711" Source="{Binding Cut2,Mode=TwoWay,Converter={StaticResource cutmode}}"/>
+                <ProgressBar x:Name="rightpro" Style="{StaticResource ProgressBarStyle1}" Margin="1796,188,66,416" Value="{Binding Data0.singleR}"/>
+                <ProgressBar x:Name="pbpro" Style="{StaticResource ProgressBarStyle2}" Margin="0,30,0,826" Value="{Binding Progress}"/>
+                <!--<uc:Circle  Margin="1198,173,365,550" x:Name="rc"/>-->
+                <!--左边表格-->
+                <local:MeaTable Width="577" Height="232" SliderWidth="465.0" Logotype="0" LabelContent="{Binding [Plane1], Source={x:Static loc:LanguageManager.Instance}}" Margin="40,522,1303,127" CurrentValue="{Binding Data0.fl}" CurrentAngle="{Binding Data0.ql}" LastValue="{Binding Data1.fl}" LastAngle="{Binding Data1.ql}"  ShowUnit="{Binding Rotor.Yxldw}" Yxl="{Binding Rotor.Pmyyxl}"  SliderValue="{Binding Data0.singleL}" Decinum="{Binding Decnum}"/>
+                <!--中间表格-->
+                <local:MeaTable Width="577" Height="232" SliderWidth="0" Logotype="1" LabelContent="{Binding [Static Unbalance], Source={x:Static loc:LanguageManager.Instance}}" Margin="672,522,672,127" CurrentValue="{Binding Data0.fm}" CurrentAngle="{Binding Data0.qm}" LastValue="{Binding Data1.fm}" LastAngle="{Binding Data1.qm}" ShowUnit="{Binding Rotor.Yxldw}" Yxl="{Binding Rotor.Jyxl}" Decinum="{Binding Decnum}"/>
+                <!--右边表格-->
+                <local:MeaTable Width="577" Height="232" SliderWidth="465.0" Logotype="2" LabelContent="{Binding [Plane2], Source={x:Static loc:LanguageManager.Instance}}" Margin="1303,522,40,127" CurrentValue="{Binding Data0.fr}" CurrentAngle="{Binding Data0.qr}" LastValue="{Binding Data1.fr}" LastAngle="{Binding Data1.qr}" ShowUnit="{Binding Rotor.Yxldw}" Yxl="{Binding Rotor.Pmeyxl}" SliderValue="{Binding Data0.singleR}" Decinum="{Binding Decnum}"/>
+            </Grid>
+        </Viewbox>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175*"/>
+                <ColumnDefinition Width="434*"/>
+                <ColumnDefinition Width="159*"/>
+                <ColumnDefinition Width="378*"/>
+                <ColumnDefinition Width="159*"/>
+                <ColumnDefinition Width="434*"/>
+                <ColumnDefinition Width="175*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="115*"/>
+                <RowDefinition Height="394*"/>
+                <RowDefinition Height="247*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+            <uc1:Circle x:Name="leftcircle" Grid.Column="1" Grid.Row="1" MeaValue="{Binding Data0.fl}" Angel="{Binding Data0.ql}" MaxValue="{Binding Rotor.Pmyyxl}" Direction="{Binding Direction}"  Nee="{Binding Nee}"/>
+            <uc1:Circle x:Name="middlecircle" Grid.Column="3" Grid.Row="1" MeaValue="{Binding Data0.fm}" Angel="{Binding Data0.qm}" MaxValue="{Binding Rotor.Jyxl}" Direction="{Binding Direction}"  Nee="{Binding Nee}"/>
+            <uc1:Circle x:Name="rightcircle" Grid.Column="5" Grid.Row="1" MeaValue="{Binding Data0.fr}" Angel="{Binding Data0.qr}" MaxValue="{Binding Rotor.Pmeyxl}" Direction="{Binding Direction}"  Nee="{Binding Nee}"/>
+            <local:UserStatusBar Style="{StaticResource UserStatusBarStyle1}" Grid.Row="4"/>
+        </Grid>
+    </Grid>
+</Page>

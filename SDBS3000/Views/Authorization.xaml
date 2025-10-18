@@ -1,0 +1,122 @@
+﻿<Window x:Class="SDBS3000.Views.Authorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:loc="clr-namespace:SDBS3000.Resources"
+        xmlns:local="clr-namespace:SDBS3000.Views"
+        mc:Ignorable="d" Name="sup"
+        DataContext="{Binding Source={StaticResource Locator},Path=Main}"
+        Title="Authorization" WindowState="Maximized"
+        WindowStyle="None" ResizeMode="NoResize" BorderThickness="1,0,1,1" WindowStartupLocation="CenterScreen"
+        BorderBrush="Transparent" Background="Transparent" AllowsTransparency="True" Loaded="Sup_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+            <Setter Property="Background" Value="{DynamicResource measurezs}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" CornerRadius="10">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Viewbox>
+        <Grid Width="1920" Height="1080" >
+            <Border CornerRadius="20" Background="{DynamicResource tipBg1}"  Width="1520" Height="910">
+                <Grid Width="1520" Height="910">
+                    
+                    <Grid.Resources>
+                       
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="690"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="{DynamicResource tipBg}" CornerRadius="10,10,0,0"/>
+                    <Label Content="{Binding [EquipmentAuthorization], Source={x:Static loc:LanguageManager.Instance}}" Foreground="{DynamicResource txtColor1}" FontSize="27" VerticalContentAlignment="Center" Padding="45,5,0,0" FontWeight="Bold"/>
+                    <Button Grid.Column="2" Style="{StaticResource NormalButtonStyle}" Height="40" Width="40" HorizontalAlignment="Right" Margin="0,0,30,0" Click="Button_Click_1">
+                        <Canvas>
+                            <Line X1="-15" Y1="-15" X2="15" Y2="15" Fill="{DynamicResource txtColor1}" Stroke="{DynamicResource txtColor1}" StrokeThickness="2"/>
+                            <Line X1="-15"  Y1="15"  X2="15" Y2="-15" Fill="{DynamicResource txtColor1}" Stroke="{DynamicResource txtColor1}" StrokeThickness="2"/>
+                        </Canvas>
+                    </Button>
+                    <UniformGrid Grid.Row="1" Margin="120,160,120,80" Columns="2">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="Background" Value="{DynamicResource bgAuthorization}"/>
+                                <Setter Property="Opacity" Value="0.4"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                        <Border/>
+                    </UniformGrid>
+                    <UniformGrid Grid.Row="1" Margin="120,160,120,80" Columns="2" Panel.ZIndex="2">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="FontSize" Value="25"/>
+                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="Margin" Value="100,0,0,0"/>
+                            </Style>
+                        </UniformGrid.Resources>
+                        <Label Content="{Binding [HMI Serial Number], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <TextBox Panel.ZIndex="3"  x:Name="xlh" Text="" FontSize="24" CaretBrush="{DynamicResource txtColor1}" Margin="100,0,0,0" BorderThickness="0" Foreground="{DynamicResource txtColor1}" Background="#33027FFF" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="300" Height="60" Padding="2,0,0,0"/>
+                        <Label Content="{Binding [KeyInformation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label x:Name="myxx"/>
+                        <Label Content="{Binding [LicensingJudgment], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label x:Name="xkpd" />
+                        <Label Content="{Binding [UsageDays], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label x:Name="syts"/>
+                        <Label Content="{Binding [AuthorizationCode], Source={x:Static loc:LanguageManager.Instance}}" />
+                        <TextBox Panel.ZIndex="3" x:Name="sqm" Text="" FontSize="24" CaretBrush="{DynamicResource txtColor1}" Margin="100,0,0,0" BorderThickness="0" Foreground="{DynamicResource txtColor1}" Background="#33027FFF" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="300" Height="60" Padding="2,0,0,0"/>
+                    </UniformGrid>
+                    <Button Grid.Row="2" Content="{Binding [Authorize],Source={x:Static loc:LanguageManager.Instance}}" BorderBrush="#35BAFF" Background="{StaticResource confirm}" Click="Button_Click"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
+
+</Window>

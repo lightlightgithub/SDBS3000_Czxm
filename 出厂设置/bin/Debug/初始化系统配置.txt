@@ -1,0 +1,28 @@
+USE [SDBS3000]
+GO
+SET IDENTITY_INSERT [dbo].[T_Dictionary] ON 
+
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (1, N'算法选择', 2, N'0=无 1=分度算法 2=钻孔算法', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 1, N'DB21.DBW500')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (2, N'工件驱动模式', 0, N'0=伺服 1=普通电机 2=自驱动  工件运转的方式', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 2, N'D20W340')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (3, N'测量次数', 2, N'设置范围1~50', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 3, N'D20W312')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (4, N'刷新频率', 4, N'设置范围2~64', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 4, N'D20D308')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (5, N'转差范围', 10, N'测量时的转速范围差 单位%', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 5, N'D20D314')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (6, N'工作方式', 1, N'0=连续普通测量 1=普通测量停止 2=测量定位', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 6, N'D20W318')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (7, N'显示位数', 3, N'0=不显示小数点 1=显示1位小数点 2=显示2位小数点 3=显示3位小数点 ', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 7, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (8, N'光针模式', 1, N'0=不使用光针 1=使用手动检测每转脉冲数 2=使用自动检测每转脉冲数', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 8, N'D20W330')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (9, N'安全门模式', 1, N'0=不使用 1=使用', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 9, N'D20W328')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (10, N'数据保存方式', 1, N'0=不记录,1=每次记录 2=合格记录,3=不合格记录', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 10, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (11, N'打印模式', 0, N'0=不使用打印机 1=A4手动打印平衡报告 2=A4自动打印平衡报告 3=手动标签打印 4=自动标签打印', CAST(N'2024-04-12T14:57:05.820' AS DateTime), 1, 11, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (12, N'矢量图方向', 1, N'0=顺时针 1=逆时针', CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 12, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (13, N'定位模式', 1, N'0=先左后右 1=只左面 2=只右面', CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 13, N'D20W320')
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (14, N'扫码功能', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 14, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (16, N'三色报警灯', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 15, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (17, N'双手启动', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 16, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (18, N'气压保护', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 17, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (19, N'避让算法', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 18, NULL)
+INSERT [dbo].[T_Dictionary] ([id], [name], [value], [note], [time], [active], [code], [plcaddr]) VALUES (20, N'固定偏量', 0, NULL, CAST(N'2024-04-12T14:57:05.823' AS DateTime), 1, 19, NULL)
+SET IDENTITY_INSERT [dbo].[T_Dictionary] OFF
+GO
+
+
+truncate table T_Dictionary

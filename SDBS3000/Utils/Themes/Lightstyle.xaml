@@ -1,0 +1,161 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!--单一色-->
+    <Color x:Key="LinearColor1">#94e4fe</Color>
+    <Color x:Key="LinearColor2">#1f98d2</Color>
+    <Color x:Key="LinearColor3">#e9f3f8</Color>
+    <Color x:Key="LinearColor4">#35BAFF</Color>
+     <!--  圆浅色00519C  003266深色 51AC9B  -->
+    <!--  2.4圈  -->
+    <Color x:Key="circleq">White</Color>
+    <!--  1.3.5圈层  -->
+    <Color x:Key="circles">#c9e9f8</Color>
+
+    <!--  圆外圈颜色  -->
+    <SolidColorBrush x:Key="circleyh" Color="White"/>
+    <SolidColorBrush x:Key="BorderColor4" Color="#66c7f7"/>
+ 
+    <!--圆浅色00519C  003266深色 51AC9B-->    
+    <Color x:Key="circleOK">#51AC9B</Color>
+    <SolidColorBrush x:Key="circleqsolid" Color="{StaticResource circleq}"/>
+    <!--  进度条激活激活  -->
+    <!--  深色#002A4A  -->
+    <SolidColorBrush x:Key="measurekx" Color="#5cc0f1" />
+
+    <!--  进度条激活未激活  -->
+    <SolidColorBrush x:Key="measurekx2" Color="#d0eaf8" />
+    <!--矩形块颜色 -->
+    <SolidColorBrush x:Key="RecColor">Black</SolidColorBrush>
+    <!--滚动条颜色-->
+    <SolidColorBrush x:Key="scrollColor4" Color="#66CCFF" />
+
+    <!--  授权页面背景颜色#0C569B  -->
+    <SolidColorBrush x:Key="bgAuthorization">#a8d3fd</SolidColorBrush>
+
+    <SolidColorBrush x:Key="tipBg" Color="#55b9eb" />
+    <SolidColorBrush x:Key="tipBg1" Color="#e2f0fb" />
+    <SolidColorBrush x:Key="tipBg2" Color="#33027FFF" />
+    <SolidColorBrush x:Key="tipBg3" Color="#81D4FA" />
+    <SolidColorBrush x:Key="tipBg5" Color="#81D4FA" />
+    <SolidColorBrush x:Key="tipBg4" Color="#E3F2FD" />
+    <SolidColorBrush x:Key="zckbg" Color="#b8def8"/>
+    <!--支撑框边框-->
+    <SolidColorBrush x:Key="zckbk" Color="#91c9f0"/>
+
+    <!--  圆的角度  -->
+    <Style x:Key="angleInCircle" TargetType="Label">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#19253a" />
+    </Style>
+
+    <!--渐变色-->   
+    <LinearGradientBrush x:Key="measurezs" EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+        <GradientStop Color="{DynamicResource LinearColor1}" Offset="0"/>
+        <GradientStop Color="{DynamicResource  LinearColor2}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!--  文字颜色  -->
+    <SolidColorBrush x:Key="txtColor1" Color="Black" />
+    <SolidColorBrush x:Key="txtColor2" Color="#8d95a1" />
+    <SolidColorBrush x:Key="txtColor3" Color="#656c7a" />
+    <SolidColorBrush x:Key="txtColor4" Color="Black" />
+
+    <!--背景资源-->
+    <!--#region -->
+    <ImageBrush x:Key="Meatable.bg" ImageSource="/Utils/Image/LightImg/数据框背景浅.png"/>
+    <ImageBrush x:Key="Box.bg" ImageSource="/Utils/Image/LightImg/框.png"/>
+
+    <!--主界面背景-->
+    <ImageBrush x:Key="mainbg" ImageSource="/SDBS3000;component/Utils/Image/LightImg/背景浅.jpg"/>
+    <BitmapImage x:Key="mainbk" UriSource="/SDBS3000;component/Utils/Image/LightImg/主体背景.png" />
+    <!--  登录界面  -->
+    <ImageBrush x:Key="loginbg" ImageSource="/SDBS3000;component/Utils/Image/LightImg/背景浅.jpg" />
+    <ImageBrush x:Key="loginbtn1" ImageSource="/SDBS3000;component/Utils/Image/LightImg/登录输入框.png" />
+    <ImageBrush x:Key="loginbtndl" ImageSource="/SDBS3000;component/Utils/Image/LightImg/登录按钮.png" />
+    <ImageBrush x:Key="loginbtnrbpsd" ImageSource="/SDBS3000;component/Utils/Image/LightImg/下拉框浅.png" />
+
+    <SolidColorBrush x:Key="Meatabletxb.bg" Color="#92d1f0"/>
+    <!--  顶部菜单背景  -->
+    <ImageBrush x:Key="MenubgOn" ImageSource="/SDBS3000;component/Utils/Image/LightImg/mainItem.png" />
+    <ImageBrush x:Key="MenubgOn1" ImageSource="/SDBS3000;component/Utils/Image/LightImg/mainItem.png" Opacity="0.8" />
+    <ImageBrush x:Key="MenubgNo" ImageSource="/SDBS3000;component/Utils/Image/LightImg/mainItemNO.png" />
+    <!--  显示转速的顶部框  -->
+    <ImageBrush x:Key="dbk"  ImageSource="/SDBS3000;component/Utils/Image/LightImg/topSpeed.png" />
+    <BitmapImage x:Key="toolBarBg" UriSource="/SDBS3000;component/Utils/Image/LightImg/底部框淡.png" />
+    <!--标定界面按钮背景-->
+    <ImageBrush x:Key="calbtnbj" ImageSource="/SDBS3000;component/Utils/Image/LightImg/角度2浅.png" />
+    <!--  测量界面背景色  --> 
+    <SolidColorBrush x:Key="measurebgcolor" Color="#eef2f9" />
+    <ImageBrush x:Key="userinput1" ImageSource="/SDBS3000;component/Utils/Image/User/输入框1.png" Stretch="Fill"           Opacity="0.36"/>
+    <ImageBrush x:Key="userinput2" ImageSource="/SDBS3000;component/Utils/Image/User/输入框2.png" Stretch="UniformToFill"  Opacity="0.36"/>
+    <ImageBrush x:Key="userinput3" ImageSource="/SDBS3000;component/Utils/Image/User/输入框3.png" Stretch="UniformToFill"  Opacity="0.36"/>
+    <ImageBrush x:Key="userinput4" ImageSource="/SDBS3000;component/Utils/Image/LightImg/下拉框浅.png" Stretch="Fill"          Opacity="0.36"/>
+    <ImageBrush x:Key="userinput6" ImageSource="/SDBS3000;component/Utils/Image/LightImg/下拉框浅.png" Stretch="Fill" />
+    <ImageBrush x:Key="userinput5" ImageSource="/SDBS3000;component/Utils/Image/User/输入框1.png" Stretch="Fill"           Opacity="0.36"/>
+ 
+    <ImageBrush x:Key="btnBg1"  ImageSource="/SDBS3000;component/Utils/Image/LightImg/按钮描边.png"  Opacity="0.66" />
+
+
+    <BitmapImage x:Key="LoginClose" UriSource="/SDBS3000;component/Utils/Image/LightImg/关闭.png" />
+
+    <BitmapImage x:Key="logoPath" UriSource="/SDBS3000;component/Utils/Image/LightImg/剑平logo.png" />
+    <BitmapImage x:Key="clampImg" UriSource="/SDBS3000;component/Utils/Image/LightImg/clamp_light.png"/>
+    <ImageBrush x:Key="userinputlogin" ImageSource="/SDBS3000;component/Utils/Image/LightImg/下拉框yh.png" Stretch="Fill" />
+    <!--#endregion-->
+
+
+
+    <Style x:Key="btnStyle" TargetType="Button">
+        <Setter Property="Height" Value="150" />
+        <Setter Property="Width" Value="150" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="#75c2fb" />
+        <Setter Property="Background" Value="{DynamicResource btnBg1}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            CornerRadius="15"
+                         Background="{TemplateBinding Background}"
+                         BorderBrush="{TemplateBinding BorderBrush}"
+                         BorderThickness="{TemplateBinding BorderThickness}"
+                         SnapsToDevicePixels="True" >
+                        <ContentPresenter x:Name="contentPresenter"
+                                       Margin="{TemplateBinding Padding}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       Focusable="False"
+                                       RecognizesAccessKey="True"
+                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource ResourceKey=userwxz}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource ResourceKey=userwxz}" />
+                        </Trigger>
+                        <Trigger Property="ToggleButton.IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#FFBCDDEE" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF245A83" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+  
+
+
+
+</ResourceDictionary>

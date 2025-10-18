@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="SDBS3000.Ucs.Circle"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SDBS3000.Ucs"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="447" x:Name="uc">
+    <Viewbox>
+        <Grid Width="447" Height="447">
+            <Grid.Resources>
+                <DropShadowEffect x:Key="tt" Color="White" BlurRadius="18" Opacity="0.35" ShadowDepth="0"/>
+                <DropShadowEffect x:Key="tt1" Color="White" BlurRadius="0.001" ShadowDepth="1"/>
+
+
+               
+
+                <Style x:Key="circlelinepath" TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{DynamicResource circlelinesolid}"/>
+                    <Setter Property="StrokeThickness" Value="0.25"/>
+                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                </Style>
+
+                <Color x:Key="circlevalue">#BFDF2121</Color>
+                <SolidColorBrush x:Key="circlevaluesolid" Color="{DynamicResource circlevalue}"/>
+                <RadialGradientBrush x:Key="measurecirvalue" GradientOrigin="0.5,0.5">
+                    <GradientStop Offset="0" Color="{DynamicResource circlevalue}"/>
+                    <GradientStop Offset="0.6" Color="{DynamicResource circlevalue}"/>
+                    <GradientStop Offset="0.6" Color="Transparent"/>
+                    <GradientStop Offset="1" Color="Transparent"/>
+                </RadialGradientBrush>
+
+                <Style x:Key="circlelinepath1" TargetType="{x:Type Path}">
+                    <Setter Property="Stroke" Value="{DynamicResource circlelinesolid1}"/>
+                    <Setter Property="StrokeThickness" Value="0.7"/>
+                    <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                </Style>
+                <RotateTransform x:Key="angel30" Angle="30"/>
+                <RotateTransform x:Key="angel60" Angle="60"/>
+                <RadialGradientBrush x:Key="measurecir" GradientOrigin="0.5,0.5">
+                    <GradientStop Offset="0" Color="{DynamicResource circles}"/>
+                    <GradientStop Offset="0.2" Color="{DynamicResource circles}"/>
+                    <GradientStop Offset="0.2" Color="{DynamicResource circleq}"/>
+                    <GradientStop Offset="0.4" Color="{DynamicResource circleq}"/>
+                    <GradientStop Offset="0.4" Color="{DynamicResource circles}"/>
+                    <GradientStop Offset="0.6" Color="{DynamicResource circles}"/>
+                    <GradientStop Offset="0.6" Color="{DynamicResource circleq}"/>
+                    <GradientStop Offset="0.8" Color="{DynamicResource circleq}"/>
+                    <GradientStop Offset="0.8" Color="{DynamicResource circles}"/>
+                    <GradientStop Offset="1" Color="{DynamicResource circles}"/>
+                </RadialGradientBrush>
+            
+                <Style x:Key="measurecircle" TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="{DynamicResource measurecir}"/>
+                    <Setter Property="Height" Value="357"/>
+                    <Setter Property="Width" Value="357"/>
+                    <Setter Property="Stroke" Value="{DynamicResource circleyh}"/>
+                    <Setter Property="StrokeThickness" Value="5"/>
+                    <Setter Property="Effect" Value="{DynamicResource tt}"/>
+                </Style>
+                <Style x:Key="measurecircleOK" TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="{StaticResource measurecirOK}"/>
+                    <Setter Property="Height" Value="70"/>
+                    <Setter Property="Width" Value="70"/>
+                    <Setter Property="Stroke" Value="#00FF48"/>
+                    <Setter Property="StrokeThickness" Value="2"/>
+                </Style>
+                <Style x:Key="measurecirclevalue" TargetType="{x:Type Ellipse}">
+                    <Setter Property="Fill" Value="{StaticResource measurecirvalue}"/>
+                    <Setter Property="Height" Value="23"/>
+                    <Setter Property="Width" Value="23"/>
+                    <Setter Property="Stroke" Value="{StaticResource circlevaluesolid}"/>
+                    <Setter Property="StrokeThickness" Value="2"/>
+                </Style>
+
+                <!--逆时针翻转-->
+                <TransformGroup x:Key="fz">
+                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.Resources>
+            <Label Content="0°"   x:Name="label0"   Style="{DynamicResource angleInCircle}"  HorizontalAlignment="Center"  />
+            <Label Content="90°"  x:Name="labe90"   Style="{DynamicResource angleInCircle}"  VerticalAlignment="Center" HorizontalAlignment="Right"  />
+            <Label Content="180°" x:Name="label180" Style="{DynamicResource angleInCircle}"  VerticalAlignment="Bottom" HorizontalAlignment="Center"  />
+            <Label Content="270°" x:Name="labe270"  Style="{DynamicResource angleInCircle}"  VerticalAlignment="Center" />
+            <Grid RenderTransformOrigin="0.5,0.5" x:Name="circlegrid" Width="357" Height="357">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="270" CenterX="0" CenterY="0"/>
+                        <TranslateTransform/>
+                        <ScaleTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Grid x:Name="cirvalue" Panel.ZIndex="6" Width="23" Height="23" >
+                    <Ellipse x:Name="cirred" Style="{DynamicResource measurecirclevalue}" Width="{Binding ElementName=cirvalue ,Path=ActualWidth}" Height="{Binding ElementName=cirvalue ,Path=ActualWidth}"/>
+                    <Path x:Name="pred" Data="M7,11.5 L16,11.5M11.5,7 L11.5,16" Stroke="White" StrokeThickness="2" Stretch="None"/>
+                </Grid>
+                <!--<Line x:Name="linenee" StrokeThickness="3" Stroke="Green" Panel.ZIndex="5" X1="178.5" Y1="178.5" X2="328.5" Y2="178.5">
+                    <Line.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                            <ScaleTransform/>
+                        </TransformGroup>
+                    </Line.RenderTransform>
+                </Line>-->
+                <Path RenderTransformOrigin="0.5,0.5" x:Name="linenee" Data="M178.5,178.5L171,7A178,178,0,0,1,186,7L178.5,178.5" Panel.ZIndex="5" Fill="Green">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                            <ScaleTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse x:Name="cir" Style="{DynamicResource measurecircle}" Width="357" Height="357">
+                    </Ellipse>
+                    <Path x:Name="p1" Data="M5,178.5 L352 178.5M178.5,5 L178.5 352" Style="{DynamicResource circlelinepath1}"/>
+                    <Path x:Name="p2" Data="M5,178.5 L352 178.5M178.5,5 L178.5 352" Style="{DynamicResource circlelinepath1}" RenderTransform="{StaticResource angel30}"/>
+                    <Path x:Name="p3" Data="M5,178.5 L352 178.5M178.5,5 L178.5 352" Style="{DynamicResource circlelinepath1}" RenderTransform="{StaticResource angel60}"/>
+                    <Ellipse x:Name="cirOK" Style="{StaticResource measurecircleOK}" Panel.ZIndex="3" Opacity="0.9"/>
+                    <Path x:Name="sector" Visibility="Hidden" Data="M178.5,178.5L175,6A178,178,0,0,1,182,6L178.5,178.5" Fill="White" Panel.ZIndex="2"/>
+                </Grid>
+            </Grid>
+            <!--<Line x:Name="l2" X1="0" Y1="0" X2="100" Y2="0" StrokeThickness="3" Stroke="Red"/>-->
+        </Grid>
+    </Viewbox>
+</UserControl>

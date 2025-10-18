@@ -1,0 +1,20 @@
+﻿<Window x:Class="SDBS3000.Views.Print"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:loc="clr-namespace:SDBS3000.Resources"
+        xmlns:view="clr-namespace:SDBS3000.Views"
+        mc:Ignorable="d"  WindowStyle="ToolWindow" Width="1920" Height="1080" WindowState="Maximized"
+        Title="{Binding [TPrint], Source={x:Static loc:LanguageManager.Instance}}" Background="LightGray">
+    <Viewbox  Stretch="Uniform" Width="800">
+        <StackPanel Width="800">
+            <Menu>
+                <MenuItem Width="120" HorizontalContentAlignment="Center" Header="{Binding [TPrint], Source={x:Static loc:LanguageManager.Instance}}" Click="MenuItem_Click" x:Name="pri" FontSize="16"/>
+                <MenuItem Width="120" Header="{Binding [logoset], Source={x:Static loc:LanguageManager.Instance}}" Click="MenuItem_Click_2"  FontSize="16"/>
+                <MenuItem Width="120" Header="图标设置2" Click="MenuItem_Click_1"  FontSize="16"/>
+            </Menu>
+            <view:UserControl580 x:Name="printcontrol"/>
+        </StackPanel>
+    </Viewbox>
+</Window>

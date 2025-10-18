@@ -1,0 +1,352 @@
+﻿<Page x:Class="SDBS3000.Views.PageCal"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:loc="clr-namespace:SDBS3000.Resources"
+      xmlns:local="clr-namespace:SDBS3000.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="880" d:DesignWidth="1920"
+      xmlns:converters="clr-namespace:SDBS3000.Utils.Converters"
+      xmlns:uc1="clr-namespace:SDBS3000.Ucs.Controls;assembly=SDBS3000.Ucs"
+      DataContext="{Binding Source={StaticResource Locator},Path=Cal}" Unloaded="Page_Unloaded" 
+      Title="PageCal" Name="PageCalView">
+    <Page.Resources>
+        <converters:GetVisFromBool x:Key="GetVis"/>
+        <Style TargetType="TextBox" x:Key="inputtext">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,0,0,0"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource txtColor1}"/>
+            <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+        </Style>
+       
+        <Style x:Key="calbtnbegin" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Width" Value="138"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" Tag="/SDBS3000;component/Utils/Image/测量图标.png" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <Grid Tag="/SDBS3000;component/Utils/Image/测量图标.png">
+                                <!--<Image Source="{TemplateBinding Tag}" Width="22" Height="22"/>-->
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Opacity" TargetName="border" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource cantclick}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#8C8C8C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SetCalSpeed}"/>
+        <KeyBinding Modifiers="Ctrl" Key="D" Command="{Binding Clear}"/>
+        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding Cal}"/>
+    </Page.InputBindings>
+    <Grid >
+        <Border x:Name="main" Width="1730" Height="680" CornerRadius="20"  Focusable="True">
+            <Border.Background>
+                <ImageBrush ImageSource="{DynamicResource mainbk}"/>
+            </Border.Background>
+            <Grid>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="195"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--<Grid  Margin="25,5,0,0">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Label Foreground="{DynamicResource measurezs}" Content="{Binding Rpm}" FontSize="35" Padding="12"/>
+                            <Label Foreground="{DynamicResource measurezs}" Content="r/min" FontSize="28" Margin="2" VerticalContentAlignment="Center"/>
+                        </WrapPanel>
+                    </Grid>-->
+                    <StackPanel Grid.Column="1" Grid.RowSpan="10" Panel.ZIndex="30" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Height" Value="171.1"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="Button.IsDefaulted" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
+                                                </Trigger>
+                                                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="63"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                                <Setter Property="Margin" Value="0,18,0,0"/>
+                            </Style>
+                            <Style TargetType="Label">
+                                <Setter Property="Margin" Value="0,20,0,0"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="FontSize" Value="22"/>
+                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button  x:Name="ddbdzsbtn" Style="{DynamicResource btnStyle}" Command="{Binding SetCalSpeed}" IsEnabled="{Binding IsEditing}" >
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image Source="/SDBS3000;component/Utils/Icon/Save.png" />
+                                    <Label Content="{Binding [SaveCalSpeed], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <Button  Style="{DynamicResource btnStyle}" Command="{Binding Clear}" >
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image  Source="/Utils/Icon/Correct.png" />
+                                    <Label Content="{Binding [ResetCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{DynamicResource btnStyle}" Command="{Binding Cal}" IsEnabled="{Binding IsEditing}">
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image  Source="/Utils/Icon/解算.png" />
+                                    <Label Content="{Binding [cal2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Viewbox Height="212" Width="45" Margin="56,97,1619,371" Panel.ZIndex="2">
+                    <ProgressBar x:Name="leftpro" Style="{StaticResource ProgressBarStyle1}" Value="{Binding SingleL}"/>
+                </Viewbox>
+                <!--右信号量-->
+                <Viewbox Height="212" Width="45" Margin="1421,96,254,371" Panel.ZIndex="2">
+                    <ProgressBar Style="{StaticResource ProgressBarStyle1}" Value="{Binding SingleR}"/>
+                </Viewbox>
+                <Viewbox Height="35" Width="325" Margin="545,35,750,561" Panel.ZIndex="20">
+                    <ProgressBar Style="{StaticResource ProgressBarStyle2}" Value="{Binding Progress}"/>
+                </Viewbox>
+                <Border Background="{StaticResource calrotor}" BorderBrush="{DynamicResource BorderColor4}" BorderThickness="1" CornerRadius="20" Width="447" Height="180" Margin="538,144,735,356">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#35BAFF" Direction="10" ShadowDepth="0.5" Opacity="0.8" />
+                    </Border.Effect>
+                    <Grid>
+                        <Image Visibility="{Binding ElementName=lrad,Path=IsChecked,Converter={StaticResource GetVis}}" Source="{StaticResource calarr}" Stretch="None" Margin="161,12,255,133" Width="29" Height="33"/>
+                        <Image Visibility="{Binding ElementName=rrad,Path=IsChecked,Converter={StaticResource GetVis}}" Source="{StaticResource calarr}" Stretch="None" Margin="256,22,160,123" Width="29" Height="33"/>
+                    </Grid>
+                </Border>
+                <!--<Label x:Name="ddbdzslab" Content="{Binding [CalibrationSpeed], Source={x:Static loc:LanguageManager.Instance}}"  FontSize="22" Foreground="White" Margin="175,40,1455,580" Width="100" Height="60"/>
+                <TextBox  x:Name="ddbdzstxt" Style="{StaticResource inputtext}" Width="180" Height="60"  PreviewTextInput="TextBox_PreviewTextInput" Background="{StaticResource userinput1}" Text="{Binding CalSpeed}" IsEnabled="{Binding IsEditing}" Margin="293,29,1257,591"/>-->
+                <!--<Expander x:Name="exp" Header="{Binding [Multi-stageC], Source={x:Static loc:LanguageManager.Instance}}" FontSize="22" Foreground="White" IsExpanded="False" Margin="157,94,323,338" Panel.ZIndex="10">--><!--
+                    <Grid Background="#072D4D">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock" x:Key="txt">
+                                <Setter Property="TextAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="TextBox" x:Key="txt1">
+                                <Setter Property="TextAlignment" Value="Left"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="InputScope" Value="Number" />
+                                <Setter Property="InputMethod.IsInputMethodEnabled" Value="false"/>
+                                <Setter Property="Height" Value="50"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="31*"/>
+                        </Grid.ColumnDefinitions>
+                        <DataGrid AutoGenerateColumns="False" BorderBrush="White"
+                        CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False"
+                        CanUserReorderColumns="False" CanUserResizeColumns="True"
+                        CanUserResizeRows="False" ColumnHeaderHeight="40" HorizontalScrollBarVisibility="Visible"
+                        FontSize="20" GridLinesVisibility="All" AlternatingRowBackground="#003266" RowBackground="#00519C"
+                        HeadersVisibility="Column" IsReadOnly="False" Name="datagrid" BorderThickness="2" ItemsSource="{Binding CalData}"
+                        RowHeight="40" Style="{DynamicResource DataGridStyle1}" Grid.ColumnSpan="2">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="FontSize" Value="18"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="BorderBrush" Value="LightBlue"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                    <Setter Property="Padding" Value="2,10,0,0"/>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            --><!-- 失去焦点时背景颜色 --><!--
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true"/>
+                                                <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="80" x:Name="id" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt}" Binding="{Binding ID}" Header="ID"/>
+                                <DataGridTextColumn Width="100" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding speed}" Header="{Binding [CalibrationSpeed], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="80" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding v0}" Header="{Binding [test-mass1], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="80" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding v1}" Header="{Binding [Angle 1], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="80" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding v2}" Header="{Binding [test-mass2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="80" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding v3}" Header="{Binding [Angle 2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="160" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding h0,StringFormat={}{0:F5}}" Header="{Binding [HardSF1], Source={x:Static loc:LanguageManager.Instance}}" />
+                                <DataGridTextColumn Width="160" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding h1,StringFormat={}{0:F5}}" Header="{Binding [HardSF2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="160" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding h2,StringFormat={}{0:F5}}" Header="{Binding [HardSF3], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTextColumn Width="160" IsReadOnly="True" ElementStyle="{StaticResource txt}" EditingElementStyle="{StaticResource txt1}" Binding="{Binding h3,StringFormat={}{0:F5}}" Header="{Binding [HardSF4], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                <DataGridTemplateColumn Width="100" Header="{Binding [Operation], Source={x:Static loc:LanguageManager.Instance}}">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="bt" Content="删除" Command="{Binding ElementName=PageCalView,Path=DataContext.Del}" CommandParameter="{Binding ElementName=datagrid,Path=SelectedItem}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>-->
+                <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data1}" Tag="{Binding [test-mass1], Source={x:Static loc:LanguageManager.Instance}}" Margin="152,152,1207,462"/>
+                <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data2}" Tag="{Binding [Angle 1], Source={x:Static loc:LanguageManager.Instance}}" Margin="152,243,1207,371"/>
+                <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data3}" Tag="{Binding [test-mass2], Source={x:Static loc:LanguageManager.Instance}}" Margin="1010,152,349,462"/>
+                <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data4}" Tag="{Binding [Angle 2], Source={x:Static loc:LanguageManager.Instance}}" Margin="1010,243,349,371"/>
+                <UniformGrid Width="1350" Height="261" Margin="40,369,218,52" Rows="3">
+                    <UniformGrid.Resources>
+                        <Style TargetType="uc1:CareTextBox">
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="20,0,0,0"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="CaretBrush" Value="{DynamicResource txtColor1}"/>
+                            <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="LineHeight" Value="45"/>
+                        </Style>
+                    </UniformGrid.Resources>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Name="lrad" IsEnabled="{Binding pmyenable}"  IsChecked="{Binding Ischecked}" Style="{DynamicResource calRadiobtn}" GroupName="bz"/>
+                        <WrapPanel Grid.Column="1" VerticalAlignment="Center" Margin="0">
+                            <TextBlock VerticalAlignment="Center" Margin="0,10,0,0" Text="{Binding [Plane 1], Source={x:Static loc:LanguageManager.Instance}}" Visibility="{Binding JPH}"/>
+                            <TextBlock  Margin="0,10,0,0" Text="{Binding [Add-weight on], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <!--<TextBox Width="180"  PreviewTextInput="TextBox_PreviewTextInput" Background="{StaticResource userinput1}" Text="{Binding Set0_val[0]}" IsEnabled="{Binding IsEditing}"/>-->
+                            <uc1:CareTextBox  Width="180"  PreviewTextInput="TextBox_PreviewTextInput" Background="{StaticResource userinput1}" Text="{Binding Set0_val[0]}" IsEnabled="{Binding IsEditing}"/>
+                            <TextBlock  Margin="0,10,0,0" Text="{Binding [g  test-mass1], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <uc1:CareTextBox Width="180" Height="60" PreviewTextInput="TextBox_PreviewTextInput"   Background="{StaticResource userinput1}" Text="{Binding Set0_val[1]}" IsEnabled="{Binding IsEditing}"/>
+                            <TextBlock  Margin="0,10,0,0" Text="{Binding [to the phase], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        </WrapPanel>
+                        <Button Grid.Column="2" Content="{Binding [Start], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalBegin}" CommandParameter="2" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=lrad,Path=IsChecked}" Background="{StaticResource confirm}" BorderBrush="#35BAFF" Tag="/SDBS3000;component/Utils/Image/测量图标.png"/>
+                        <Button Grid.Column="3" Content="{Binding [Stop], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalStop}" CommandParameter="2" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=lrad,Path=IsChecked}" Background="{StaticResource qx}" BorderBrush="Red"/>
+                    </Grid>
+                    <Grid  Visibility="{Binding JPH}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Name="rrad" IsEnabled="{Binding pmeenable}"  IsChecked="{Binding Ischecked}" Style="{DynamicResource calRadiobtn}"  GroupName="bz" HorizontalAlignment="Right" Margin="0,15,0,0" Width="100"/>
+                        <WrapPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,10,0,0">
+                            <TextBlock  Margin="0,10,0,0" Text="{Binding [Plane 2 Add-weight on], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <uc1:CareTextBox Width="180" Height="60" PreviewTextInput="TextBox_PreviewTextInput" Background="{StaticResource userinput1}" Text="{Binding Set0_val[2]}" IsEnabled="{Binding IsEditing}"/>
+                            <TextBlock  Margin="0,10,0,0" Text="{Binding [g  test-mass2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <uc1:CareTextBox Width="180" Height="60" PreviewTextInput="TextBox_PreviewTextInput"   Background="{StaticResource userinput1}" Text="{Binding Set0_val[3]}" IsEnabled="{Binding IsEditing}"/>
+                            <TextBlock Margin="0,10,0,0" Text="{Binding [to the phase], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        </WrapPanel>
+                        <Button Grid.Column="2" Content="{Binding [Start], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalBegin}" CommandParameter="3" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=rrad,Path=IsChecked}" Background="{StaticResource confirm}" BorderBrush="#35BAFF"/>
+                        <Button Grid.Column="3" Content="{Binding [Stop], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalStop}" CommandParameter="3" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=rrad,Path=IsChecked}" Background="{StaticResource qx}" BorderBrush="Red"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Name="norad" IsEnabled="{Binding noweightenable}" IsChecked="{Binding Ischecked}" Style="{DynamicResource calRadiobtn}"  GroupName="bz"/>
+                        <TextBlock Margin="0,20,0,0" Grid.Column="1" Text="{Binding [measure with no test-mass], Source={x:Static loc:LanguageManager.Instance}}" Grid.Row="2" Panel.ZIndex="1"/>
+                        <Button Grid.Column="2" Content="{Binding [Start], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalBegin}" CommandParameter="1" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=norad,Path=IsChecked}" Background="{StaticResource confirm}" BorderBrush="#35BAFF"/>
+                        <Button Grid.Column="3" Content="{Binding [Stop], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding CalStop}" CommandParameter="1" Style="{DynamicResource calbtnbegin}" IsEnabled="{Binding ElementName=norad,Path=IsChecked}" Background="{StaticResource qx}" BorderBrush="Red"/>
+                    </Grid>
+                    <!--<Image Stretch="Fill" Visibility="{Binding ElementName=lrad,Path=IsChecked,Converter={StaticResource GetVis}}" Source="{StaticResource calstepbj}"/>
+                        <Image Stretch="Fill" Grid.Row="1" Visibility="{Binding ElementName=rrad,Path=IsChecked,Converter={StaticResource GetVis}}" Source="{StaticResource calstepbj}"/>
+                        <Image Stretch="Fill" Grid.Row="2" Visibility="{Binding ElementName=norad,Path=IsChecked,Converter={StaticResource GetVis}}" Source="{StaticResource calstepbj}"/>-->
+
+
+                </UniformGrid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,242 @@
+<UserControl x:Class="SDBS3000.Views.UserControl580"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:loc="clr-namespace:SDBS3000.Resources"
+             xmlns:converters="clr-namespace:SDBS3000.Utils.Converters"
+             xmlns:uc1="clr-namespace:SDBS3000.Ucs;assembly=SDBS3000.Ucs"
+             FontSize="15" DataContext="{Binding Source={StaticResource Locator}, Path=WinMeasure}">
+    <FrameworkElement.Resources>
+        <converters:ShowUnitContent x:Key="Unityxl"/>
+        <converters:UnitContent x:Key="Unitcc"/>
+        <converters:GetVisFromPrint x:Key="GetVis"/>
+        <converters:Getcutimage1 x:Key="cutmode1"/>
+        <converters:IsQualified x:Key="IsQualified"/>
+        <Style x:Key="SeparatorStyle1" TargetType="{x:Type Separator}">
+            <!--<Setter Property="Control.Background"
+              Value="{DynamicResource {x:Static JetSystemColors.ControlDarkBrushKey}}"/>-->
+            <Setter Property="FrameworkElement.Margin" Value="0,0,0,2"/>
+            <Setter Property="UIElement.Focusable" Value="false"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Separator}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}"
+                    BorderThickness="{TemplateBinding Control.BorderThickness}"
+                    Background="{TemplateBinding Control.Background}" Height="1" SnapsToDevicePixels="true"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </FrameworkElement.Resources>
+    <Viewbox Width="800" Height="1100">
+        <Border Background="White">
+            <Grid Width="790" Height="1100" Margin="20,0,0,10" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.7*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Image x:Name="logo" Source="/SDBS3000;component/Utils/Image/剑平logo.png" Stretch="Uniform"
+                        Margin="10,20,0,0" Width="200" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Image x:Name="logo2" Source="/SDBS3000;component/Utils/Image/剑平logo.png" Stretch="Uniform"
+                        Margin="0,20,10,0" Width="200" Height="80" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                    <TextBlock FontSize="23" Width="auto" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                        Text="{Binding [Report], Source={x:Static loc:LanguageManager.Instance}}"/>
+                </Grid>
+                <StackPanel Grid.Row="1" Margin="0,0,20,0">
+                    <Label Content="" FontWeight="Bold" Padding="0" HorizontalAlignment="Right"/>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="Black"/>
+                    <WrapPanel>
+                        <Label Width="120" Content="{Binding '[Rotor Name]', Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding Rotor.NAME}"/>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Width="120" Content="{Binding '[Measure Rev]', Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding Rotor.Speed}"/>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="20,10,20,0">
+                    <Grid Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding [ParameterOfBalancingPlane], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Line Grid.Column="1" Y1="15" X2="800" Y2="15" Stroke="Black" StrokeThickness="1" StrokeDashArray="3"
+                  HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Grid Height="80">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <WrapPanel>
+                            <Label Content="A= "/>
+                            <Label Content="{Binding Rotor.A}"/>
+                            <Label Content="{Binding Rotor.Ccdw, Converter={StaticResource Unitcc}}"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="1">
+                            <Label Content="B= "/>
+                            <Label Content="{Binding Rotor.B}"/>
+                            <Label Content="{Binding Rotor.Ccdw, Converter={StaticResource Unitcc}}"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2">
+                            <Label Content="C= "/>
+                            <Label Content="{Binding Rotor.C}"/>
+                            <Label Content="{Binding Rotor.Ccdw, Converter={StaticResource Unitcc}}"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Row="1">
+                            <Label Content="R1= "/>
+                            <Label Content="{Binding Rotor.R1}"/>
+                            <Label Content="{Binding Rotor.Ccdw, Converter={StaticResource Unitcc}}"/>
+                        </WrapPanel>
+                        <WrapPanel Grid.Column="2" Grid.Row="1">
+                            <Label Content="R2= "/>
+                            <Label Content="{Binding Rotor.R2}"/>
+                            <Label Content="{Binding Rotor.Ccdw, Converter={StaticResource Unitcc}}"/>
+                        </WrapPanel>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Margin="20,0,20,0">
+                    <Grid Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding [QualificatoryCriterion], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Line Grid.Column="1" Y1="15" X2="800" Y2="15" Stroke="Black" StrokeThickness="1" StrokeDashArray="3"
+                  HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Label Height="30" HorizontalContentAlignment="Center"
+                 Content="{Binding [Standard], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    <WrapPanel FlowDirection="RightToLeft" Margin="0,0,250,0">
+                        <Label Margin="20,0,0,0" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Width="60" HorizontalContentAlignment="Right" Content="{Binding Rotor.Pmyyxl}"/>
+                        <Label Content="="/>
+                        <Label Content="{Binding [LeftPlane], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </WrapPanel>
+                    <WrapPanel FlowDirection="RightToLeft" Margin="0,0,250,0">
+                        <Label Margin="20,0,0,0" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Width="60" HorizontalContentAlignment="Right" Content="{Binding Rotor.Pmeyxl}"/>
+                        <Label Content="="/>
+                        <Label Content="{Binding [RightPlane], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </WrapPanel>
+                    <WrapPanel FlowDirection="RightToLeft" Margin="0,0,250,0">
+                        <Label Margin="20,0,0,0" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Width="60" HorizontalContentAlignment="Right" Content="{Binding Rotor.Jyxl}"/>
+                        <Label Content="="/>
+                        <Label Content="{Binding [Static], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Margin="20,0,20,0">
+                    <Grid Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding [TestingData], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Line Grid.Column="1" Y1="15" X2="800" Y2="15" Stroke="Black" StrokeThickness="1" StrokeDashArray="3"
+                  HorizontalAlignment="Right"/>
+                    </Grid>
+                    <UniformGrid Rows="3" Columns="9">
+                        <Label Content=""/>
+                        <Label Content="{Binding [Rev1], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [LeftMass], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [LeftPhase], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [RightMass], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [RightPhase], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [StaticMass], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content="{Binding [StaticPhase], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label Content=""/>
+                        <Label Content=""/>
+                        <Label Content="r/min" FontSize="12"/>
+                        <Label FontSize="12" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Content="deg" FontSize="12"/>
+                        <Label FontSize="12" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Content="deg" FontSize="12"/>
+                        <Label FontSize="12" Content="{Binding Rotor.Yxldw, Converter={StaticResource Unityxl}}"/>
+                        <Label Content="deg" FontSize="12"/>
+                        <Label Content=""/>
+                        <TextBlock FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" TextWrapping="Wrap"
+                       Text="{Binding [MeasuringData], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.Speed}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.fl}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.ql}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.fr}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.qr}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.fm}"/>
+                        <Label FontWeight="Bold" FontSize="18" Content="{Binding Data0.qm}"/>
+                    </UniformGrid>
+                </StackPanel>
+                <Grid Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <uc1:pCircle x:Name="lc" MeaValue="{Binding Data0.fl}" Angel="{Binding Data0.ql}"
+                       MaxValue="{Binding Rotor.Pmyyxl}"
+                       Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=1}"
+                       Direction="{Binding Direction}"/>
+                    <uc1:pCircle x:Name="rc" Grid.Column="1" MeaValue="{Binding Data0.fr}" Angel="{Binding Data0.qr}"
+                       MaxValue="{Binding Rotor.Pmeyxl}"
+                       Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=1}"
+                       Direction="{Binding Direction}"/>
+                    <uc1:pCircle x:Name="mc" MeaValue="{Binding Data0.fm}" Angel="{Binding Data0.qm}"
+                       MaxValue="{Binding Rotor.Jyxl}"
+                       Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=2}"
+                       Direction="{Binding Direction}"/>
+                </Grid>
+                <Grid Row="5">
+                    <Image Width="57" Height="26" Margin="0,0,0,50"
+                 Source="{Binding Cut1, Mode=TwoWay, Converter={StaticResource cutmode1}}"
+                 Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=1}"/>
+                    <Image Width="57" Height="26" Margin="0,50,0,0"
+                 Source="{Binding Cut2, Mode=TwoWay, Converter={StaticResource cutmode1}}"
+                 Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=1}"/>
+                    <Image Width="58" Height="27" Margin="0"
+                 Source="{Binding Cut0, Mode=TwoWay, Converter={StaticResource cutmode1}}"
+                 Visibility="{Binding Rotor.Clms, Converter={StaticResource GetVis}, ConverterParameter=2}"/>
+                </Grid>
+                <StackPanel Grid.Row="6" Margin="20,0,20,0">
+                    <Grid Height="30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding [Result], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <Line Grid.Column="1" Y1="15" X2="800" Y2="15" Stroke="Black" StrokeThickness="1" StrokeDashArray="3"
+                  HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Grid Height="50">
+                        <Label FontSize="18" FontWeight="Bold" Content="{Binding Data0.Ispass, Converter={StaticResource IsQualified}}"/>
+                        <Label x:Name="time" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
+                    </Grid>
+                    <Border BorderThickness="0,0,0,1" BorderBrush="Black"/>
+                    <UniformGrid Height="30" Rows="1">
+                        <WrapPanel>
+                            <Label Content="{Binding [Auditor], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <Label Content=": "/>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Label Content="{Binding [Operator], Source={x:Static loc:LanguageManager.Instance}}"/>
+                            <Label Content=": "/>
+                            <Label Name="ope"/>
+                        </WrapPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Viewbox>
+</UserControl>

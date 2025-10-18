@@ -1,0 +1,43 @@
+﻿<Page x:Class="SDBS3000.Views.SingleStep"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:uc1="clr-namespace:SDBS3000.Ucs.Controls;assembly=SDBS3000.Ucs"
+      xmlns:loc="clr-namespace:SDBS3000.Resources"
+      xmlns:local="clr-namespace:SDBS3000.Views"
+      DataContext="{Binding Source={StaticResource Locator},Path=SingleStep}"
+      mc:Ignorable="d" 
+      d:DesignHeight="880" d:DesignWidth="1920" 
+      Title="SingleStep">
+    <Grid >
+        <Border x:Name="main" Width="1730" Height="680" CornerRadius="20" Focusable="True">
+            <Border.Background>
+                <ImageBrush ImageSource="{DynamicResource mainbk}"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="195"/>
+                </Grid.ColumnDefinitions>
+
+                <UniformGrid Columns="4" Rows="4" Height="700">
+
+
+
+                    <Button Margin="40,40,0,0" Grid.Row="0" Command="{Binding mStop}"  Style="{DynamicResource btnselect}" Width="220" Height="70" FontSize="24"                
+                            Content="{Binding [mStop], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
+                    <Button Margin="40,40,0,0" Grid.Row="1" Command="{Binding mReset}" Style="{DynamicResource btnselect}"  Width="220" Height="70" FontSize="24"                
+                            Content="{Binding [mReset], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
+
+                    <Button Margin="40,40,0,0" Grid.Row="2" Command="{Binding cRelease}" Style="{DynamicResource btnselect}" Width="220" Height="70" FontSize="24"                
+                            Content="{Binding [cRelease], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
+                    <Button Margin="40,40,0,0" Grid.Row="3" Command="{Binding cClamp}" Style="{DynamicResource btnselect}"  Width="220" Height="70" FontSize="24"                
+                            Content="{Binding [cClamp], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
+                    <!--<uc1:SetItem Height="126" Width="220" LabelText="模拟定位角度" Text="{Binding Angel,Mode=TwoWay}"  Margin="40,40,0,0" Limit="3"/>-->
+                </UniformGrid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>

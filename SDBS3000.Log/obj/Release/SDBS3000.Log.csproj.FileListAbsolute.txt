@@ -1,0 +1,10 @@
+D:\SDBS3000_Czxm\SDBS3000.Log\bin\Release\SDBS3000.Log.dll
+D:\SDBS3000_Czxm\SDBS3000.Log\bin\Release\SDBS3000.Log.pdb
+D:\SDBS3000_Czxm\SDBS3000.Log\bin\Release\System.Memory.dll
+D:\SDBS3000_Czxm\SDBS3000.Log\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+D:\SDBS3000_Czxm\SDBS3000.Log\bin\Release\System.Buffers.dll
+D:\SDBS3000_Czxm\SDBS3000.Log\obj\Release\SDBS3000.Log.csproj.AssemblyReference.cache
+D:\SDBS3000_Czxm\SDBS3000.Log\obj\Release\SDBS3000.Log.csproj.CoreCompileInputs.cache
+D:\SDBS3000_Czxm\SDBS3000.Log\obj\Release\SDBS3000.2023BD83.Up2Date
+D:\SDBS3000_Czxm\SDBS3000.Log\obj\Release\SDBS3000.Log.dll
+D:\SDBS3000_Czxm\SDBS3000.Log\obj\Release\SDBS3000.Log.pdb

@@ -1,0 +1,191 @@
+﻿<Page x:Class="SDBS3000.Views.PageSet"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDBS3000.Views"
+      xmlns:loc="clr-namespace:SDBS3000.Resources"
+      xmlns:uc1="clr-namespace:SDBS3000.Ucs.Controls;assembly=SDBS3000.Ucs"
+      xmlns:cvt="clr-namespace:SDBS3000.Utils.Converters"
+      xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+      DataContext="{Binding Source={StaticResource Locator},Path=Set}" 
+      mc:Ignorable="d" d:DesignHeight="880" d:DesignWidth="1920" Unloaded="Page_Unloaded" Loaded="Page_Loaded"
+      Title="PageSet">
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SetSave}"/>
+    </Page.InputBindings>
+    <Border x:Name="main" Width="1730" Height="680" CornerRadius="20" >
+        <Border.Background>
+            <ImageBrush ImageSource="{DynamicResource mainbk}"/>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="195"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" >
+                <StackPanel.Resources>
+                   
+                    <Style TargetType="Label">
+                        <Setter Property="Margin" Value="0,10,0,0"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                    </Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Height" Value="63"/>
+                        <Setter Property="Stretch" Value="Uniform"/>
+                        <Setter Property="Margin" Value="0,18,0,0"/> 
+                    </Style>
+                </StackPanel.Resources>
+              
+      
+                
+                <!--<Button Background="{StaticResource usermodify}" Command="{Binding SetSave}" Width="Auto" Margin="0,510,0,0">
+                  
+                    <Button.Content>
+                        <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                            <Image Margin="0,44,0,0" Source="/SDBS3000;component/Utils/Image/User/保存图标.png" Stretch="None"/>
+                            <Label Content="{Binding [save], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>-->
+
+                <Button Style="{DynamicResource btnStyle}" Command="{Binding SetSave}"   Margin="0,510,0,0">
+
+                    <Button.Content>
+                        <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                            <Image Source="/SDBS3000;component/Utils/Icon/Save.png" />
+                            <Label Content="{Binding [save], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" x:Name="PageSetScrollViewer_Fcs" >
+                <ScrollViewer.Resources>
+                    <Style BasedOn="{StaticResource DarkScrollbarStyle}" TargetType="ScrollBar"></Style>
+                </ScrollViewer.Resources>
+                <WrapPanel  Width="1530" Orientation="Horizontal">
+                    <!--1535/5=307 690/4=172.5-->
+                    <WrapPanel.Resources>
+                        <Style TargetType="uc1:SetItem">
+                            <Setter Property="Height" Value="126"/>
+                            <Setter Property="Width" Value="220"/>
+                            <Setter Property="Margin" Value="81,18,81,18"/>
+                        </Style>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual2}"/>
+                            <Setter Property="Background" Value="{StaticResource ComboBox.Static.Background}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ComboBox.Static.Border2}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            <Setter Property="Height" Value="126"/>
+                            <Setter Property="Width" Value="220"/>
+                            <Setter Property="Margin" Value="81,18,81,18"/>
+                            <Setter Property="ItemContainerStyle" Value="{DynamicResource ComboBoxItemStyle2}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="FontSize" Value="22"/>
+                            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                            <Setter Property="Padding" Value="20,0,0,0"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+                            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+                            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                            <Setter Property="Template" Value="{DynamicResource ComboBoxTemplate2}"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsEditable" Value="true">
+                                    <Setter Property="IsTabStop" Value="false"/>
+                                    <Setter Property="Padding" Value="2"/>
+                                    <Setter Property="Template" Value="{StaticResource ComboBoxEditableTemplate2}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </WrapPanel.Resources>
+                    <!--测量次数-->
+                    <uc1:SetItem x:Name="clcs" ToolTip="{Binding [Ranging1~50],Source={x:Static loc:LanguageManager.Instance}}" LabelText="{Binding [measuringtimes], Source={x:Static loc:LanguageManager.Instance}}" Text="{Binding Ki_max,Mode=TwoWay}" Limit="1"/>
+                    <!--刷新频率-->
+                    <uc1:SetItem x:Name="sxpl" ToolTip="{Binding [Ranging2~64],Source={x:Static loc:LanguageManager.Instance}}"  LabelText="{Binding [refreshfrequency], Source={x:Static loc:LanguageManager.Instance}}" Text="{Binding Refalsh,Mode=TwoWay}" Limit="1"/>
+                    <!--转差范围-->
+                    <uc1:SetItem x:Name="zcfw" ToolTip="{Binding [RevDiffRange],Source={x:Static loc:LanguageManager.Instance}}"  LabelText="{Binding [revdiff], Source={x:Static loc:LanguageManager.Instance}}" Text="{Binding Rev_difference,Mode=TwoWay}" Limit="2"/>
+                    <!--工作方式-->
+                    <ComboBox x:Name="gzfs" Tag="{Binding [workmode], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding WorkMode,Mode=TwoWay}">
+                        <ComboBoxItem Content="{Binding [workmode0], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [workmode1], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [workmode2], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+                    <!--显示位数-->
+                    <ComboBox x:Name="xsws" Tag="{Binding [digitsdisplay], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding Decimalnum}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle2}">
+                        <ComboBoxItem Content="0"/>
+                        <ComboBoxItem Content="1"/>
+                        <ComboBoxItem Content="2"/>
+                        <ComboBoxItem Content="3"/>
+                    </ComboBox>
+
+                    <!--光针模式  不使用光针 使用手动检测每转脉冲数 使用自动检测每转脉冲数-->
+                    <ComboBox x:Name="gzms" Tag="{Binding [cursormode], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding Needle,Mode=TwoWay}">
+                        <ComboBoxItem Content="{Binding [nouse], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [manual], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [autopul], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+                    <!--安全门-->
+                    <ComboBox x:Name="aqm" Tag="{Binding [safety], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding SafeDoor,Mode=TwoWay}">
+                        <ComboBoxItem Content="{Binding [nouse], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [use], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+
+                    <!-- 数据保存方式	0	0=不记录,1=每次记录 2=合格记录,3=不合格记录
+打印模式	0	0=不使用打印机 1=A4手动打印平衡报告 2=A4自动打印平衡报告 3=手动标签打印 4=自动标签打印-->
+                    <ComboBox x:Name="sjbcfs" Tag="{Binding [Data-storage mode], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding DataSaveMode}">
+                        <ComboBoxItem Content="{Binding [NotStorage],Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Save all records], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Save each qualified record], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Save each unqualified record], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="dyms" Tag="{Binding [primode],Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding PrintMode}">
+                        <ComboBoxItem Content="{Binding [donotusepri],Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [manpriA4],Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [autpriA4],Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [ManualLP],Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [AutomaticLP],Source={x:Static loc:LanguageManager.Instance}}"/> 
+                    </ComboBox>
+
+                    <!--工件驱动模式	1	0=伺服 1=普通电机 2=自驱动  工件运转的方式-->
+                    <ComboBox x:Name="gjqdms" Tag="{Binding [WorkpieceDriveMode], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding DriverMode}">
+                        <ComboBoxItem Content="{Binding [Servo], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [NormalMotor], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [self-driven], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Manual-driven], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="dwms" Tag="{Binding [posmode], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding PosMode,Mode=TwoWay}">
+                        <ComboBoxItem Content="{Binding [leftright], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [left], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [right], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="归零"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="sltfx" Tag="{Binding [vectordir], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding Direction,Mode=TwoWay}">
+                        <ComboBoxItem Content="{Binding [Clockwise], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Counterclockwise], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+
+                    <!--算法选择	0	0=无 1=分度算法 2=钻孔算法-->
+                    <ComboBox x:Name="sfxz" Tag="{Binding [AlgorithmSelection], Source={x:Static loc:LanguageManager.Instance}}" SelectedIndex="{Binding Algorithm}">
+                        <ComboBoxItem Content="{Binding [None], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [Index], Source={x:Static loc:LanguageManager.Instance}}"/>
+                        <ComboBoxItem Content="{Binding [DrillingAlgorithm], Source={x:Static loc:LanguageManager.Instance}}"/>
+                    </ComboBox>
+                    <uc1:SetItem x:Name="smgn" LabelText="扫码功能" Text="预留暂未开发" Limit="1"/>
+                    <uc1:SetItem x:Name="ssbjd"  LabelText="三色报警灯" Text="预留暂未开发" Limit="1"/>
+                    <uc1:SetItem x:Name="ssqd"  LabelText="双手启动" Text="预留暂未开发" Limit="1"/>
+                    <uc1:SetItem x:Name="qybh" LabelText="气压保护" Text="预留暂未开发" Limit="1"/>
+                    <uc1:SetItem x:Name="brsf" LabelText="避让算法" Text="预留暂未开发" Limit="1"/>
+                    <uc1:SetItem x:Name="gdpl" LabelText="固定偏量" Text="预留暂未开发" Limit="1"/>
+                </WrapPanel>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>

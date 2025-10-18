@@ -1,0 +1,1320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="save" xml:space="preserve">
+    <value>Save(S)</value>
+  </data>
+  <data name="Rotor Name" xml:space="preserve">
+    <value>Rotor Name</value>
+  </data>
+  <data name="Calculation Mode" xml:space="preserve">
+    <value>Calculation Mode</value>
+  </data>
+  <data name="Measuring Mode" xml:space="preserve">
+    <value>Measuring Mode</value>
+  </data>
+  <data name="Measuring unit" xml:space="preserve">
+    <value>Measuring unit</value>
+  </data>
+  <data name="Permissible amount unit" xml:space="preserve">
+    <value>Permissible amount unit</value>
+  </data>
+  <data name="Permissible Unbalance on Plane 1" xml:space="preserve">
+    <value>Permissible Unbalance on Plane 1</value>
+  </data>
+  <data name="Permissible Unbalance on Plane 2" xml:space="preserve">
+    <value>Permissible Unbalance on Plane 2</value>
+  </data>
+  <data name="Static permissible amount" xml:space="preserve">
+    <value>Static permissible amount</value>
+  </data>
+  <data name="Choose Rotor" xml:space="preserve">
+    <value>Choose Rotor</value>
+  </data>
+  <data name="Hard bearing" xml:space="preserve">
+    <value>Hard bearing</value>
+  </data>
+  <data name="Soft bearing" xml:space="preserve">
+    <value>Soft bearing</value>
+  </data>
+  <data name="two plane dynamic balance" xml:space="preserve">
+    <value>two plane dynamic balance</value>
+  </data>
+  <data name="static balance" xml:space="preserve">
+    <value>static balance</value>
+  </data>
+  <data name="dynamic/static balance" xml:space="preserve">
+    <value>dynamic/static balance</value>
+  </data>
+  <data name="vertical two plane dynamic balance" xml:space="preserve">
+    <value>vertical two plane dynamic balance</value>
+  </data>
+  <data name="vertical dynamic/static balance" xml:space="preserve">
+    <value>vertical dynamic/static balance</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>New(N)</value>
+  </data>
+  <data name="iso" xml:space="preserve">
+    <value>ISO(I)</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete(D)</value>
+  </data>
+  <data name="cutmode" xml:space="preserve">
+    <value>Support Mode</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancle</value>
+  </data>
+  <data name="User Name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="User Permissions" xml:space="preserve">
+    <value>User Permissions</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Inspector" xml:space="preserve">
+    <value>Inspector</value>
+  </data>
+  <data name="Operator" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="mes1" xml:space="preserve">
+    <value>MES User Name</value>
+  </data>
+  <data name="mes2" xml:space="preserve">
+    <value>MES Password</value>
+  </data>
+  <data name="modify" xml:space="preserve">
+    <value>Modify(F)</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>select</value>
+  </data>
+  <data name="today" xml:space="preserve">
+    <value>today</value>
+  </data>
+  <data name="yesterday" xml:space="preserve">
+    <value>yesterday</value>
+  </data>
+  <data name="thismonth" xml:space="preserve">
+    <value>this month</value>
+  </data>
+  <data name="thisyear" xml:space="preserve">
+    <value>this year</value>
+  </data>
+  <data name="export" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="measuringtimes" xml:space="preserve">
+    <value>Measuring times</value>
+  </data>
+  <data name="refreshfrequency" xml:space="preserve">
+    <value>Refresh Frequency</value>
+  </data>
+  <data name="revdiff" xml:space="preserve">
+    <value>Rev Difference Range</value>
+  </data>
+  <data name="workmode" xml:space="preserve">
+    <value>Work Mode</value>
+  </data>
+  <data name="digitsdisplay" xml:space="preserve">
+    <value>Digits display</value>
+  </data>
+  <data name="cursormode" xml:space="preserve">
+    <value>Cursor Mode</value>
+  </data>
+  <data name="safety" xml:space="preserve">
+    <value>Safety Cover Mode</value>
+  </data>
+  <data name="vectordir" xml:space="preserve">
+    <value>Vector Graph Direction</value>
+  </data>
+  <data name="posmode" xml:space="preserve">
+    <value>Positioning Mode</value>
+  </data>
+  <data name="workmode0" xml:space="preserve">
+    <value>Continuous Regular Measuring</value>
+  </data>
+  <data name="workmode1" xml:space="preserve">
+    <value>Regular Measuring and Stop</value>
+  </data>
+  <data name="workmode2" xml:space="preserve">
+    <value>Measuring and Positioning</value>
+  </data>
+  <data name="digit0" xml:space="preserve">
+    <value>no decimal display</value>
+  </data>
+  <data name="nouse" xml:space="preserve">
+    <value>No user</value>
+  </data>
+  <data name="use" xml:space="preserve">
+    <value>Use</value>
+  </data>
+  <data name="manual" xml:space="preserve">
+    <value>Manual test of Pluse per Rev</value>
+  </data>
+  <data name="meadel" xml:space="preserve">
+    <value>Measuring Delay</value>
+  </data>
+  <data name="Clockwise" xml:space="preserve">
+    <value>Clockwise</value>
+  </data>
+  <data name="Counterclockwise" xml:space="preserve">
+    <value>Counterclockwise</value>
+  </data>
+  <data name="leftright" xml:space="preserve">
+    <value>left then right</value>
+  </data>
+  <data name="left" xml:space="preserve">
+    <value>left only</value>
+  </data>
+  <data name="right" xml:space="preserve">
+    <value>right only</value>
+  </data>
+  <data name="autopul" xml:space="preserve">
+    <value>Auto test of Pulse per Rev</value>
+  </data>
+  <data name="posspeed" xml:space="preserve">
+    <value>Positioning Speed</value>
+  </data>
+  <data name="pulseper" xml:space="preserve">
+    <value>Pulse Per Rev</value>
+  </data>
+  <data name="poscom" xml:space="preserve">
+    <value>Positioning Compensation</value>
+  </data>
+  <data name="acctime" xml:space="preserve">
+    <value>Acceleration Time</value>
+  </data>
+  <data name="dectime" xml:space="preserve">
+    <value>Deceleration Time</value>
+  </data>
+  <data name="revdifcom" xml:space="preserve">
+    <value>Rev Difference Compensation</value>
+  </data>
+  <data name="numofrotor" xml:space="preserve">
+    <value>Number of Rotor Rabbet</value>
+  </data>
+  <data name="pluperrev" xml:space="preserve">
+    <value>Pluse Per Rev</value>
+  </data>
+  <data name="measuring" xml:space="preserve">
+    <value>Measuring</value>
+  </data>
+  <data name="corotation" xml:space="preserve">
+    <value>Corotation</value>
+  </data>
+  <data name="reversal" xml:space="preserve">
+    <value>Reversal</value>
+  </data>
+  <data name="chadir" xml:space="preserve">
+    <value>Change direction</value>
+  </data>
+  <data name="switype" xml:space="preserve">
+    <value>Switch type</value>
+  </data>
+  <data name="phoswi" xml:space="preserve">
+    <value>Photoelectric Switch</value>
+  </data>
+  <data name="proswi" xml:space="preserve">
+    <value>Proximity Switch</value>
+  </data>
+  <data name="candet" xml:space="preserve">
+    <value>Cancel detection(C)</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help(F1)</value>
+  </data>
+  <data name="Lan" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>MenuExten(F2)</value>
+  </data>
+  <data name="Secretkey" xml:space="preserve">
+    <value>Secret Keys</value>
+  </data>
+  <data name="Addremoveweight" xml:space="preserve">
+    <value>Add/remove weight(F3)</value>
+  </data>
+  <data name="Electricalcomp" xml:space="preserve">
+    <value>Electrical Comp(F4)</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="pm1jz" xml:space="preserve">
+    <value>Plane 1 Add-weight(F10)</value>
+  </data>
+  <data name="pm2jz" xml:space="preserve">
+    <value>Plane 2 Add-weight(F11)</value>
+  </data>
+  <data name="jjz" xml:space="preserve">
+    <value>Static Add-weight(F12)</value>
+  </data>
+  <data name="pm1qz" xml:space="preserve">
+    <value>Plane 1 Remove-weight on(F10)</value>
+  </data>
+  <data name="pm2qz" xml:space="preserve">
+    <value>Plane 2 Remove-weight on(F11)</value>
+  </data>
+  <data name="jqz" xml:space="preserve">
+    <value>Static Remove-weight(F12)</value>
+  </data>
+  <data name="TPrint" xml:space="preserve">
+    <value>Print(P)</value>
+  </data>
+  <data name="TStart" xml:space="preserve">
+    <value>Bal Start(B)</value>
+  </data>
+  <data name="TStop" xml:space="preserve">
+    <value>Stop(T)</value>
+  </data>
+  <data name="TCal" xml:space="preserve">
+    <value>Calibration(G)</value>
+  </data>
+  <data name="TRotorSet" xml:space="preserve">
+    <value>Rotor Set(Z)</value>
+  </data>
+  <data name="TMachSet" xml:space="preserve">
+    <value>Mach Set(M)</value>
+  </data>
+  <data name="TClampComp" xml:space="preserve">
+    <value>Clamp Comp(J)</value>
+  </data>
+  <data name="TKeyComp" xml:space="preserve">
+    <value>Key Comp(K)</value>
+  </data>
+  <data name="TPositioning" xml:space="preserve">
+    <value>Positioning(L)</value>
+  </data>
+  <data name="TUserMgt" xml:space="preserve">
+    <value>UserMgt(U)</value>
+  </data>
+  <data name="TRecord" xml:space="preserve">
+    <value>Record(R)</value>
+  </data>
+  <data name="TAlarm" xml:space="preserve">
+    <value>Alarm(W)</value>
+  </data>
+  <data name="TExit" xml:space="preserve">
+    <value>Exit(E)</value>
+  </data>
+  <data name="fastpri" xml:space="preserve">
+    <value>Fast Print</value>
+  </data>
+  <data name="logoset" xml:space="preserve">
+    <value>Logo setting 1</value>
+  </data>
+  <data name="typedata" xml:space="preserve">
+    <value>Type Data</value>
+  </data>
+  <data name="meares" xml:space="preserve">
+    <value>Measurement result</value>
+  </data>
+  <data name="geo" xml:space="preserve">
+    <value>Geometry</value>
+  </data>
+  <data name="dynunb" xml:space="preserve">
+    <value>Dynamic Unbalance Tolerance</value>
+  </data>
+  <data name="befcor" xml:space="preserve">
+    <value>Before correction</value>
+  </data>
+  <data name="aftcor" xml:space="preserve">
+    <value>After correction</value>
+  </data>
+  <data name="con" xml:space="preserve">
+    <value>Conclusion:</value>
+  </data>
+  <data name="rev" xml:space="preserve">
+    <value>Revisor:</value>
+  </data>
+  <data name="primode" xml:space="preserve">
+    <value>Print Mode</value>
+  </data>
+  <data name="donotusepri" xml:space="preserve">
+    <value>Do not use the printer</value>
+  </data>
+  <data name="manpri" xml:space="preserve">
+    <value>Manually print the balancing report</value>
+  </data>
+  <data name="autpri" xml:space="preserve">
+    <value>Automatic print balancing report</value>
+  </data>
+  <data name="Measure Rev" xml:space="preserve">
+    <value>Measure Rev</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Angle" xml:space="preserve">
+    <value>Angle[°]</value>
+  </data>
+  <data name="Plane1" xml:space="preserve">
+    <value>Correction Plane 1</value>
+  </data>
+  <data name="Plane2" xml:space="preserve">
+    <value>Correction Plane 2</value>
+  </data>
+  <data name="Static Unbalance" xml:space="preserve">
+    <value>Static Unbalance</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current value</value>
+  </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last value</value>
+  </data>
+  <data name="measure with no test-mass" xml:space="preserve">
+    <value>measure with no test-mass</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Plane 1 Add-weight on" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="Plane 2 Add-weight on" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="g  test-mass1" xml:space="preserve">
+    <value>test mass to Plane 1 in gram to the phase</value>
+  </data>
+  <data name="test-mass1" xml:space="preserve">
+    <value>test-mass 1</value>
+  </data>
+  <data name="test-mass2" xml:space="preserve">
+    <value>test-mass 2</value>
+  </data>
+  <data name="to the phase" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="Angle 1" xml:space="preserve">
+    <value>Angle 1</value>
+  </data>
+  <data name="Angle 2" xml:space="preserve">
+    <value>Angle 2</value>
+  </data>
+  <data name="cal2" xml:space="preserve">
+    <value>Calculate(C)</value>
+  </data>
+  <data name="g  test-mass2" xml:space="preserve">
+    <value>test mass to Plane 2 in gram to the phase</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Alades" xml:space="preserve">
+    <value>Alarm description</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>version3.0.4</value>
+  </data>
+  <data name="isocal" xml:space="preserve">
+    <value>ISO Tolerance Calculation</value>
+  </data>
+  <data name="calculate" xml:space="preserve">
+    <value>Calculate(C)</value>
+  </data>
+  <data name="balancinggrade" xml:space="preserve">
+    <value>Balancing Precision Grade(G)</value>
+  </data>
+  <data name="workspeed" xml:space="preserve">
+    <value>Working Speed(r/min)</value>
+  </data>
+  <data name="rotormass" xml:space="preserve">
+    <value>Rotor Mass(Kg)</value>
+  </data>
+  <data name="setspeed" xml:space="preserve">
+    <value>Please set the speed</value>
+  </data>
+  <data name="Plane 1" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="Add-weight on" xml:space="preserve">
+    <value>dd</value>
+  </data>
+  <data name="SaveCalSpeed" xml:space="preserve">
+    <value>SaveCalSpeed(S)</value>
+  </data>
+  <data name="OpenCompensation" xml:space="preserve">
+    <value>Open Comp(O)</value>
+  </data>
+  <data name="ClearCompensation" xml:space="preserve">
+    <value>Clear Comp(C)</value>
+  </data>
+  <data name="ResetCompensation" xml:space="preserve">
+    <value>Reset(D)</value>
+  </data>
+  <data name="StartCompensation" xml:space="preserve">
+    <value>Start(S)</value>
+  </data>
+  <data name="NMB_Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="NMB_Y" xml:space="preserve">
+    <value>Y(Y)</value>
+  </data>
+  <data name="NMB_N" xml:space="preserve">
+    <value>N(N)</value>
+  </data>
+  <data name="NMB_Cancel" xml:space="preserve">
+    <value>Cancel(C)</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="Mode 1" xml:space="preserve">
+    <value>Mode 1</value>
+  </data>
+  <data name="Mode 2" xml:space="preserve">
+    <value>Mode 2</value>
+  </data>
+  <data name="Mode 3" xml:space="preserve">
+    <value>Mode 3</value>
+  </data>
+  <data name="Mode 4" xml:space="preserve">
+    <value>Mode 4</value>
+  </data>
+  <data name="Mode 5" xml:space="preserve">
+    <value>Mode 5</value>
+  </data>
+  <data name="Mode 6" xml:space="preserve">
+    <value>Mode 6</value>
+  </data>
+  <data name="Mode 7" xml:space="preserve">
+    <value>Mode 7</value>
+  </data>
+  <data name="Mode 8" xml:space="preserve">
+    <value>Mode 8</value>
+  </data>
+  <data name="Mode 9" xml:space="preserve">
+    <value>Mode 9</value>
+  </data>
+  <data name="Mode 10" xml:space="preserve">
+    <value>Mode 10</value>
+  </data>
+  <data name="Mode 11" xml:space="preserve">
+    <value>Mode 11</value>
+  </data>
+  <data name="InputRotorName" xml:space="preserve">
+    <value>Please enter the rotor name</value>
+  </data>
+  <data name="InputAnotherRotorName" xml:space="preserve">
+    <value>Duplicate with existing rotor name, re-enter rotor name</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="KeepOneRotor" xml:space="preserve">
+    <value>Please keep at least one rotor!</value>
+  </data>
+  <data name="ISOParaSetIsAbnormal" xml:space="preserve">
+    <value>The ISO parameter setting is abnormal:</value>
+  </data>
+  <data name="NewTip" xml:space="preserve">
+    <value>New tip</value>
+  </data>
+  <data name="WhetherOrNot" xml:space="preserve">
+    <value>Whether or not to save </value>
+  </data>
+  <data name="UnsavedItemsExistInTheSetting" xml:space="preserve">
+    <value>Unsaved items exist in the Settings. Do you want to save them?</value>
+  </data>
+  <data name="CurrentRotorIsNotSaved" xml:space="preserve">
+    <value>Current rotor is not saved, please save it or switch to another roto</value>
+  </data>
+  <data name="EquipmentAuthorization" xml:space="preserve">
+    <value>Equipment Authorization</value>
+  </data>
+  <data name="HMI Serial Number" xml:space="preserve">
+    <value>HMI Serial Number</value>
+  </data>
+  <data name="KeyInformation" xml:space="preserve">
+    <value>Key Information</value>
+  </data>
+  <data name="Data-storage mode" xml:space="preserve">
+    <value>Data-storage mode</value>
+  </data>
+  <data name="NotStorage" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Save all records" xml:space="preserve">
+    <value>Save all records</value>
+  </data>
+  <data name="Save each qualified record" xml:space="preserve">
+    <value>Save each qualified record</value>
+  </data>
+  <data name="Save each unqualified record" xml:space="preserve">
+    <value>Save each unqualified record</value>
+  </data>
+  <data name="manpriA4" xml:space="preserve">
+    <value>A4 Manually print the balancing report</value>
+  </data>
+  <data name="ManualLP" xml:space="preserve">
+    <value>Manual label printing</value>
+  </data>
+  <data name="AutomaticLP" xml:space="preserve">
+    <value>Automatic label printing</value>
+  </data>
+  <data name="autpriA4" xml:space="preserve">
+    <value>A4 Automatic print balancing report</value>
+  </data>
+  <data name="Clear data" xml:space="preserve">
+    <value>Clear data</value>
+  </data>
+  <data name="PLCOnLine" xml:space="preserve">
+    <value>PLC Online</value>
+  </data>
+  <data name="PLCOffLine" xml:space="preserve">
+    <value>PLC Offline</value>
+  </data>
+  <data name="Running status" xml:space="preserve">
+    <value>Running status:</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total:</value>
+  </data>
+  <data name="FailedToLogin" xml:space="preserve">
+    <value>Login failed! Please check the username and password.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Exception: Please contact the Administrator!</value>
+  </data>
+  <data name="ErrSaveMeasureData" xml:space="preserve">
+    <value>Error occurred during storage of measurement data:</value>
+  </data>
+  <data name="Presetdata" xml:space="preserve">
+    <value>Preset data cannot be deleted</value>
+  </data>
+  <data name="DelCurrentUser" xml:space="preserve">
+    <value>Delete current user, data cannot be recovered</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="NumberOfFace1" xml:space="preserve">
+    <value>Number of face 1 divisions：</value>
+  </data>
+  <data name="BalanceSerialNumber" xml:space="preserve">
+    <value>Balance serial number：</value>
+  </data>
+  <data name="BalanceQuality" xml:space="preserve">
+    <value>Balance quality：</value>
+  </data>
+  <data name="BalanceAngle" xml:space="preserve">
+    <value>Balance angle：</value>
+  </data>
+  <data name="NumberOfFace2" xml:space="preserve">
+    <value>Number of face 2 divisions：</value>
+  </data>
+  <data name="MillingACuttingParameters" xml:space="preserve">
+    <value>Milling &amp; Cutting Parameters</value>
+  </data>
+  <data name="Plane" xml:space="preserve">
+    <value>Plane</value>
+  </data>
+  <data name="ToolRadius" xml:space="preserve">
+    <value>Tool radius(mm)</value>
+  </data>
+  <data name="SetTheToolRadiusSize" xml:space="preserve">
+    <value>Set the tool radius size, unit: mm</value>
+  </data>
+  <data name="ToolConeAngle" xml:space="preserve">
+    <value>Tool cone angle(°)</value>
+  </data>
+  <data name="SetTheToolConeAngle" xml:space="preserve">
+    <value>set the tool cone angle, unit (°)</value>
+  </data>
+  <data name="MaximumDepth" xml:space="preserve">
+    <value>Maximum depth(mm)</value>
+  </data>
+  <data name="SetMaximumDepth" xml:space="preserve">
+    <value>set the maximum depth allowed for processing, unit (mm)</value>
+  </data>
+  <data name="WeightRemovalRadius" xml:space="preserve">
+    <value>Weight removal radius</value>
+  </data>
+  <data name="SetWeightRemovalRadius" xml:space="preserve">
+    <value>Set workpiece weight removal radius, Unit (mm)</value>
+  </data>
+  <data name="Density" xml:space="preserve">
+    <value>Density</value>
+  </data>
+  <data name="ID号" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="转子id" xml:space="preserve">
+    <value>Rotorid</value>
+  </data>
+  <data name="操作者id" xml:space="preserve">
+    <value>Operator ID</value>
+  </data>
+  <data name="测量转速" xml:space="preserve">
+    <value>Measure Rev</value>
+  </data>
+  <data name="左信号量" xml:space="preserve">
+    <value>Left signal quantity</value>
+  </data>
+  <data name="右信号量" xml:space="preserve">
+    <value>Right signal quantity</value>
+  </data>
+  <data name="左量值" xml:space="preserve">
+    <value>Plane 1 amount</value>
+  </data>
+  <data name="左相位" xml:space="preserve">
+    <value>Plane 1 angle</value>
+  </data>
+  <data name="右量值" xml:space="preserve">
+    <value>Plane 2 amount</value>
+  </data>
+  <data name="右相位" xml:space="preserve">
+    <value>Plane 2 angle</value>
+  </data>
+  <data name="静量值" xml:space="preserve">
+    <value>Static balance amount</value>
+  </data>
+  <data name="静相位" xml:space="preserve">
+    <value>Static balance angle</value>
+  </data>
+  <data name="是否合格" xml:space="preserve">
+    <value>Ispass</value>
+  </data>
+  <data name="转子名称" xml:space="preserve">
+    <value>Rotor Name</value>
+  </data>
+  <data name="支撑方式" xml:space="preserve">
+    <value>Support Mode</value>
+  </data>
+  <data name="解算模式" xml:space="preserve">
+    <value>Calculation Mode</value>
+  </data>
+  <data name="测量模式" xml:space="preserve">
+    <value>Measuring Mode</value>
+  </data>
+  <data name="测量单位" xml:space="preserve">
+    <value>Measuring unit</value>
+  </data>
+  <data name="允许量单位" xml:space="preserve">
+    <value>Permissible amount unit</value>
+  </data>
+  <data name="平面一允许量" xml:space="preserve">
+    <value>Permissible Unbalance on Plane 1</value>
+  </data>
+  <data name="平面二允许量" xml:space="preserve">
+    <value>Permissible Unbalance on Plane 2</value>
+  </data>
+  <data name="静允许量" xml:space="preserve">
+    <value>Static permissible amount</value>
+  </data>
+  <data name="设置转速" xml:space="preserve">
+    <value>Set speed</value>
+  </data>
+  <data name="静加去重" xml:space="preserve">
+    <value>Static Add/remove weight</value>
+  </data>
+  <data name="平面一加去重" xml:space="preserve">
+    <value>Plane 1 Add/remove weight</value>
+  </data>
+  <data name="平面二加去重" xml:space="preserve">
+    <value>Plane 2 Add/remove weight</value>
+  </data>
+  <data name="保存时间" xml:space="preserve">
+    <value>Save time</value>
+  </data>
+  <data name="序号" xml:space="preserve">
+    <value>Sr.no</value>
+  </data>
+  <data name="A" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="B" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="C" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="R1" xml:space="preserve">
+    <value>R1</value>
+  </data>
+  <data name="R2" xml:space="preserve">
+    <value>R2</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No Data</value>
+  </data>
+  <data name="SetSensity" xml:space="preserve">
+    <value>Set the density of the workpiece, unit (g/mm³)</value>
+  </data>
+  <data name="CalculateTo" xml:space="preserve">
+    <value>Calculate to(g·mm)</value>
+  </data>
+  <data name="unitg" xml:space="preserve">
+    <value>Unit g·mm</value>
+  </data>
+  <data name="CuttingFactor" xml:space="preserve">
+    <value>Cutting factor</value>
+  </data>
+  <data name="SetCuttingFactor" xml:space="preserve">
+    <value>Set the workpiece parameters and auto correction parameters</value>
+  </data>
+  <data name="Hole-to-Hole" xml:space="preserve">
+    <value>Hole-to-Hole spacing</value>
+  </data>
+  <data name="SetHole-to-Hole" xml:space="preserve">
+    <value>Set the center distance between workpiece holes, Unit (°)</value>
+  </data>
+  <data name="LimitMode" xml:space="preserve">
+    <value>Limit Mode</value>
+  </data>
+  <data name="LimitMode12" xml:space="preserve">
+    <value>1; number of holes limit 2; angle range limit</value>
+  </data>
+  <data name="NumberOfHoles" xml:space="preserve">
+    <value>Number Of Holes</value>
+  </data>
+  <data name="SetNumberOfHoles" xml:space="preserve">
+    <value>Set the maximum number of holes (must be set when the mode is 1)</value>
+  </data>
+  <data name="ProcessingAngleRangeDegrees" xml:space="preserve">
+    <value>Processing Angle Range(°)</value>
+  </data>
+  <data name="SetProcessingAngleRangeDegrees" xml:space="preserve">
+    <value>Set the angle range (must be set when the mode is 2), unit (°)</value>
+  </data>
+  <data name="RepeatabilityAccuracy" xml:space="preserve">
+    <value>Repeatability Accuracy</value>
+  </data>
+  <data name="SetRepeatabilityAccuracy" xml:space="preserve">
+    <value>Set the repeatability accuracy of the workpiece, Unit (g.mm)</value>
+  </data>
+  <data name="PermissibleValue" xml:space="preserve">
+    <value>Permissible Value</value>
+  </data>
+  <data name="SetPermissibleValue" xml:space="preserve">
+    <value>Setallowable value, unit (g.mm)</value>
+  </data>
+  <data name="DistanceBTDP" xml:space="preserve">
+    <value>Distance between two datum planes</value>
+  </data>
+  <data name="SetDistanceBTDP" xml:space="preserve">
+    <value>Set the distance between two datum planes, unit: (mm)</value>
+  </data>
+  <data name="Savedd" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="NumberOfDivisions" xml:space="preserve">
+    <value>Number of divisions</value>
+  </data>
+  <data name="Angle0" xml:space="preserve">
+    <value>Angle 0</value>
+  </data>
+  <data name="Angle1" xml:space="preserve">
+    <value>Angle 1</value>
+  </data>
+  <data name="Angle2" xml:space="preserve">
+    <value>Angle 2</value>
+  </data>
+  <data name="Angle3" xml:space="preserve">
+    <value>Angle 3</value>
+  </data>
+  <data name="Angle4" xml:space="preserve">
+    <value>Angle 4</value>
+  </data>
+  <data name="Angle5" xml:space="preserve">
+    <value>Angle 5</value>
+  </data>
+  <data name="Angle6" xml:space="preserve">
+    <value>Angle 6</value>
+  </data>
+  <data name="Angle7" xml:space="preserve">
+    <value>Angle 7</value>
+  </data>
+  <data name="Angle8" xml:space="preserve">
+    <value>Angle 8</value>
+  </data>
+  <data name="Angle9" xml:space="preserve">
+    <value>Angle 9</value>
+  </data>
+  <data name="Angle10" xml:space="preserve">
+    <value>Angle 10</value>
+  </data>
+  <data name="Angle11" xml:space="preserve">
+    <value>Angle 11</value>
+  </data>
+  <data name="Angle12" xml:space="preserve">
+    <value>Angle 12</value>
+  </data>
+  <data name="Angle13" xml:space="preserve">
+    <value>Angle 13</value>
+  </data>
+  <data name="Angle14" xml:space="preserve">
+    <value>Angle 14</value>
+  </data>
+  <data name="Angle15" xml:space="preserve">
+    <value>Angle 15</value>
+  </data>
+  <data name="Angle16" xml:space="preserve">
+    <value>Angle 16</value>
+  </data>
+  <data name="Angle17" xml:space="preserve">
+    <value>Angle 17</value>
+  </data>
+  <data name="Angle18" xml:space="preserve">
+    <value>Angle 18</value>
+  </data>
+  <data name="Angle19" xml:space="preserve">
+    <value>Angle 19</value>
+  </data>
+  <data name="Angle20" xml:space="preserve">
+    <value>Angle 20</value>
+  </data>
+  <data name="Angle21" xml:space="preserve">
+    <value>Angle 21</value>
+  </data>
+  <data name="Angle22" xml:space="preserve">
+    <value>Angle 22</value>
+  </data>
+  <data name="Angle23" xml:space="preserve">
+    <value>Angle 23</value>
+  </data>
+  <data name="Angle24" xml:space="preserve">
+    <value>Angle 24</value>
+  </data>
+  <data name="Angle25" xml:space="preserve">
+    <value>Angle 25</value>
+  </data>
+  <data name="Angle26" xml:space="preserve">
+    <value>Angle 26</value>
+  </data>
+  <data name="Angle27" xml:space="preserve">
+    <value>Angle 27</value>
+  </data>
+  <data name="Angle28" xml:space="preserve">
+    <value>Angle 28</value>
+  </data>
+  <data name="Angle29" xml:space="preserve">
+    <value>Angle 29</value>
+  </data>
+  <data name="Angle30" xml:space="preserve">
+    <value>Angle 30</value>
+  </data>
+  <data name="Angle31" xml:space="preserve">
+    <value>Angle 31</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Elctcomp" xml:space="preserve">
+    <value>Electrical Comp</value>
+  </data>
+  <data name="Measuringing" xml:space="preserve">
+    <value>Measuring</value>
+  </data>
+  <data name="MeasuringCompleted" xml:space="preserve">
+    <value>Measuring Completed</value>
+  </data>
+  <data name="MeasuringPC" xml:space="preserve">
+    <value>Measuring &amp; Positioning Completed</value>
+  </data>
+  <data name="WorkpieceDriveMode" xml:space="preserve">
+    <value>Workpiece drive mode</value>
+  </data>
+  <data name="Servo" xml:space="preserve">
+    <value>Servo</value>
+  </data>
+  <data name="NormalMotor" xml:space="preserve">
+    <value>Normal Motor</value>
+  </data>
+  <data name="self-driven" xml:space="preserve">
+    <value>Self-Driven</value>
+  </data>
+  <data name="AlgorithmSelection" xml:space="preserve">
+    <value>Algorithm Selection</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="DrillingAlgorithm" xml:space="preserve">
+    <value>Drilling algorithm</value>
+  </data>
+  <data name="CompensationTimes" xml:space="preserve">
+    <value>Comp. times</value>
+  </data>
+  <data name="KeyCTesting..." xml:space="preserve">
+    <value>Key compensation testing...</value>
+  </data>
+  <data name="ClampCTesting.." xml:space="preserve">
+    <value>Clamp compensation testing...</value>
+  </data>
+  <data name="ClampCTC" xml:space="preserve">
+    <value>Clamp compensation test completed</value>
+  </data>
+  <data name="KCTC" xml:space="preserve">
+    <value>Key compensation test completed</value>
+  </data>
+  <data name="Step1" xml:space="preserve">
+    <value>Load the rotor and press "start",  the clamp will autoamtically clamps. Measuring stops after it gains stable measuring data.</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="Turn the rotor" xml:space="preserve">
+    <value>Turn the rotor </value>
+  </data>
+  <data name="degree" xml:space="preserve">
+    <value>degree and press "Start", the clamp will automatically clamps. Measuring stops after it gains stable measuring data.</value>
+  </data>
+  <data name="Step2" xml:space="preserve">
+    <value>Measuring stops after it gains stable measuring data finishes clamp compensation.</value>
+  </data>
+  <data name="This" xml:space="preserve">
+    <value>This clamp compensation has been completed, please reset it.</value>
+  </data>
+  <data name="FisTO" xml:space="preserve">
+    <value>The clamp compensation is turned on</value>
+  </data>
+  <data name="FisTOff" xml:space="preserve">
+    <value>The clamp compensation is turned off</value>
+  </data>
+  <data name="TKCTurnon" xml:space="preserve">
+    <value>The key compensation is turned on</value>
+  </data>
+  <data name="TKCTurnOff" xml:space="preserve">
+    <value>The key compensation is turned off</value>
+  </data>
+  <data name="KStep1" xml:space="preserve">
+    <value>Step 1: Testing without key. Measuring stops after it gains stable measuring data.</value>
+  </data>
+  <data name="KStep2" xml:space="preserve">
+    <value>Step 2: Testing with key. Measuring stops after it gains stable measuring data.</value>
+  </data>
+  <data name="TheUsername" xml:space="preserve">
+    <value>The username, password, and user rights cannot be empty!</value>
+  </data>
+  <data name="SDate" xml:space="preserve">
+    <value>The start date must not be later than the end date</value>
+  </data>
+  <data name="CalculationSuccessful" xml:space="preserve">
+    <value>Calculation successful</value>
+  </data>
+  <data name="Crnt1" xml:space="preserve">
+    <value>Current: Testing without key</value>
+  </data>
+  <data name="Crnt2" xml:space="preserve">
+    <value>Current: Testing with key</value>
+  </data>
+  <data name="Ranging1~50" xml:space="preserve">
+    <value>Ranging 1~50</value>
+  </data>
+  <data name="Ranging2~64" xml:space="preserve">
+    <value>Ranging 2~64</value>
+  </data>
+  <data name="RevDiffRange" xml:space="preserve">
+    <value>The Rev difference range while measuring in %</value>
+  </data>
+  <data name="BatchPS" xml:space="preserve">
+    <value>Batch Parameter Setting</value>
+  </data>
+  <data name="Multi-stageC" xml:space="preserve">
+    <value>Multi-stage Calibration</value>
+  </data>
+  <data name="CalibrationSpeed" xml:space="preserve">
+    <value>Calibration Speed</value>
+  </data>
+  <data name="HardSF1" xml:space="preserve">
+    <value>Hard support factor 1</value>
+  </data>
+  <data name="HardSF2" xml:space="preserve">
+    <value>Hard support factor 2</value>
+  </data>
+  <data name="HardSF3" xml:space="preserve">
+    <value>Hard support factor 3</value>
+  </data>
+  <data name="HardSF4" xml:space="preserve">
+    <value>Hard support factor 4</value>
+  </data>
+  <data name="LicensingJudgment" xml:space="preserve">
+    <value>Licensing Judgment</value>
+  </data>
+  <data name="UsageDays" xml:space="preserve">
+    <value>Usage Days</value>
+  </data>
+  <data name="AuthorizationCode" xml:space="preserve">
+    <value>Authorization Code</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Authorize</value>
+  </data>
+  <data name="ABCR1" xml:space="preserve">
+    <value>Units of A, B, C, R1, R2, etc</value>
+  </data>
+  <data name="LoadISO" xml:space="preserve">
+    <value>Load ISO Configuration, Window Exception:</value>
+  </data>
+  <data name="ParaOfDivision" xml:space="preserve">
+    <value>Parameters Of Divisions</value>
+  </data>
+  <data name="UsePlan1D" xml:space="preserve">
+    <value>Use plane 1 data</value>
+  </data>
+  <data name="Jj" xml:space="preserve">
+    <value>Clamp Comp</value>
+  </data>
+  <data name="J" xml:space="preserve">
+    <value>Key Comp</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Please Reset</value>
+  </data>
+  <data name="ParameterOfBalancingPlane" xml:space="preserve">
+    <value>Parameter Of Balancing Plane</value>
+  </data>
+  <data name="QualificatoryCriterion" xml:space="preserve">
+    <value>Qualificatory Criterion</value>
+  </data>
+  <data name="LeftPlane" xml:space="preserve">
+    <value>Permissible Unbalance Amount Of Left Plane</value>
+  </data>
+  <data name="RightPlane" xml:space="preserve">
+    <value>Permissible Unbalance Amount Of Right Plane</value>
+  </data>
+  <data name="Static" xml:space="preserve">
+    <value>Static Permissible Unbalance Amount</value>
+  </data>
+  <data name="TestingData" xml:space="preserve">
+    <value>Testing Data</value>
+  </data>
+  <data name="LeftMass" xml:space="preserve">
+    <value>LeftMass</value>
+  </data>
+  <data name="LeftPhase" xml:space="preserve">
+    <value>LeftPhase</value>
+  </data>
+  <data name="RightMass" xml:space="preserve">
+    <value>RightMass</value>
+  </data>
+  <data name="RightPhase" xml:space="preserve">
+    <value>RightPhase</value>
+  </data>
+  <data name="StaticMass" xml:space="preserve">
+    <value>StaticMass</value>
+  </data>
+  <data name="StaticPhase" xml:space="preserve">
+    <value>StaticPhase</value>
+  </data>
+  <data name="Standard" xml:space="preserve">
+    <value>Standard: IES 7.22/ISO 1940</value>
+  </data>
+  <data name="Rev1" xml:space="preserve">
+    <value>Rev</value>
+  </data>
+  <data name="MeasuringData" xml:space="preserve">
+    <value>Measuring Data</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report Of Dynamic Balancing Test</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Qualified" xml:space="preserve">
+    <value>Qualified</value>
+  </data>
+  <data name="Unqualified" xml:space="preserve">
+    <value>Unqualified</value>
+  </data>
+  <data name="Auditor" xml:space="preserve">
+    <value>Auditor</value>
+  </data>
+  <data name="CardOnLine" xml:space="preserve">
+    <value>CardOnLine</value>
+  </data>
+  <data name="CardOffLine" xml:space="preserve">
+    <value>CardOffLine</value>
+  </data>
+  <data name="ConCardOnLine" xml:space="preserve">
+    <value>Control Card OnLine</value>
+  </data>
+  <data name="ConCardOffLine" xml:space="preserve">
+    <value>Control Card OffLine</value>
+  </data>
+  <data name="timefcom" xml:space="preserve">
+    <value>Warmup time</value>
+  </data>
+  <data name="heat" xml:space="preserve">
+    <value>Heat</value>
+  </data>
+  <data name="Restime" xml:space="preserve">
+    <value>Restime</value>
+  </data>
+  <data name="Manual-driven" xml:space="preserve">
+    <value>Manual-driven</value>
+  </data>
+  <data name="stepthrough" xml:space="preserve">
+    <value>Step(T)</value>
+  </data>
+  <data name="mStop" xml:space="preserve">
+    <value>Motor Stop</value>
+  </data>
+  <data name="mReset" xml:space="preserve">
+    <value>Motor Reset</value>
+  </data>
+  <data name="cRelease" xml:space="preserve">
+    <value>Cylinder released</value>
+  </data>
+  <data name="cClamp" xml:space="preserve">
+    <value>Cylinder Clamping</value>
+  </data>
+  <data name="AandD" xml:space="preserve">
+    <value>Acc&amp;Decel</value>
+  </data>
+  <data name="accdecel" xml:space="preserve">
+    <value>Acc&amp;Decel</value>
+  </data>
+  <data name="coSpeed" xml:space="preserve">
+    <value>Speed Coefficient</value>
+  </data>
+</root>

@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="SDBS3000.Views.UserStatusBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SDBS3000.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="1920">
+    <Grid Background="#1002A5FF" Height="90" VerticalAlignment="Bottom">
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type CheckBox}">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+                <Setter Property="Background" Value="{StaticResource OptionMark.Static.Background}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="checkBoxBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <Grid x:Name="markGrid">
+                                        <Path x:Name="optionMark" Data="F1 M 9.97498,1.22334L 4.6983,9.09834L 4.52164,9.09834L 0,5.19331L 1.27664,3.52165L 4.255,6.08833L 8.33331,1.52588e-005L 9.97498,1.22334 Z " Fill="{StaticResource OptionMark.Static.Glyph}" Margin="1" Opacity="0" Stretch="None"/>
+                                        <Rectangle x:Name="indeterminateMark" Fill="{StaticResource OptionMark.Static.Glyph}" Margin="2" Opacity="0"/>
+                                    </Grid>
+                                </Border>
+                                <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="HasContent" Value="true">
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource OptionMarkFocusVisual}"/>
+                                    <Setter Property="Padding" Value="4,-1,0,0"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.MouseOver.Border}"/>
+                                    <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                                    <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.MouseOver.Glyph}"/>
+                                </Trigger>
+
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Pressed.Background}"/>
+                                    <Setter Property="BorderBrush" TargetName="checkBoxBorder" Value="{StaticResource OptionMark.Pressed.Border}"/>
+                                    <Setter Property="Fill" TargetName="optionMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                                    <Setter Property="Fill" TargetName="indeterminateMark" Value="{StaticResource OptionMark.Pressed.Glyph}"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter Property="Opacity" TargetName="optionMark" Value="1"/>
+                                    <Setter Property="Opacity" TargetName="indeterminateMark" Value="0"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="{x:Null}">
+                                    <Setter Property="Opacity" TargetName="optionMark" Value="0"/>
+                                    <Setter Property="Opacity" TargetName="indeterminateMark" Value="1"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" Grid.ColumnSpan="4" Margin="12,0,0,0">
+            <WrapPanel VerticalAlignment="Center">
+                <TextBlock Text ="{Binding RotorInformation, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+                <TextBlock Text=":"/>
+                <TextBlock Text ="{Binding RotorInformation1, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+                <TextBlock Text=";"/>
+                <TextBlock Text ="{Binding RotorInformation2, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+                <TextBlock Text=":"/>
+                <TextBlock Text ="{Binding RotorInformation3, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+                <TextBlock Text=";"/>
+                <TextBlock Text ="{Binding RotorInformation4, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+                <TextBlock Text=":"/>
+                <TextBlock Text ="{Binding RotorInformation5, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  />
+            </WrapPanel>
+        </StackPanel>
+        <TextBlock Grid.Column="5"  Grid.ColumnSpan="2" Text="{Binding WorkMode, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+
+        <TextBlock Grid.Column="7" Margin="12,0,0,0" Text="{Binding CardState, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+        <TextBlock  Grid.Column="8" Margin="12,0,0,0" Text="{Binding ConCardState, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+
+        <CheckBox VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Content="{Binding JjContent,RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}" 
+                   Foreground="{DynamicResource txtColor1}" IsChecked="{Binding Jj, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  
+                   Style="{DynamicResource calCheckbox}"/>
+
+        <!--<CheckBox VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" Content="{Binding JContent,RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}" 
+                   Foreground="White" IsChecked="{Binding J, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  
+                   FontSize="14" IsEnabled="false"/>-->
+
+        <!--<CheckBox VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" Content="{Binding CheckBox_Content,RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}" 
+                   Foreground="White" IsChecked="{Binding Compesation, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"  
+                   FontSize="14" IsEnabled="false"/>-->
+
+        <!--<TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Clys, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>-->
+        <WrapPanel Grid.Column="4" Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Text="节拍时间(s):"/>
+            <TextBlock Text="{Binding Times, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}" />
+        </WrapPanel>
+        <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding RunState, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}" />
+
+        <WrapPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="6">
+            <TextBlock Text="OK:"/>
+            <TextBlock Text="{Binding OKNum, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+        </WrapPanel>
+        <WrapPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="7">
+            <TextBlock Text="NG:" />
+            <TextBlock Text="{Binding NGNum}"/>
+        </WrapPanel>
+        <WrapPanel  VerticalAlignment="Center" Grid.Row="1" Grid.Column="8">
+            <TextBlock Text="{Binding Total, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+            <TextBlock Text="{Binding TotalNum, RelativeSource={RelativeSource AncestorType={x:Type local:UserStatusBar}}}"/>
+        </WrapPanel>
+        <Button Grid.Row="0" Visibility="Hidden" Grid.Column="9" Content="test" Command="{Binding Test}" Style="{StaticResource btnselect}" HorizontalAlignment="Left" Width="100" Height="40" FontSize="22" />
+
+        <Button Grid.Row="1" Grid.Column="9" Click="Button_Click" Style="{DynamicResource btnselect}" HorizontalAlignment="Left" Width="130" Height="40" FontSize="22"                
+                    Content="清空" VerticalContentAlignment="Center"/>
+        <Button Margin="20,0,0,0" Grid.Row="1" Grid.Column="0" Click="Button_Click_1"  Style="{DynamicResource btnselect}" HorizontalAlignment="Left" Width="130" Height="40" FontSize="22"                
+            Content="电机急停" VerticalContentAlignment="Center"/>
+        <Button Margin="20,0,0,0" Grid.Row="1" Grid.Column="1" Click="Button_Click_2"  Style="{DynamicResource btnselect}" HorizontalAlignment="Left" Width="130" Height="40" FontSize="22"                
+    Content="电机复位" VerticalContentAlignment="Center"/>
+
+        <Button Margin="20,0,0,0" Grid.Row="1" Grid.Column="2" Click="Button_Click_3"  Style="{DynamicResource btnselect}" HorizontalAlignment="Left" Width="130" Height="40" FontSize="22"                
+                Content="气缸松开" VerticalContentAlignment="Center"/>
+        <Button Margin="20,0,0,0" Grid.Row="1" Grid.Column="3" Click="Button_Click_4"  Style="{DynamicResource btnselect}" HorizontalAlignment="Left" Width="130" Height="40" FontSize="22"                
+        Content="气缸夹紧" VerticalContentAlignment="Center"/>
+    </Grid>
+</UserControl>

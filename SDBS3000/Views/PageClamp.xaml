@@ -1,0 +1,197 @@
+﻿<Page x:Class="SDBS3000.Views.PageClamp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDBS3000.Views"
+      xmlns:loc="clr-namespace:SDBS3000.Resources"
+      mc:Ignorable="d" Unloaded="Page_Unloaded"
+      d:DesignHeight="880" d:DesignWidth="1920" 
+      xmlns:converters="clr-namespace:SDBS3000.Utils.Converters" 
+      DataContext="{Binding Source={StaticResource Locator},Path=Clamp}"
+      Title="PageClampKey">
+    <Page.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding ClampMea}"/>
+        <KeyBinding Modifiers="Ctrl" Key="O" Command="{Binding ClampOpen}"/>
+        <KeyBinding Modifiers="Ctrl" Key="C" Command="{Binding ClampClose}"/>
+        <KeyBinding Modifiers="Ctrl" Key="D" Command="{Binding Cancel}"/>
+    </Page.InputBindings>
+    <Grid >
+        <Border x:Name="main" Width="1730" Height="680" CornerRadius="20" Focusable="True">
+            <Border.Background>
+                <ImageBrush ImageSource="{DynamicResource mainbk}"/>
+            </Border.Background>
+            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="195"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="1" Grid.RowSpan="10" HorizontalAlignment="Right">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Height" Value="171.1"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="Button.IsDefaulted" Value="True">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
+                                                </Trigger>
+                                                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <Style TargetType="Label">
+                                <Setter Property="Margin" Value="0,18,0,0"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="FontSize" Value="24"/>
+                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            </Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="63"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                                <Setter Property="Margin" Value="0,18,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button   Style="{DynamicResource btnStyle}" Command="{Binding ClampMea}" IsEnabled="{Binding IsEditing}">
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image  Source="/Utils/Icon/start.png" />
+                                    <Label Content="{Binding [StartCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button  Style="{DynamicResource btnStyle}" Command="{Binding ClampOpen}" IsEnabled="{Binding IsEditing}">
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image  Source="/Utils/Icon/解算.png" />
+                                    <Label Content="{Binding [OpenCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button  Style="{DynamicResource btnStyle}" Command="{Binding ClampClose}" IsEnabled="{Binding IsEditing}">
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Image  Source="/Utils/Icon/解算.png" />
+                                    <Label Content="{Binding [ClearCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button   Style="{DynamicResource btnStyle}"  Command="{Binding Cancel}" IsEnabled="{Binding IsEditing,Converter={StaticResource GetNegateBool}}">
+                            <Button.Content>
+                                <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
+                                    <Path Data="{DynamicResource dele}" Stretch="Uniform" Width="60" Margin="0,20,0,0" Fill="#37c2fe"/>
+                                    <Label Content="{Binding [ResetCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <Viewbox Height="212" Width="45" Margin="56,97,1619,371" Panel.ZIndex="2">
+                    <ProgressBar x:Name="leftpro" Style="{StaticResource ProgressBarStyle1}" Value="{Binding SingleL}"/>
+                </Viewbox>
+                <!--右信号量-->
+                <Viewbox Height="212" Width="45" Margin="1421,96,254,371" Panel.ZIndex="2">
+                    <ProgressBar Style="{StaticResource ProgressBarStyle1}" Value="{Binding SingleR}"/>
+                </Viewbox>
+                <Viewbox Height="24" Width="225" Margin="645,95,850,561" Panel.ZIndex="2">
+                    <ProgressBar Style="{StaticResource ProgressBarStyle2}" Value="{Binding Progress}"/>
+                </Viewbox>
+                <TextBox ToolTip="2～10" Text="{Binding Clamp_times,Mode=TwoWay}" Style="{StaticResource calbtn}" IsEnabled="True" PreviewTextInput="TextBox_PreviewTextInput" CaretBrush="White" 
+                         Tag="{Binding [CompensationTimes], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,169,1100,440"/>
+
+                <Image x:Name="img" Source="{DynamicResource clampImg}"  Margin="897,70,411,270"/> 
+                <Label Content="{Binding Angel}" HorizontalContentAlignment="Center" FontSize="20" Foreground="{DynamicResource txtColor1}" Margin="1069,389,569,239"/>
+
+                <TextBox Style="{DynamicResource calbtn}" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Data1,FallbackValue=0.00}" Tag="{Binding [test-mass1], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,190,1100,0" />
+                
+                <TextBox Style="{DynamicResource calbtn}" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Data2,FallbackValue=0.00}" Tag="{Binding [Angle 1], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,320,1100,0" />
+                <TextBox Style="{DynamicResource calbtn}" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Data3,FallbackValue=0.00}" Tag="{Binding [test-mass2], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,450,1100,0"/>
+                <TextBox Style="{DynamicResource calbtn}" PreviewTextInput="TextBox_PreviewTextInput" Text="{Binding Data4,FallbackValue=0.00}" Tag="{Binding [Angle 2], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,580,1100,0"/>
+                <StackPanel Margin="630,440,220,0" Opacity="0.5">
+                    <TextBlock Width="870" Foreground="{DynamicResource txtColor1}" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left">
+                        <TextBlock.Resources>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Description}" Value="1">
+                                        <Setter Property="Text" Value="{Binding [ClampCTesting..],Source={x:Static loc:LanguageManager.Instance}}" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Description}" Value="2">
+                                        <Setter Property="Text" Value="{Binding [ClampCTC],Source={x:Static loc:LanguageManager.Instance}}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Resources>
+                    </TextBlock>
+                    <WrapPanel  Width="870" >
+                        <TextBlock Text="{Binding [Step],Source={x:Static loc:LanguageManager.Instance}}" Foreground="{DynamicResource txtColor1}" FontSize="26"/>
+                        <TextBlock Text="{Binding Dqbz}" Foreground="{DynamicResource txtColor1}" FontSize="26"/>
+                        <TextBlock Text=":" Foreground="{DynamicResource txtColor1}" FontSize="26" TextWrapping="Wrap"/>
+                        <TextBlock Foreground="{DynamicResource txtColor1}" FontSize="26"  TextWrapping="Wrap" HorizontalAlignment="Left">
+                            <TextBlock.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Dqbzms}" Value="0">
+                                            <Setter Property="Text" Value="{Binding [Step1],Source={x:Static loc:LanguageManager.Instance}}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dqbzms}" Value="1">
+                                            <Setter Property="Text" Value="{Binding [Turn the rotor],Source={x:Static loc:LanguageManager.Instance}}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Dqbzms}" Value="2">
+                                            <Setter Property="Text" Value="{Binding [Step2],Source={x:Static loc:LanguageManager.Instance}}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                        <TextBlock Foreground="{DynamicResource txtColor1}" FontSize="26"  TextWrapping="Wrap" HorizontalAlignment="Left">
+                            <TextBlock.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Dqbzms}" Value="1">
+                                            <Setter Property="Text" Value="{Binding Angel0}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                        <TextBlock Foreground="{DynamicResource txtColor1}" FontSize="26"  TextWrapping="Wrap" HorizontalAlignment="Left">
+                            <TextBlock.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Dqbzms}" Value="1">
+                                            <Setter Property="Text" Value="{Binding [degree],Source={x:Static loc:LanguageManager.Instance}}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Resources>
+                        </TextBlock>
+                    </WrapPanel>                    
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Page>
