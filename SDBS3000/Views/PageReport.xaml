@@ -65,8 +65,8 @@
                 <Button x:Name="look2" Content="{Binding [yesterday], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding YesterdayCommand}"/>
                 <Button x:Name="look3" Content="{Binding [thismonth], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ThisMonthCommand}"/>
                 <Button x:Name="look4" Content="{Binding [thisyear], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ThisYearCommand}"/>
-                <Button x:Name="exportBtn" Content="{Binding [export], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ExportToExcelCommand}"/>
-                <Button x:Name="clearBtn" Content="{Binding [Clear data], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ClearCommand}"/>
+                <Button x:Name="export" Content="{Binding [export], Source={x:Static loc:LanguageManager.Instance}}"/>
+                <Button x:Name="clear" Content="{Binding [Clear data], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ClearCommand}"/>
                 <Button Visibility="Hidden" Content="test"  Margin="20,0,0,0" Width="120" Height="38" FontSize="18" VerticalAlignment="Center" Style="{StaticResource btnselect}" Click="Button_Click"/>
                
             </WrapPanel>

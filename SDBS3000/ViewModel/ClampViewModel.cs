@@ -53,6 +53,15 @@ namespace SDBS3000.ViewModel
                                     case 0x03:
                                         resultStr = "伺服异常（夹具补偿停止）";
                                         break;
+                                    case 0x04:
+                                        resultStr = "伺服报警（夹具补偿停止）";
+                                        break;
+                                    case 0x05:
+                                        resultStr = "伺服忙（夹具补偿停止）";
+                                        break;
+                                    case 0x06:
+                                        resultStr = "伺服未启动（夹具补偿停止）";
+                                        break;
                                     case 0xFF:
                                         resultStr = "等待响应超时（夹具补偿停止）";
                                         break;
@@ -279,6 +288,15 @@ namespace SDBS3000.ViewModel
                                     break;
                                 case 0x03:
                                     resultStr = "伺服异常（夹具补偿开始）";
+                                    break;
+                                case 0x04:
+                                    resultStr = "伺服报警（夹具补偿开始）";
+                                    break;
+                                case 0x05:
+                                    resultStr = "伺服忙（夹具补偿开始）";
+                                    break;
+                                case 0x06:
+                                    resultStr = "伺服未启动（夹具补偿开始）";
                                     break;
                                 case 0xFF:
                                     resultStr = "等待响应超时（夹具补偿开始）";

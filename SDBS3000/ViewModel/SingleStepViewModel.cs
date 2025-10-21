@@ -47,6 +47,15 @@ namespace SDBS3000.ViewModel
                             case 0x03:
                                 resultStr = "伺服异常（电机急停）";
                                 break;
+                            case 0x04:
+                                resultStr = "伺服报警（电机急停）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（电机急停）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（电机急停）";
+                                break;
                             case 0xFF:
                                 resultStr = "等待响应超时（电机急停）";
                                 break;
@@ -85,6 +94,15 @@ namespace SDBS3000.ViewModel
                                 break;
                             case 0x03:
                                 resultStr = "伺服异常（电机复位）";
+                                break;
+                            case 0x04:
+                                resultStr = "伺服报警（电机复位）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（电机复位）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（电机复位）";
                                 break;
                             case 0xFF:
                                 resultStr = "等待响应超时（电机复位）";
@@ -125,6 +143,15 @@ namespace SDBS3000.ViewModel
                             case 0x03:
                                 resultStr = "伺服异常（气缸松开）";
                                 break;
+                            case 0x04:
+                                resultStr = "伺服报警（气缸松开）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（气缸松开）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（气缸松开）";
+                                break;
                             case 0xFF:
                                 resultStr = "等待响应超时（气缸松开）";
                                 break;
@@ -162,6 +189,15 @@ namespace SDBS3000.ViewModel
                                 break;
                             case 0x03:
                                 resultStr = "伺服异常（气缸夹紧）";
+                                break;
+                            case 0x04:
+                                resultStr = "伺服报警（气缸夹紧）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（气缸夹紧）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（气缸夹紧）";
                                 break;
                             case 0xFF:
                                 resultStr = "等待响应超时（气缸夹紧）";

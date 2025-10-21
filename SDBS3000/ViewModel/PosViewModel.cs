@@ -74,6 +74,15 @@ namespace SDBS3000.ViewModel
                             case 0x03:
                                 resultStr = "伺服异常（热机停止）";
                                 break;
+                            case 0x04:
+                                resultStr = "伺服报警（热机停止）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（热机停止）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（热机停止）";
+                                break;
                             case 0xFF:
                                 resultStr = "等待响应超时（热机停止）";
                                 break;
@@ -170,6 +179,15 @@ namespace SDBS3000.ViewModel
                         case 0x03:
                             resultStr = "伺服异常（启停加减速）";
                             break;
+                        case 0x04:
+                            resultStr = "伺服报警（启停加减速）";
+                            break;
+                        case 0x05:
+                            resultStr = "伺服忙（启停加减速）";
+                            break;
+                        case 0x06:
+                            resultStr = "伺服未启动（启停加减速）";
+                            break;
                         case 0xFF:
                             resultStr = "等待响应超时（启停加减速）";
                             break;
@@ -240,6 +258,15 @@ namespace SDBS3000.ViewModel
                             case 0x03:
                                 resultStr = "伺服异常（热机开始）";
                                 break;
+                            case 0x04:
+                                resultStr = "伺服报警（热机开始）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（热机开始）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（热机开始）";
+                                break;
                             case 0xFF:
                                 resultStr = "等待响应超时（热机开始）";
                                 break;
@@ -285,6 +312,15 @@ namespace SDBS3000.ViewModel
                                 break;
                             case 0x03:
                                 resultStr = "伺服异常（查找脉冲）";
+                                break;
+                            case 0x04:
+                                resultStr = "伺服报警（查找脉冲）";
+                                break;
+                            case 0x05:
+                                resultStr = "伺服忙（查找脉冲）";
+                                break;
+                            case 0x06:
+                                resultStr = "伺服未启动（查找脉冲）";
                                 break;
                             case 0xFF:
                                 resultStr = "等待响应超时（查找脉冲）";

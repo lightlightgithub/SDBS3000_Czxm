@@ -302,6 +302,15 @@ namespace SDBS3000.ViewModel
                                     case 0x03:
                                         resultStr = "伺服异常（测量停止）";
                                         break;
+                                    case 0x04:
+                                        resultStr = "伺服报警（测量停止）";
+                                        break;
+                                    case 0x05:
+                                        resultStr = "伺服忙（测量停止）";
+                                        break;
+                                    case 0x06:
+                                        resultStr = "伺服未启动（测量停止）";
+                                        break;
                                     case 0xFF:
                                         resultStr = "等待响应超时（测量停止）";
                                         break;
