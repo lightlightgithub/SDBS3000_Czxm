@@ -90,7 +90,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button  Style="{DynamicResource btnStyle}" Command="{Binding Pulse}" CommandParameter="{Binding ElementName=ct}">
+                <Button  Style="{DynamicResource btnStyle}" Command="{Binding SFCalStart}" CommandParameter="{Binding ElementName=ct}">
                     <Button.Content>
                         <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
                             <Image Source="/Utils/Icon/start.png" />

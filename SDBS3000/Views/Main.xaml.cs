@@ -281,27 +281,29 @@ namespace SDBS3000.Views
                     {
                         try
                         {
+                            var (success, code) = await MainViewModel.macControl.ServoStartAsync(
+                                MainViewModel.bal._runDB.set_run.drive_mode,
+                                (ushort)MainViewModel.bal._runDB.set_run.set_rpm);
 
-                            //if (await MacControl.Start(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_run.set_rpm))
-                            //{
-                            //    testBegin?.Invoke();
-                            //    MainViewModel.bal._runDB.set_runmode = 0;
-                            //}
-                            byte code;
-                            bool success = MainViewModel.macControl.ServoStart(MainViewModel.bal._runDB.set_run.drive_mode, (ushort)MainViewModel.bal._runDB.set_run.set_rpm, out code);
-                            string resultStr = "成功";
+                            string resultStr;
                             if (!success)
                             {
                                 switch (code)
                                 {
                                     case 0x02:
-                                        resultStr = "气缸异常";//传给报警页面
+                                        resultStr = "气缸异常（测量开始）";
                                         break;
                                     case 0x03:
-                                        resultStr = "伺服异常";
+                                        resultStr = "伺服异常（测量开始）";
+                                        break;
+                                    case 0xFF:
+                                        resultStr = "等待响应超时（测量开始）";
+                                        break;
+                                    case 0xFE:
+                                        resultStr = "发送命令失败（测量开始）";
                                         break;
                                     default:
-                                        resultStr = "未知错误";
+                                        resultStr = $"未知错误 (Code: {code:X2})（测量开始）";
                                         break;
                                 }
                                 GlobalVar.Str = resultStr;
@@ -311,36 +313,47 @@ namespace SDBS3000.Views
                                 testBegin?.Invoke();
                                 MainViewModel.bal._runDB.set_runmode = 0;
                             }
-
                         }
                         catch (Exception ex)
                         {
+                            Console.WriteLine("测量开始命令执行异常: " + ex.Message);
                         }
                     });
                 }
             }
             else if (btn.Name == "TStop")
-            {
-               // MacControl.PosStop(0);
-                byte code;
-                bool success = MainViewModel.macControl.ServoStop(MainViewModel.bal._runDB.set_run.drive_mode, 2, 0, out code);
-                string resultStr = "成功";
-                if (!success)
+            { 
+                Task.Run(async () =>
                 {
-                    switch (code)
+                    try
                     {
-                        case 0x02:
-                            resultStr = "气缸异常";//传给报警页面
-                            break;
-                        case 0x03:
-                            resultStr = "伺服异常";
-                            break;
-                        default:
-                            resultStr = "未知错误";
-                            break;
+                        var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_run.work_mode, 0);
+                        string resultStr;
+                        if (!success)
+                        {
+                            switch (code)
+                            {
+                                case 0x02:
+                                    resultStr = "气缸异常（停止）";
+                                    break;
+                                case 0x03:
+                                    resultStr = "伺服异常（停止）";
+                                    break;
+                                case 0xFF:
+                                    resultStr = "等待响应超时（停止）";
+                                    break;
+                                default:
+                                    resultStr = $"未知错误 (Code: {code:X2})（停止）";
+                                    break;
+                            }
+                            GlobalVar.Str = resultStr;
+                        }
                     }
-                    GlobalVar.Str = resultStr;
-                }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("停止命令执行异常: " + ex.Message);
+                    }
+                });
             }
             else
             {

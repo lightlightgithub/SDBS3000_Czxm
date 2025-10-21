@@ -120,50 +120,52 @@ namespace SDBS3000.ViewModel
         public ICommand CalBegin
         {
             get => new RelayCommand<object>(
-                obj =>
+                async obj => // 注意这里要加 async
                 {
                     GlobalVar.main.Compesation = false;
                     MainViewModel.bal._runDB.set_runmode = Convert.ToUInt16(obj);
-                    Task.Run(async () =>
-                    {
-                        try
-                        {
-                            //if (await MacControl.Start(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_run.set_rpm)) 
-                            //{
-                               
-                            //}
-                            byte code;
-                            bool success = MainViewModel.macControl.ServoStart(MainViewModel.bal._runDB.set_run.drive_mode, (ushort)MainViewModel.bal._runDB.set_run.set_rpm, out code);
-                            string resultStr;
-                            if (!success)
-                            {
-                                switch (code)
-                                {
-                                    case 0x02:
-                                        resultStr = "气缸异常";//传给报警页面
-                                        break;
-                                    case 0x03:
-                                        resultStr = "伺服异常";
-                                        break;
-                                    default:
-                                        resultStr = "未知";
-                                        break;
-                                }
-                                GlobalVar.Str = resultStr;
-                            }
-                        }
 
-                        catch (Exception ex)
+                    try
+                    {
+                        var (success, code) = await MainViewModel.macControl.ServoStartAsync(
+                            MainViewModel.bal._runDB.set_run.drive_mode,
+                            (ushort)MainViewModel.bal._runDB.set_run.set_rpm);
+
+                        string resultStr;
+                        if (!success)
                         {
+                            switch (code)
+                            {
+                                case 0x02:
+                                    resultStr = "气缸异常（标定开始）";
+                                    break;
+                                case 0x03:
+                                    resultStr = "伺服异常（标定开始）";
+                                    break;
+                                case 0xFF:
+                                    resultStr = "等待响应超时（标定开始）";
+                                    break;
+                                case 0xFE:
+                                    resultStr = "发送命令失败（标定开始）";
+                                    break;
+                                default:
+                                    resultStr = $"未知错误 (Code: {code:X2})（标定开始）";
+                                    break;
+                            }
+                            GlobalVar.Str = resultStr;
                         }
-                    });
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("标定开始命令执行异常: " + ex.Message);
+                    }
                 });
         }
 
         public ICommand CalStop
         {
-            get => new RelayCommand<object>(
-                obj =>
+              get => new RelayCommand<object>(
+                async  obj =>
                 {
                     int bz = Convert.ToUInt16(obj);
                     if (bz == 1)
@@ -176,26 +178,35 @@ namespace SDBS3000.ViewModel
                     RaisePropertyChanged("pmeenable");
                     RaisePropertyChanged("noweightenable");
 
-                    byte code;
-                    bool success = MainViewModel.macControl.ServoStop(MainViewModel.bal._runDB.set_run.drive_mode, 1, 0, out code);
-                    string resultStr = "成功";
-                    if (!success)
+                    try
                     {
-                        switch (code)
+                        var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, 1,  0); 
+                        string resultStr;
+                        if (!success)
                         {
-                            case 0x02:
-                                resultStr = "气缸异常";//传给报警页面
-                                break;
-                            case 0x03:
-                                resultStr = "伺服异常";
-                                break;
-                            default:
-                                resultStr = "未知错误";
-                                break;
-                        }
-                        GlobalVar.Str = resultStr;
+                            switch (code)
+                            {
+                                case 0x02:
+                                    resultStr = "气缸异常（标定停止）";
+                                    break;
+                                case 0x03:
+                                    resultStr = "伺服异常（标定停止）";
+                                    break;
+                                case 0xFF:
+                                    resultStr = "等待响应超时（标定停止）";
+                                    break;
+                                default:
+                                    resultStr = $"未知错误 (Code: {code:X2})（标定停止）";
+                                    break;
+                            }
+                            GlobalVar.Str = resultStr;
+                        }                        
                     }
-                
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("标定停止命令执行异常: " + ex.Message);
+                    }
+                  
                 });
         }
 

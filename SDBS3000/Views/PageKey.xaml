@@ -52,71 +52,48 @@
                     <Image x:Name="img" Height="200" Width="600" Grid.Row="1" Margin="0,100,0,320" Style="{DynamicResource ImageStyleKey}"/>
 
                     <StackPanel Grid.Column="1" Grid.RowSpan="10">
-                        <StackPanel.Resources>
-                            <Style TargetType="Button">
-                                <Setter Property="Height" Value="171.1"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type Button}">
-                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-                                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="Button.IsDefaulted" Value="True">
-                                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsPressed" Value="True">
-                                                    <Setter Property="Background" TargetName="border" Value="{StaticResource ResourceKey=userwxz}"/>
-                                                </Trigger>
-                                                <Trigger Property="ToggleButton.IsChecked" Value="True">
-                                                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
-                                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
+                        <StackPanel.Resources>                          
                             <Style TargetType="Label">
                                 <Setter Property="Margin" Value="0,20,0,0"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
                                 <Setter Property="FontSize" Value="24"/>
-                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter Property="Foreground" Value="{DynamicResource txtColor1}"/>
+                            </Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="63"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                                <Setter Property="Margin" Value="0,18,0,0"/>
                             </Style>
                         </StackPanel.Resources>
-                        <Button Background="{StaticResource topbtn}" Command="{Binding KeyMea}" IsEnabled="{Binding IsEditing}">
+                        <Button Style="{DynamicResource btnStyle}" Command="{Binding KeyMea}" IsEnabled="{Binding IsEditing}">
                             <Button.Content>
                                 <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
-                                    <Image Margin="0,42,0,0" Source="/SDBS3000;component/Utils/Image/User/begin.png" Stretch="None"/>
+                                    <Image  Source="/Utils/Icon/start.png" />
                                     <Label Content="{Binding [StartCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Background="{StaticResource usermodify}" Command="{Binding KeyOpen}" IsEnabled="{Binding IsEditing}">
+                        <Button Style="{DynamicResource btnStyle}" Command="{Binding KeyOpen}" IsEnabled="{Binding IsEditing}">
                             <Button.Content>
                                 <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
-                                    <Image Margin="0,42,0,0" Source="/SDBS3000;component/Utils/Image/解算图标.png" Stretch="None"/>
+                                    <Image  Source="/Utils/Icon/解算.png" />
                                     <Label Content="{Binding [OpenCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Background="{StaticResource usermodify}" Command="{Binding KeyClose}" IsEnabled="{Binding IsEditing}">
+                        <Button Style="{DynamicResource btnStyle}" Command="{Binding KeyClose}" IsEnabled="{Binding IsEditing}">
                             <Button.Content>
                                 <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
-                                    <Image Margin="0,42,0,0" Source="/SDBS3000;component/Utils/Image/解算图标.png" Stretch="None"/>
+                                    <Image  Source="/Utils/Icon/解算.png" />
                                     <Label Content="{Binding [ClearCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Background="{StaticResource userdelete}"  Command="{Binding CancelKey}" IsEnabled="{Binding IsEditing,Converter={StaticResource GetNegateBool}}">
+                        <Button Style="{DynamicResource btnStyle}"  Command="{Binding CancelKey}" IsEnabled="{Binding IsEditing,Converter={StaticResource GetNegateBool}}">
                             <Button.Content>
                                 <StackPanel Width="{Binding ElementName=b1,Path=ActualWidth}" Height="{Binding ElementName=b1,Path=ActualHeight}">
-                                    <Image Margin="0,42,0,0" Source="/SDBS3000;component/Utils/Image/User/删除图标.png" Stretch="None"/>
+                                    <Path Data="{DynamicResource dele}" Stretch="Uniform" Width="60" Margin="0,20,0,0" Fill="#37c2fe"/>
                                     <Label Content="{Binding [ResetCompensation], Source={x:Static loc:LanguageManager.Instance}}"/>
                                 </StackPanel>
                             </Button.Content>
@@ -140,7 +117,7 @@
                 <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data3,FallbackValue=0.00}" Tag="{Binding [test-mass2], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,440,1100,0"/>
                 <TextBox Style="{DynamicResource calbtn}" Text="{Binding Data4,FallbackValue=0.00}" Tag="{Binding [Angle 2], Source={x:Static loc:LanguageManager.Instance}}" Margin="170,560,1100,0"/>
                 <StackPanel Margin="674,430,235.6,14" Opacity="0.5">
-                    <TextBlock Width="722" Foreground="White" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left">
+                    <TextBlock Width="722" Foreground="{DynamicResource txtColor1}" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left">
                         <TextBlock.Resources>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Text" Value="{Binding [Crnt1],Source={x:Static loc:LanguageManager.Instance}}" />
@@ -167,8 +144,8 @@
                             </Style>
                         </TextBlock.Resources>
                     </TextBlock>
-                    <TextBlock Text="{Binding [KStep1], Source={x:Static loc:LanguageManager.Instance}}" Width="722" Foreground="White" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding [KStep2], Source={x:Static loc:LanguageManager.Instance}}" Width="722" Foreground="White" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding [KStep1], Source={x:Static loc:LanguageManager.Instance}}" Width="722" Foreground="{DynamicResource txtColor1}" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding [KStep2], Source={x:Static loc:LanguageManager.Instance}}" Width="722" Foreground="{DynamicResource txtColor1}" FontSize="26" TextWrapping="Wrap" HorizontalAlignment="Left"/>
                 </StackPanel>
             </Grid>
         </Border>

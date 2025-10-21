@@ -34,6 +34,8 @@
                             Content="{Binding [cRelease], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
                     <Button Margin="40,40,0,0" Grid.Row="3" Command="{Binding cClamp}" Style="{DynamicResource btnselect}"  Width="220" Height="70" FontSize="24"                
                             Content="{Binding [cClamp], Source={x:Static loc:LanguageManager.Instance}}" VerticalContentAlignment="Center"/>
+                    <Button Margin="40,40,0,0" Grid.Row="3" Command="{Binding cClamp}" Style="{DynamicResource btnselect}"  Width="220" Height="70" FontSize="24"                
+                            Content="硬件自检" VerticalContentAlignment="Center"/>
                     <!--<uc1:SetItem Height="126" Width="220" LabelText="模拟定位角度" Text="{Binding Angel,Mode=TwoWay}"  Margin="40,40,0,0" Limit="3"/>-->
                 </UniformGrid>
             </Grid>

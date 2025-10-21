@@ -10,17 +10,23 @@ using System.Windows.Forms;
 namespace SDBS3000.Control
 {
     public class MacControl
-    { 
-        
+    {
         static List<Task> tasks = new List<Task>();
-        byte result ;
-        byte[] ret;
+        byte result;
+        string ret;
         public MacControl()
         {
-           MainViewModel.hc.OnEchoReceived += Hc_OnEchoReceived;
+            MainViewModel.hc.OnEchoReceived += Hc_OnEchoReceived;
             MainViewModel.hc.OnResponseReceived += Hc_OnResponseReceived;
         }
-        
+
+        private void Hc_OnEchoReceived(string obj)
+        {
+            ret = obj;
+            Console.WriteLine("回显报文" + ret);
+        }
+
+
         /// <summary>
         /// 收到响应报文
         /// </summary>
@@ -28,57 +34,78 @@ namespace SDBS3000.Control
         /// <exception cref="NotImplementedException"></exception>
         private void Hc_OnResponseReceived(byte[] obj)
         {
-            if (obj.Length >= 6 && (obj[0] == 0xD1 || obj[0] == 0xD2 || obj[0] == 0xD3))
+            if (obj.Length >= 6 && (obj[0] == 0xD1 || obj[0] == 0xD2 || obj[0] == 0xD3 || obj[0] == 0xD4 || obj[0] == 0xD5 || obj[0] == 0xD6))
             {
+                string hex = BitConverter.ToString(obj);
+                Console.WriteLine("响应报文" + hex);
                 result = obj[1];
             }
         }
 
         /// <summary>
-        /// 收到回显报文
+        /// 异步启动伺服并等待响应
         /// </summary>
-        /// <param name="obj"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void Hc_OnEchoReceived(byte[] obj)
+        /// <param name="drivemode"></param>
+        /// <param name="rpm"></param>
+        /// <returns>是否成功 (Success) ,结果码 (ResultCode)</returns>
+        public async Task<(bool Success, byte ResultCode)> ServoStartAsync(int drivemode, ushort rpm)
         {
-            ret = obj;
-        }
+            if (drivemode == 3)
+            {
+                return (true, 0x01);
+            }
 
-        public bool ServoStart(int drivemode, ushort rpm, out byte resultCode)
-        {
-            bool rt = false;
             if (drivemode == 0)
             {
-                if (MainViewModel.hc.SendStart(rpm))
+                ushort zsnum = ((ushort)(rpm * Convert.ToDouble(GlobalVar.GetStr("SpeedFactor"))));
+
+
+                byte[] startCommand = new byte[] { 0xC1, (byte)(zsnum >> 8), (byte)(zsnum & 0xFF), 0x01, 0x00, 0xee };
+
+                try
                 {
-                    if (ret != null)
+                    // 使用新的异步方法发送命令并等待响应
+                    byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(startCommand);
+
+                    if (response != null && response.Length >= 6)
                     {
-                        Console.WriteLine(ret);
-                        if (result == 0x01)
-                        {
-                            rt = true;
-                        }                       
-                        else
-                        {
-                            rt = false;
-                        }
+                        byte resultCode = response[1]; // 从响应中获取结果码
+                        return (resultCode == 0x01, resultCode);
+                    }
+                    else
+                    {
+                        return (false, 0x00); // 响应格式不正确
                     }
                 }
+                catch (TimeoutException ex)
+                {
+                    Console.WriteLine("启动伺服超时: " + ex.Message);
+                    return (false, 0xFF); // 返回失败和一个自定义的超时错误码
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("启动伺服失败: " + ex.Message);
+                    return (false, 0xFE); // 返回失败和一个自定义的其他错误码
+                }
             }
-            //手动控制
-            else if (drivemode == 3)
-            {
-                rt = true;
-            }
-            resultCode = result;
-            return rt;
+            return (false, 0xFD); // 返回失败和一个未知模式错误码
         }
+
+ 
         /// <summary>
-        /// 伺服控制启停
+        /// 停止
         /// </summary>
-        public bool ServoStop(int drivemode,double workmode,ushort angle, out byte resultCode)
+        /// <param name="drivemode"></param>
+        /// <param name="workmode"></param>
+        /// <param name="angle"></param>
+        /// <returns></returns>
+        public async Task<(bool Success, byte ResultCode)> ServoStopAsync(int drivemode, double workmode, ushort angle)
         {
-            bool rt = false;
+            if (drivemode == 3)
+            {
+                return (true, 0x01);
+            }
+
             if (drivemode == 0)
             {
                 bool pos = false;//是否开启定位
@@ -86,39 +113,154 @@ namespace SDBS3000.Control
                 {
                     pos = true;
                 }
-                if (MainViewModel.hc.SendStop(pos, angle))
+                byte[] startCommand = new byte[] { 0xC2, (byte)(pos ? 0x01 : 0x02), (byte)(angle >> 8), (byte)(angle & 0xFF), 0x02, 0xee };
+
+                try
                 {
-                    if (ret != null)
+                    byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(startCommand);
+
+                    if (response != null && response.Length >= 6)
                     {
-                        Console.WriteLine(ret);
-                        if (result == 0x01)
-                        {
-                            rt = true;
-                        }                       
-                        else
-                        {
-                            rt = false;
-                        }
+                        byte resultCode = response[1]; // 从响应中获取结果码
+                        return (resultCode == 0x01, resultCode);
+                    }
+                    else
+                    {
+                        return (false, 0x00); // 响应格式不正确
                     }
                 }
+                catch (TimeoutException ex)
+                {
+                    Console.WriteLine("停止伺服超时: " + ex.Message);
+                    return (false, 0xFF); // 返回失败和一个自定义的超时错误码
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("停止伺服失败: " + ex.Message);
+                    return (false, 0xFE); // 返回失败和一个自定义的其他错误码
+                }
             }
-            //手动控制
-            else if (drivemode == 3)
+            return (false, 0xFD); // 返回失败和一个未知模式错误码
+        }
+
+
+ 
+        /// <summary>
+        /// 异步查找脉冲（伺服标定）
+        /// </summary>
+        /// <returns>是否成功 (Success) 和结果码 (ResultCode)</returns>
+        public async Task<(bool Success, byte ResultCode)> SearchPulseAsync()
+        {
+            byte[] command = new byte[] { 0xC3, 0x01, 0x00, 0x00, 0x00, 0xEE };
+
+            try
             {
-                rt = true;
+                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+
+                if (response != null && response.Length >= 6)
+                {
+                    byte resultCode = response[1];
+                    return (resultCode == 0x01, resultCode);
+                }
+                else
+                {
+                    return (false, 0x00); // 响应格式不正确
+                }
             }
-            resultCode = result;
-            return rt;
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine("查找脉冲超时: " + ex.Message);
+                return (false, 0xFF);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("查找脉冲失败: " + ex.Message);
+                return (false, 0xFE);
+            }
         }
 
         /// <summary>
-        /// 查找脉冲（伺服标定）
+        /// 异步设置启停加减速
+        /// </summary>
+        /// <param name="readwrite">读写标志</param>
+        /// <param name="fre">频率</param>
+        /// <returns></returns>
+        public async Task<(bool Success, byte ResultCode)> AccDecelAsync(bool readwrite, ushort fre)
+        {
+            // 构建加减速命令
+            byte[] command = new byte[] { 0xC4, (byte)(readwrite ? 0x01 : 0x02), (byte)(fre >> 8), (byte)(fre & 0xFF), 0x00, 0xEE };
+
+            try
+            {
+                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+
+                if (response != null && response.Length >= 6)
+                {
+                    byte resultCode = response[1];
+                    return (resultCode == 0x01, resultCode);
+                }
+                else
+                {
+                    return (false, 0x00);
+                }
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine("设置加减速超时: " + ex.Message);
+                return (false, 0xFF);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("设置加减速失败: " + ex.Message);
+                return (false, 0xFE);
+            }
+        }
+
+
+        /// <summary>
+        /// 异步报警复位
         /// </summary>
         /// <returns></returns>
-        public bool SearchPulse(out byte resultCode)
+        public async Task<(bool Success, byte ResultCode)> AlarmResetAsync()
+        {
+            // 构建报警复位命令
+            byte[] command = new byte[] { 0xC5, 0x01, 0x00, 0x00, 0x00, 0xEE };
+
+            try
+            {
+                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+
+                if (response != null && response.Length >= 6)
+                {
+                    byte resultCode = response[1];
+                    return (resultCode == 0x01, resultCode);
+                }
+                else
+                {
+                    return (false, 0x00);
+                }
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine("报警复位超时: " + ex.Message);
+                return (false, 0xFF);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("报警复位失败: " + ex.Message);
+                return (false, 0xFE);
+            }
+        }
+
+        /// <summary>
+        /// 报警复位
+        /// </summary>
+        /// <param name="resultCode"></param>
+        /// <returns></returns>
+        public bool AlarmReset(out byte resultCode)
         {
             bool b = false;
-            if (MainViewModel.hc.SendFindPulse())
+            if (MainViewModel.hc.AlarmReset())
             {
                 if (ret != null)
                 {
@@ -126,7 +268,7 @@ namespace SDBS3000.Control
                     if (result == 0x01)
                     {
                         b = true;
-                    }                   
+                    }
                     else
                     {
                         b = false;
@@ -137,86 +279,40 @@ namespace SDBS3000.Control
             return b;
         }
 
-        public static async Task<bool> Start(int drivemode, double rpm)
-        {
-            Task.WaitAll(tasks.ToArray());
-            bool b = await Task.Run<bool>(() =>
-            {
-                bool rt = false;
-                if (drivemode == 0)
-                {
-                    if (MainViewModel.svTrans.WriteSingleRegister32(0x16, 2))
-                    {
-                        Thread.Sleep(200);
-                        int zsnum = (int)((ushort)rpm * Convert.ToDouble(GlobalVar.GetStr("SpeedFactor")));
-                        if (MainViewModel.svTrans.WriteSingleRegister32(0x63E, zsnum))
-                        {
-                            Thread.Sleep(50);
-                            rt = MainViewModel.svTrans.SetSVON(0);
-                            Thread.Sleep(50);
-
-                        }
-                    }
-
-                }
-                //手动控制
-                else if (drivemode == 3)
-                {
-                    rt = true;
-                }
-                return rt;
-            });
-            return b;
-        }
 
         /// <summary>
-        /// 急停
+        /// 异步控制气缸夹紧/松开
         /// </summary>
-        /// <param name="drivemode"></param>
-        public static void Stop(int drivemode)
+        /// <param name="clamp">true: 夹紧, false: 松开</param>
+        /// <returns></returns>
+        public async Task<(bool Success, byte ResultCode)> CylinderCRAsync(bool clamp)
         {
-            Task tstop = Task.Run(() =>
+            byte[] command = new byte[] { 0xC6, (byte)(clamp ? 0x01 : 0x02), 0x00, 0x00, 0x00, 0xEE };
+
+            try
             {
-                if (drivemode == 0)
+                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+
+                if (response != null && response.Length >= 6)
                 {
-                    MainViewModel.svTrans.SetSVON(3);
-                    Thread.Sleep(2000);
-                    MainViewModel.svTrans.SetSVON(2);
-                    Thread.Sleep(200);
-                    MainViewModel.svTrans.SetSVON(5);
-                    Thread.Sleep(200);
-                    MainViewModel.svTrans.WriteSingleRegister32(0x16, 1);
-                    Thread.Sleep(200);
-                    MainViewModel.bal._runDB.bal_result.rpm = 0;
-
+                    byte resultCode = response[1];
+                    return (resultCode == 0x01, resultCode);
                 }
-            });
-            tasks.Add(tstop);
-        }
-
-        public static void PosStop(int angel)
-        {
-            Task tstop = Task.Run(() =>
+                else
+                {
+                    return (false, 0x00);
+                }
+            }
+            catch (TimeoutException ex)
             {
-                MainViewModel.svTrans.WriteSingleRegister32(0x63A, angel);
-                Thread.Sleep(50);
-                MainViewModel.svTrans.SetSVON(1);
-                while (true)
-                {
-                    if (GlobalVar.FlagofSFSpeed == 0)
-                    {
-                        Thread.Sleep(10);
-                        MainViewModel.svTrans.SetSVON(5);
-                        Thread.Sleep(200);
-                        MainViewModel.svTrans.WriteSingleRegister32(0x16, 1);
-                        Thread.Sleep(200);
-                        MainViewModel.bal._runDB.bal_result.rpm = 0;
-                        return;
-                    }
-
-                }
-            });
-            tasks.Add(tstop);
+                Console.WriteLine("气缸操作超时: " + ex.Message);
+                return (false, 0xFF);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("气缸操作失败: " + ex.Message);
+                return (false, 0xFE);
+            }
         }
     }
 }

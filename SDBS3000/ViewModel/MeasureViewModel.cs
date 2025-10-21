@@ -171,7 +171,7 @@ namespace SDBS3000.ViewModel
         private void Bal_OnEventTriggered(int message = 0)
         {
 
-            Application.Current.Dispatcher.Invoke(() =>
+            Application.Current.Dispatcher.Invoke(async () =>
             {
                 RaisePropertyChanged("RunState");
                 if (message == 3 || (GlobalVar.mainWindow.frame.Source.ToString().Contains("PageHor") || GlobalVar.mainWindow.frame.Source.ToString().Contains("PageVer") || GlobalVar.mainWindow.frame.Source.ToString().Contains("PageOne")))
@@ -205,7 +205,7 @@ namespace SDBS3000.ViewModel
                         RaisePropertyChanged("Jjbc");
                     }
 
-                    if (message == 3)
+                    if (message == 3 && !(GlobalVar.mainWindow.frame.Source.ToString().Contains("PagePos")) && !(GlobalVar.mainWindow.frame.Source.ToString().Contains("PageClamp")))
                     {
 
                         Times = (DateTime.Now - dtbegin).Seconds;
@@ -287,26 +287,35 @@ namespace SDBS3000.ViewModel
                             angle = 0;
                         else
                             angle = (int)MainViewModel.bal._runDB.bal_result.ql;
-                        byte code;
-                        bool success = MainViewModel.macControl.ServoStop(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_test.WorkMode, (ushort)angle, out code);
-                        string resultStr = "成功";
-                        if (!success)
-                        {
-                            switch (code)
-                            {
-                                case 0x02:
-                                    resultStr = "气缸异常";//传给报警页面
-                                    break;
-                                case 0x03:
-                                    resultStr = "伺服异常";
-                                    break;
-                                default:
-                                    resultStr = "未知错误";
-                                    break;
-                            }
-                            GlobalVar.Str = resultStr;
-                        }
 
+                        try
+                        {
+                            var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_test.WorkMode, (ushort)angle);
+                            string resultStr;
+                            if (!success)
+                            {
+                                switch (code)
+                                {
+                                    case 0x02:
+                                        resultStr = "气缸异常（测量停止）";
+                                        break;
+                                    case 0x03:
+                                        resultStr = "伺服异常（测量停止）";
+                                        break;
+                                    case 0xFF:
+                                        resultStr = "等待响应超时（测量停止）";
+                                        break;
+                                    default:
+                                        resultStr = $"未知错误 (Code: {code:X2})（测量停止）";
+                                        break;
+                                }
+                                GlobalVar.Str = resultStr;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("测量停止命令执行异常: " + ex.Message);
+                        }                       
                     }
 
                     if (message == 7)

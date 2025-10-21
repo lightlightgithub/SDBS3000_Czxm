@@ -281,25 +281,88 @@ namespace SDBS3000.Views
             Clear?.Execute(null);
         }
 
+        /// <summary>
+        /// 电机急停
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                ViewModel.MainViewModel.svTrans.SetSVON(3);
-                ViewModel.MainViewModel.svTrans.SetSVON(2);
-                ViewModel.MainViewModel.svTrans.SetSVON(5);
-            });
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, 1, 0);
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（电机急停）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（电机急停）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（电机急停）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（电机急停）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("电机急停命令执行异常: " + ex.Message);
+                }
+
+            });        
         }
 
+
+        /// <summary>
+        /// 电机复位
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                ViewModel.MainViewModel.svTrans.SetSVON(2);
-                ViewModel.MainViewModel.svTrans.SetSVON(5);
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.AlarmResetAsync();
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（电机复位）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（电机复位）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（电机复位）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（电机复位）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("电机复位命令执行异常: " + ex.Message);
+                }
+
             });
         }
-
         /// <summary>
         /// 气缸松开
         /// </summary>
@@ -307,9 +370,36 @@ namespace SDBS3000.Views
         /// <param name="e"></param>
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                MainViewModel.svTrans.WriteSingleRegister32(0x16, 1);
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.CylinderCRAsync(false);
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（气缸松开）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（气缸松开）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（气缸松开）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（气缸松开）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("气缸松开命令执行异常: " + ex.Message);
+                }
             });
 
         }
@@ -321,9 +411,36 @@ namespace SDBS3000.Views
         /// <param name="e"></param>
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
-                MainViewModel.svTrans.WriteSingleRegister32(0x16, 2);
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.CylinderCRAsync(true);
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（气缸夹紧）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（气缸夹紧）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（气缸夹紧）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（气缸夹紧）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("气缸夹紧命令执行异常: " + ex.Message);
+                }
             });
         }
     }

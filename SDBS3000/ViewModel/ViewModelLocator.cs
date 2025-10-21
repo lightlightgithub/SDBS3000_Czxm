@@ -50,7 +50,8 @@ namespace SDBS3000.ViewModel
             SimpleIoc.Default.Register<CalViewModel>();
             SimpleIoc.Default.Register<SetViewModel>();
             SimpleIoc.Default.Register<RtSetViewModel>();
-            SimpleIoc.Default.Register<ClampViewModel>();
+            SimpleIoc.Default.Register<ClampViewModel>(); 
+            SimpleIoc.Default.Register<SingleStepViewModel>(); 
         }
 
         public MainViewModel Main
@@ -122,6 +123,14 @@ namespace SDBS3000.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<RtSetViewModel>();
+            }
+        }
+
+         public SingleStepViewModel SingleStep
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SingleStepViewModel>();
             }
         }
 

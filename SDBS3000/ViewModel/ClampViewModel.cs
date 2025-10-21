@@ -33,30 +33,39 @@ namespace SDBS3000.ViewModel
 
         private void Bal_OnEventTriggered1(int message = 0)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Application.Current.Dispatcher.Invoke(async () =>
             {
                 if ((GlobalVar.mainWindow.frame.Source.ToString().Contains("PageClamp") || GlobalVar.mainWindow.frame.Source.ToString().Contains("PageKey")))
                 {
                     if (message == 3)
                     {
-                        byte code;
-                        bool success = MainViewModel.macControl.ServoStop(MainViewModel.bal._runDB.set_run.drive_mode, 1, 0, out code);
-                        string resultStr = "成功";
-                        if (!success)
+                        try
                         {
-                            switch (code)
+                            var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, 1, 0);
+                            string resultStr;
+                            if (!success)
                             {
-                                case 0x02:
-                                    resultStr = "气缸异常";//传给报警页面
-                                    break;
-                                case 0x03:
-                                    resultStr = "伺服异常";
-                                    break;
-                                default:
-                                    resultStr = "未知错误";
-                                    break;
+                                switch (code)
+                                {
+                                    case 0x02:
+                                        resultStr = "气缸异常（夹具补偿停止）";
+                                        break;
+                                    case 0x03:
+                                        resultStr = "伺服异常（夹具补偿停止）";
+                                        break;
+                                    case 0xFF:
+                                        resultStr = "等待响应超时（夹具补偿停止）";
+                                        break;
+                                    default:
+                                        resultStr = $"未知错误 (Code: {code:X2})（夹具补偿停止）";
+                                        break;
+                                }
+                                GlobalVar.Str = resultStr;
                             }
-                            GlobalVar.Str = resultStr;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("夹具补偿停止命令执行异常: " + ex.Message);
                         }
 
                     }
@@ -239,10 +248,11 @@ namespace SDBS3000.ViewModel
                 });
         }
 
+
         public ICommand ClampMea
         {
             get => new RelayCommand<object>(
-                obj =>
+               async obj =>
                 {
                     MainViewModel.bal._runDB.set_runmode = 0;
                     MainViewModel.bal._runDB.set_clamp.test_times = Clamp_times;
@@ -253,28 +263,31 @@ namespace SDBS3000.ViewModel
                         NewMessageBox.Show(LanguageManager.Instance["This"]);
                         return;
                     }
-
-                    Task.Run(async () =>
+                    try
                     {
-                        //if (await MacControl.Start(MainViewModel.bal._runDB.set_run.drive_mode, MainViewModel.bal._runDB.set_run.set_rpm))
-                        //{
-                        //    MainViewModel.bal._runDB.set_clamp.start_test = true;
-                        //}
-                        byte code;
-                        bool success = MainViewModel.macControl.ServoStart(MainViewModel.bal._runDB.set_run.drive_mode, (ushort)MainViewModel.bal._runDB.set_run.set_rpm, out code);
-                        string resultStr = "成功";
+                        var (success, code) = await MainViewModel.macControl.ServoStartAsync(
+                            MainViewModel.bal._runDB.set_run.drive_mode,
+                            (ushort)MainViewModel.bal._runDB.set_run.set_rpm);
+
+                        string resultStr;
                         if (!success)
                         {
                             switch (code)
                             {
                                 case 0x02:
-                                    resultStr = "气缸异常";//传给报警页面
+                                    resultStr = "气缸异常（夹具补偿开始）";
                                     break;
                                 case 0x03:
-                                    resultStr = "伺服异常";
+                                    resultStr = "伺服异常（夹具补偿开始）";
+                                    break;
+                                case 0xFF:
+                                    resultStr = "等待响应超时（夹具补偿开始）";
+                                    break;
+                                case 0xFE:
+                                    resultStr = "发送命令失败（夹具补偿开始）";
                                     break;
                                 default:
-                                    resultStr = "未知错误";
+                                    resultStr = $"未知错误 (Code: {code:X2})（夹具补偿开始）";
                                     break;
                             }
                             GlobalVar.Str = resultStr;
@@ -283,9 +296,13 @@ namespace SDBS3000.ViewModel
                         {
                             MainViewModel.bal._runDB.set_clamp.start_test = true;
                         }
-                        
-                    });
-
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("夹具补偿开始命令执行异常: " + ex.Message);
+                    }
+                
+                   
                     // Dqbz = MainViewModel.bal.clamp_times;
                     Dqbz += 1;
                     RaisePropertyChanged("Dqbz");

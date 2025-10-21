@@ -124,10 +124,6 @@
     <Reference Include="NModbus4, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NModbus4.2.1.0\lib\net40\NModbus4.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\NPOI.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI.Core, Version=2.7.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.7.5\lib\netstandard2.0\NPOI.Core.dll</HintPath>
     </Reference>
@@ -256,6 +252,7 @@
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\RtSetViewModel.cs" />
     <Compile Include="ViewModel\SetViewModel.cs" />
+    <Compile Include="ViewModel\SingleStepViewModel.cs" />
     <Compile Include="ViewModel\Structs.cs" />
     <Compile Include="ViewModel\SyncData.cs" />
     <Compile Include="ViewModel\UserManagementViewModel.cs" />
@@ -265,6 +262,9 @@
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GlobalVar.cs" />
+    <Compile Include="Views\HarewareCheck.xaml.cs">
+      <DependentUpon>HarewareCheck.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ISO.xaml.cs">
       <DependentUpon>ISO.xaml</DependentUpon>
     </Compile>
@@ -387,6 +387,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Authorization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HarewareCheck.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,7 +25,7 @@ namespace SDBS3000.ViewModel
         TextBlock textBlock;
         public System.Timers.Timer timer;
         System.Timers.Timer time = new System.Timers.Timer { Interval = 1000 };
-
+        ushort fre = 1;
         public PosViewModel()
         {
             //Pulsecontent = "脉冲检测";
@@ -44,11 +44,7 @@ namespace SDBS3000.ViewModel
             Line[10] = GlobalVar.GetStr("Warmtime");
             Line[11] = GlobalVar.GetStr("SpeedFactor");
            
-            if (int.TryParse(Line[10], out int parsedSeconds))
-            {
-                _remainingSeconds = parsedSeconds;
-            }
-            
+
            
            
 
@@ -56,16 +52,42 @@ namespace SDBS3000.ViewModel
 
         }
 
-        private void Time_Elapsed(object sender, ElapsedEventArgs e)
+        private async void Time_Elapsed(object sender, ElapsedEventArgs e)
         {
+
             double.TryParse(Line[10], out double seconds);
             RemainingSeconds = (dtbegin1.AddSeconds(seconds) - DateTime.Now).Seconds;
             if (RemainingSeconds == 0)
             {
                 time.Stop();
-                MainViewModel.svTrans.SetSVON(3);
-                MainViewModel.svTrans.SetSVON(2);
-                MainViewModel.svTrans.SetSVON(5);
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.ServoStopAsync(MainViewModel.bal._runDB.set_run.drive_mode, 1, 0);
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（热机停止）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（热机停止）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（热机停止）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（热机停止）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("热机停止命令执行异常: " + ex.Message);
+                }
                 RemainingSeconds = 0;
             }
         }
@@ -122,12 +144,50 @@ namespace SDBS3000.ViewModel
                     GlobalVar.config.AppSettings.Settings["Posbc"].Value = Line[8];
                     GlobalVar.config.AppSettings.Settings["Poszcbc"].Value = Line[9];
                     GlobalVar.config.AppSettings.Settings["Warmtime"].Value = Line[10];
-                    GlobalVar.config.AppSettings.Settings["SpeedFactor"].Value = Line[11];                   
+                    GlobalVar.config.AppSettings.Settings["SpeedFactor"].Value = Line[11];                    
+                    AccDecel();
+                    
                     GlobalVar.config.Save(ConfigurationSaveMode.Modified);
                     ConfigurationManager.RefreshSection("appSettings");
                     NewMessageBox.Show(LanguageManager.Instance["Saved"]);                  
                 });
         }
+
+        public async void AccDecel()
+        {
+            ushort.TryParse(Line[6], out fre);
+            try
+            {
+                var (success, code) = await MainViewModel.macControl.AccDecelAsync(true, fre);
+                string resultStr;
+                if (!success)
+                {
+                    switch (code)
+                    {
+                        case 0x02:
+                            resultStr = "气缸异常（启停加减速）";
+                            break;
+                        case 0x03:
+                            resultStr = "伺服异常（启停加减速）";
+                            break;
+                        case 0xFF:
+                            resultStr = "等待响应超时（启停加减速）";
+                            break;
+                        default:
+                            resultStr = $"未知错误 (Code: {code:X2})（启停加减速）";
+                            break;
+                    }
+                    GlobalVar.Str = resultStr;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("启停加减速命令执行异常: " + ex.Message);
+            }
+
+            
+        }
+
 
         public ICommand Pulse
         {
@@ -152,13 +212,53 @@ namespace SDBS3000.ViewModel
                 });
         }
 
-        public ICommand Heat
+       
+         public ICommand Heat
         {
             get => new RelayCommand<object>(
-            obj =>
+           async obj =>
             {
+
+                if (int.TryParse(Line[10], out int parsedSeconds))
+                {
+                    _remainingSeconds = parsedSeconds;
+                }
                 dtbegin1 = DateTime.Now;
-                MainViewModel.svTrans.SetSVON(0);
+                try
+                {
+                    var (success, code) = await MainViewModel.macControl.ServoStartAsync(
+                        MainViewModel.bal._runDB.set_run.drive_mode,
+                        (ushort)MainViewModel.bal._runDB.set_run.set_rpm);
+                    string resultStr;
+                    if (!success)
+                    {
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（热机开始）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（热机开始）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（热机开始）";
+                                break;
+                            case 0xFE:
+                                resultStr = "发送命令失败（热机开始）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（热机开始）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
+                        return;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("热机开始命令执行异常: " + ex.Message);
+                }               
                 time.Elapsed += Time_Elapsed;
 
                 time.Start();
@@ -170,46 +270,38 @@ namespace SDBS3000.ViewModel
         public ICommand SFCalStart
         {
             get => new RelayCommand<object>(
-            obj =>
+            async obj =>
             {
-                //Task tstop = Task.Run(() =>
-                //{
-                //    if (MainViewModel.svTrans.WriteSingleRegister32(0x16, 2))
-                //    {
-                //        Thread.Sleep(200);
-                //        if (MainViewModel.svTrans.Balstart(1))
-                //        {
-                //            while (true)
-                //            {
-                //                Thread.Sleep(400);
-                //                if (GlobalVar.FlagofSFSpeed == 0)
-                //                {
-                //                    MainViewModel.svTrans.WriteSingleRegister32(0x16, 1);
-                //                    break;
-                //                }
-                //            }
-                //        }
-                //    }
-                //});
-                byte code;
-                bool success = MainViewModel.macControl.SearchPulse(out code);
-                string resultStr = "成功";
-                if (!success)
+                try
                 {
-                    switch (code)
+                    var (success, code) = await MainViewModel.macControl.SearchPulseAsync();
+                    string resultStr;
+                    if (!success)
                     {
-                        case 0x02:
-                            resultStr = "气缸异常";//传给报警页面
-                            break;
-                        case 0x03:
-                            resultStr = "伺服异常";
-                            break;
-                        default:
-                            resultStr = "未知错误";
-                            break;
+                        switch (code)
+                        {
+                            case 0x02:
+                                resultStr = "气缸异常（查找脉冲）";
+                                break;
+                            case 0x03:
+                                resultStr = "伺服异常（查找脉冲）";
+                                break;
+                            case 0xFF:
+                                resultStr = "等待响应超时（查找脉冲）";
+                                break;
+                            default:
+                                resultStr = $"未知错误 (Code: {code:X2})（查找脉冲）";
+                                break;
+                        }
+                        GlobalVar.Str = resultStr;
                     }
-                    GlobalVar.Str = resultStr;
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("查找脉冲命令执行异常: " + ex.Message);
+                }
+
+               
             });
         }
 
