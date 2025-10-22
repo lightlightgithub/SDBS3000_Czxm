@@ -12,7 +12,7 @@
       Title="PageReport"  Unloaded="Page_Unloaded">
     <Grid>
         <Grid.Resources>
-         
+
         </Grid.Resources>
         <WrapPanel Margin="100,60,0,0" >
             <UI:FlatDatePicker x:Name="begintime" Margin="0,0,0,0" Width="160" Height="33" BorderThickness="0.5" Background="{StaticResource confirm}" Foreground="{DynamicResource txtColor1}" BorderBrush="#35BAFF"  SelectedDate="{Binding BeginTime}"/>
@@ -59,8 +59,8 @@
                     </Style>
                 </WrapPanel.Resources>
                 <!--查询 当日 昨日 当月 当年 导出至Excel-->
-                <ComboBox HorizontalAlignment="Left"  VerticalAlignment="Center" Width="80" ItemsSource="{Binding RotorItems}"  Margin="20,0,0,0"
-                 SelectedItem="{Binding CurrentRotor}"  DisplayMemberPath="RotorName" />
+                <ComboBox  VerticalAlignment="Center"  ItemsSource="{Binding RotorItems}" Style="{DynamicResource ComboBoxStyle3}" 
+                                         SelectedItem="{Binding CurrentRotor}"  DisplayMemberPath="RotorName" Width="100" Margin="20,0,0,0" />
                 <Button x:Name="searchBtn"  Command="{Binding SearchCommand}" Content="查询"/>
                 <!--<Button x:Name="look" Content="{Binding [select], Source={x:Static loc:LanguageManager.Instance}}"/>-->
                 <Button x:Name="look1" Content="{Binding [today], Source={x:Static loc:LanguageManager.Instance}}" Margin="40,0,0,0" Command="{Binding TodayCommand}"/>
@@ -70,7 +70,7 @@
                 <Button x:Name="export" Content="{Binding [export], Source={x:Static loc:LanguageManager.Instance}}"/>
                 <Button x:Name="clear" Content="{Binding [Clear data], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ClearCommand}"/>
                 <Button Visibility="Hidden" Content="test"  Margin="20,0,0,0" Width="120" Height="38" FontSize="18" VerticalAlignment="Center" Style="{StaticResource btnselect}" Click="Button_Click"/>
-               
+
             </WrapPanel>
         </WrapPanel>
         <Border x:Name="main" Width="1730" Height="680" CornerRadius="20" Padding="10,5,0,5">
@@ -118,7 +118,6 @@
                     <DataGrid.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Setter Property="Padding" Value="20,0,20,0"/>
-                            <Setter Property="IsEnabled" Value="False"/>
                             <Setter Property="BorderBrush" Value="LightBlue"/>
                             <Setter Property="BorderThickness" Value="0.5"/>
                             <Style.Triggers>
@@ -138,6 +137,20 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="选择" Width="auto">
+                            <DataGridTemplateColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsAllSelected, Mode=TwoWay}" Content="全选"   Style="{DynamicResource calCheckbox}" 
+                                              VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.HeaderTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource calCheckbox}"
+                                              VerticalAlignment="Center" HorizontalAlignment="Center" IsEnabled="True"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn FontSize="16" Header="ID号" Binding="{Binding RowID}"/>
                         <DataGridTextColumn FontSize="16" Header="测量ID" Binding="{Binding ID}" Visibility="Hidden"/>
                         <DataGridTextColumn FontSize="16" Header="转子id" Binding="{Binding RotorID}" Width="80"/>
@@ -174,7 +187,7 @@
                         <DataGridTextColumn FontSize="16" Header="保存时间" Binding="{Binding MODIFYTIME}" Width="120"/>
 
                     </DataGrid.Columns>
-                </DataGrid>          
+                </DataGrid>
 
             </StackPanel>
         </Border>
@@ -219,12 +232,12 @@
                     </Setter>
                 </Style>
                 <Style TargetType="Label">
-                    <Setter Property="BorderBrush" Value="Transparent"></Setter> 
-                    <Setter Property="Foreground" Value="{DynamicResource txtColor1}" ></Setter>  
-                    <Setter Property="FontSize" Value="22" ></Setter>  
+                    <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                    <Setter Property="Foreground" Value="{DynamicResource txtColor1}" ></Setter>
+                    <Setter Property="FontSize" Value="22" ></Setter>
                     <Setter Property="HorizontalContentAlignment" Value="Center" ></Setter>
                     <Setter Property="HorizontalAlignment" Value="Center" ></Setter>
-                    <Setter Property="Margin" Value="20,0,0,0" ></Setter>   
+                    <Setter Property="Margin" Value="20,0,0,0" ></Setter>
                 </Style>
             </WrapPanel.Resources>
             <Button x:Name="lastPage"   Content="上一页"  Margin="20,0,0,0" Width="120" Height="38"  Command="{Binding LastPageCommand}"/>
@@ -238,7 +251,7 @@
 
 
         </WrapPanel>
-      
+
 
     </Grid>
 </Page>

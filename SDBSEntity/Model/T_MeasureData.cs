@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace SDBSEntity.Model
     // T_MeasureData为模型的一个实体，通常与数据库表相对应。
     public class T_MeasureData
     {
+        [NotMapped]
+        public bool IsSelected { get; set; }
         [Key]
         [Description("ID号")]
         public int ID { get; set; }
