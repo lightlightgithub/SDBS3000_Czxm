@@ -15,8 +15,6 @@ namespace SDBSEntity.Model
     // T_MeasureData为模型的一个实体，通常与数据库表相对应。
     public class T_MeasureData
     {
-        [NotMapped]
-        public bool IsSelected { get; set; }
         [Key]
         [Description("ID号")]
         public int ID { get; set; }
@@ -104,5 +102,10 @@ namespace SDBSEntity.Model
         /// 行号
         /// </summary>
         public int RowID {  get; set; }
+        /// <summary>
+        /// 列表复选框属性
+        /// </summary>
+        [NotMapped]
+        public bool IsSelected { get; set; }
     }
 }

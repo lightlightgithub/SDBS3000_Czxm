@@ -81,7 +81,7 @@ namespace SDBS3000.ViewModel
             }
         }
         /// <summary>
-        /// 检索条件j结束时间
+        /// 检索条件结束时间
         /// </summary>
         private DateTime? endTime = DateTime.Now.AddDays(1);
         public DateTime? EndTime
@@ -91,59 +91,6 @@ namespace SDBS3000.ViewModel
             {
                 endTime = value;
                 NotifyPropertyChanged("EndTime");
-            }
-        }
-        /// <summary>
-        /// 当日
-        /// </summary>
-        private bool today;
-        public bool Today
-        {
-            get { return today; }
-            set
-            {
-                today = value;
-                NotifyPropertyChanged("Today");
-            }
-        }
-
-        /// <summary>
-        /// 昨日
-        /// </summary>
-        private bool lastday;
-        public bool LastDay
-        {
-            get { return lastday; }
-            set
-            {
-                lastday = value;
-                NotifyPropertyChanged("LastDay");
-            }
-        }
-        /// <summary>
-        /// 本月
-        /// </summary>
-        private bool thisMonth;
-        public bool ThisMonth
-        {
-            get { return thisMonth; }
-            set
-            {
-                thisMonth = value;
-                NotifyPropertyChanged("ThisMonth");
-            }
-        }
-        /// <summary>
-        /// 当年
-        /// </summary>
-        private bool thisYear;
-        public bool ThisYear
-        {
-            get { return thisYear; }
-            set
-            {
-                thisYear = value;
-                NotifyPropertyChanged("ThisYear");
             }
         }
         /// <summary>
@@ -170,19 +117,6 @@ namespace SDBS3000.ViewModel
             {
                 currentRotor = value;
                 NotifyPropertyChanged("CurrentRotor");
-            }
-        }
-        /// <summary>
-        /// 列表序号
-        /// </summary>
-        private int rowID;
-        public int RowID
-        {
-            get { return rowID;}
-            set
-            {
-                rowID = value;
-                NotifyPropertyChanged("RowID");
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -277,6 +211,10 @@ namespace SDBS3000.ViewModel
             {
                 SelectNone();
             });
+            ExportToCPK = new RelayCommand((age) =>
+            {
+                var select = result.Where(x => x.IsSelected).ToList();
+            });
         }
 
         public void SelectAll()
@@ -344,6 +282,10 @@ namespace SDBS3000.ViewModel
         /// </summary>
         public ICommand SelectNoneCommand { get; set; }
         /// <summary>
+        /// 导出cpk
+        /// </summary>
+        public ICommand ExportToCPK { get; set; }
+        /// <summary>
         /// 初次切换按钮时更新数据集、页数、总数量
         /// </summary>
         /// <param name="result"></param>
@@ -355,10 +297,5 @@ namespace SDBS3000.ViewModel
             DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
         }
 
-    }
-    public class UserInfoModel
-    {
-        public string UserID { get; set; }
-        public string NAME { get; set; }
     }
 }

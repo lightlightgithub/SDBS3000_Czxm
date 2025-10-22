@@ -54,4 +54,20 @@ namespace SDBSEntity
     //    g.mm,
     //    g.cm,       
     //}
+    /// <summary>
+    /// 转子测量模式
+    /// </summary>
+    public enum MeasureMode
+    {
+        [Description("双面动平衡")]
+        TwoPlaneDynamicBalance = 0,
+        [Description("静平衡")]
+        StaticBalance = 1,
+        [Description("动静平衡")]
+        DynamicStaticBalance = 2,
+        [Description("立式双面动平衡")]
+        VerticalTwoPlaneDynamicBalance = 3,
+        [Description("立式动静平衡")]
+        VerticalDynamicStaticBalance = 4
+    }
 }
