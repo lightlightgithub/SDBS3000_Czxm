@@ -21,7 +21,7 @@ namespace SDBS3000.ViewModel
     public class PageReportViewModel:INotifyPropertyChanged
     {
         private static  PageReportService pageReportService = new PageReportService();
-        private ObservableCollection<T_MeasureData> result = new ObservableCollection<T_MeasureData>();
+        private ObservableCollection<RecordList> result = new ObservableCollection<RecordList>();
         #region 属性
         /// <summary>
         /// 总记录数
@@ -155,18 +155,57 @@ namespace SDBS3000.ViewModel
                 NotifyPropertyChanged("ThisYear");
             }
         }
+        /// <summary>
+        /// 转子下拉框集合
+        /// </summary>
+        private ObservableCollection<RotorDic> rotorItems;
+        public ObservableCollection<RotorDic> RotorItems
+        {
+            get { return rotorItems; }
+            set
+            {
+                rotorItems = value;
+                NotifyPropertyChanged("RotorItems");
+            }
+        }
+        /// <summary>
+        /// 选中的转子
+        /// </summary>
+        private RotorDic currentRotor;
+        public RotorDic CurrentRotor
+        {
+            get { return currentRotor; }
+            set
+            {
+                currentRotor = value;
+                NotifyPropertyChanged("CurrentRotor");
+            }
+        }
+        /// <summary>
+        /// 列表序号
+        /// </summary>
+        private int rowID;
+        public int RowID
+        {
+            get { return rowID;}
+            set
+            {
+                rowID = value;
+                NotifyPropertyChanged("RowID");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// 列表集合
         /// </summary>
 
-        private ObservableCollection<T_MeasureData> dtaResult;
-        public ObservableCollection<T_MeasureData> DataResult
+        private ObservableCollection<RecordList> dataResult;
+        public ObservableCollection<RecordList> DataResult
         {
-            get { return dtaResult; }
+            get { return dataResult; }
             set
             {
-                dtaResult = value;
+                dataResult = value;
                 NotifyPropertyChanged("DataResult");
             }
         }
@@ -177,7 +216,9 @@ namespace SDBS3000.ViewModel
         #endregion
         public PageReportViewModel()
         {
-            result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Select, false, PageNum, PageSize);
+            RotorItems = pageReportService.GetRotorDic();
+            CurrentRotor = RotorItems.FirstOrDefault();
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
             GetPageData(result);
 
             LastPageCommand = new RelayCommand((age) =>
@@ -198,28 +239,28 @@ namespace SDBS3000.ViewModel
             });
             SearchCommand = new RelayCommand((age) =>
             {
-                result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Select, false, PageNum, PageSize);
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
                 GetPageData(result);
             });
             TodayCommand = new RelayCommand((age) =>
             {
-                result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Today, false, PageNum, PageSize);
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Today, false, PageNum, PageSize);
                 GetPageData(result);
             });
             YesterdayCommand = new RelayCommand((age) =>
             {
-                result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Yesterday, false, PageNum, PageSize);
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Yesterday, false, PageNum, PageSize);
                 GetPageData(result);
             });
             ThisMonthCommand = new RelayCommand((age) =>
             {
-                result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Month, false, PageNum, PageSize);
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Month, false, PageNum, PageSize);
                 GetPageData(result);
             });
             ThisYearCommand= new RelayCommand((age) =>
             {
                
-                result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Year, false, PageNum, PageSize);
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Year, false, PageNum, PageSize);
                 GetPageData(result);
             });
             ClearCommand = new RelayCommand((age) =>
@@ -227,7 +268,7 @@ namespace SDBS3000.ViewModel
                 var isDelete = pageReportService.ClearData();
                 if (isDelete)
                 {
-                    result = pageReportService.GetData(BeginTime, EndTime, (int)ListSelectType.Select, false, PageNum, PageSize);
+                    result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
                     GetPageData(result);
                 }
             });
@@ -277,7 +318,7 @@ namespace SDBS3000.ViewModel
         /// 初次切换按钮时更新数据集、页数、总数量
         /// </summary>
         /// <param name="result"></param>
-        public void GetPageData(ObservableCollection<T_MeasureData> result)
+        public void GetPageData(ObservableCollection<RecordList> result)
         {
             PageNum = 1;
             TotalCount = result.Count;

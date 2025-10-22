@@ -95,4 +95,11 @@ namespace SDBSEntity.Model
             MODIFYTIME = DateTime.Now;
         }
     }
+    public class RecordList : T_MeasureData
+    {
+        /// <summary>
+        /// 行号
+        /// </summary>
+        public int RowID {  get; set; }
+    }
 }

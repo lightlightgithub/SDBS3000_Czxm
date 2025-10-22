@@ -14,7 +14,7 @@
         <Grid.Resources>
          
         </Grid.Resources>
-        <WrapPanel Margin="100,60,0,0" ButtonBase.Click="WrapPanel_Click">
+        <WrapPanel Margin="100,60,0,0" >
             <UI:FlatDatePicker x:Name="begintime" Margin="0,0,0,0" Width="160" Height="33" BorderThickness="0.5" Background="{StaticResource confirm}" Foreground="{DynamicResource txtColor1}" BorderBrush="#35BAFF"  SelectedDate="{Binding BeginTime}"/>
             <Label Content="~" Foreground="{DynamicResource txtColor1}" FontSize="22"/>
             <UI:FlatDatePicker x:Name="endtime" Width="160" Height="33" BorderThickness="0.5" Background="{StaticResource confirm}" Foreground="{DynamicResource txtColor1}" BorderBrush="#35BAFF" SelectedDate="{Binding EndTime}"/>
@@ -59,6 +59,8 @@
                     </Style>
                 </WrapPanel.Resources>
                 <!--查询 当日 昨日 当月 当年 导出至Excel-->
+                <ComboBox HorizontalAlignment="Left"  VerticalAlignment="Center" Width="80" ItemsSource="{Binding RotorItems}"  Margin="20,0,0,0"
+                 SelectedItem="{Binding CurrentRotor}"  DisplayMemberPath="RotorName" />
                 <Button x:Name="searchBtn"  Command="{Binding SearchCommand}" Content="查询"/>
                 <!--<Button x:Name="look" Content="{Binding [select], Source={x:Static loc:LanguageManager.Instance}}"/>-->
                 <Button x:Name="look1" Content="{Binding [today], Source={x:Static loc:LanguageManager.Instance}}" Margin="40,0,0,0" Command="{Binding TodayCommand}"/>
@@ -136,39 +138,40 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn FontSize="16" Header="ID号" Binding="{Binding ID}" />
-                        <DataGridTextColumn FontSize="16" Header="转子id" Binding="{Binding RotorID}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="转子名称" Binding="{Binding NAME}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="操作者id" Binding="{Binding UserID}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="测量转速" Binding="{Binding rpm}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="左信号量" Binding="{Binding singleL}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="右信号量" Binding="{Binding singleR}" Width="100"/>
+                        <DataGridTextColumn FontSize="16" Header="ID号" Binding="{Binding RowID}"/>
+                        <DataGridTextColumn FontSize="16" Header="测量ID" Binding="{Binding ID}" Visibility="Hidden"/>
+                        <DataGridTextColumn FontSize="16" Header="转子id" Binding="{Binding RotorID}" Width="80"/>
+                        <DataGridTextColumn FontSize="16" Header="转子名称" Binding="{Binding NAME}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="操作者id" Binding="{Binding UserID}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="测量转速" Binding="{Binding rpm}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="左信号量" Binding="{Binding singleL}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="右信号量" Binding="{Binding singleR}" Width="120"/>
                         <DataGridTextColumn FontSize="16" Header="左量值" Binding="{Binding fl}" Width="100"/>
                         <DataGridTextColumn FontSize="16" Header="左相位" Binding="{Binding ql}" Width="100"/>
                         <DataGridTextColumn FontSize="16" Header="右量值" Binding="{Binding fr}" Width="100"/>
                         <DataGridTextColumn FontSize="16" Header="右相位" Binding="{Binding qr}" Width="100"/>
                         <DataGridTextColumn FontSize="16" Header="静量值" Binding="{Binding fm}" Width="100"/>
                         <DataGridTextColumn FontSize="16" Header="静相位" Binding="{Binding qm}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="是否合格" Binding="{Binding Ispass}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="支撑方式" Binding="{Binding Zcfs}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="解算模式" Binding="{Binding Jsms}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="测量模式" Binding="{Binding Clms}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="测量单位" Binding="{Binding Ccdw}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="允许量单位" Binding="{Binding Yxldw}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="平面一允许量" Binding="{Binding Pmyyxl}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="平面二允许量" Binding="{Binding Pmeyxl}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="静允许量" Binding="{Binding Jyxl}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="A" Binding="{Binding A}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="B" Binding="{Binding B}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="C" Binding="{Binding C}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="R1" Binding="{Binding R1}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="R2" Binding="{Binding R2}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="设置转速" Binding="{Binding Duringtime}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="节拍" Binding="{Binding Speed}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="静加去重" Binding="{Binding Jjjz}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="平面一加去重" Binding="{Binding Pmyjjz}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="平面二加去重" Binding="{Binding Pmejjz}" Width="100"/>
-                        <DataGridTextColumn FontSize="16" Header="保存时间" Binding="{Binding MODIFYTIME}" Width="100"/>
+                        <DataGridTextColumn FontSize="16" Header="是否合格" Binding="{Binding Ispass}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="支撑方式" Binding="{Binding Zcfs}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="解算模式" Binding="{Binding Jsms}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="测量模式" Binding="{Binding Clms}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="测量单位" Binding="{Binding Ccdw}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="允许量单位" Binding="{Binding Yxldw}" Width="140"/>
+                        <DataGridTextColumn FontSize="16" Header="平面一允许量" Binding="{Binding Pmyyxl}" Width="160"/>
+                        <DataGridTextColumn FontSize="16" Header="平面二允许量" Binding="{Binding Pmeyxl}" Width="160"/>
+                        <DataGridTextColumn FontSize="16" Header="静允许量" Binding="{Binding Jyxl}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="A" Binding="{Binding A}" Width="60"/>
+                        <DataGridTextColumn FontSize="16" Header="B" Binding="{Binding B}" Width="60"/>
+                        <DataGridTextColumn FontSize="16" Header="C" Binding="{Binding C}" Width="60"/>
+                        <DataGridTextColumn FontSize="16" Header="R1" Binding="{Binding R1}" Width="60"/>
+                        <DataGridTextColumn FontSize="16" Header="R2" Binding="{Binding R2}" Width="60"/>
+                        <DataGridTextColumn FontSize="16" Header="设置转速" Binding="{Binding Duringtime}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="节拍" Binding="{Binding Speed}" Width="80"/>
+                        <DataGridTextColumn FontSize="16" Header="静加去重" Binding="{Binding Jjjz}" Width="140"/>
+                        <DataGridTextColumn FontSize="16" Header="平面一加去重" Binding="{Binding Pmyjjz}" Width="160"/>
+                        <DataGridTextColumn FontSize="16" Header="平面二加去重" Binding="{Binding Pmejjz}" Width="160"/>
+                        <DataGridTextColumn FontSize="16" Header="保存时间" Binding="{Binding MODIFYTIME}" Width="120"/>
 
                     </DataGrid.Columns>
                 </DataGrid>          

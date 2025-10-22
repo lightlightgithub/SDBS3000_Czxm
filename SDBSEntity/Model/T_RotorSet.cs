@@ -241,4 +241,9 @@ namespace SDBSEntity.Model
         //实体关系在此处建立联系
         public T_RotorSet RotorSet { get; set; }
     }
+    public class RotorDic
+    {
+        public int RotorID { get; set; }
+        public string RotorName { get; set; }
+    }
 }
