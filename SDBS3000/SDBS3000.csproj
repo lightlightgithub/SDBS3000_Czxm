@@ -527,6 +527,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\CPK.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Utils\Family\PingFangSCBold.ttf" />
     <Resource Include="Utils\Family\MONTSERRAT-ACE-BOLD.OTF" />
     <Resource Include="Utils\Family\MONTSERRAT-ACE-LIGHT.OTF" />
