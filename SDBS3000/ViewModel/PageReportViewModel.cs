@@ -1,19 +1,10 @@
 ﻿using SDBS3000.Services;
-using SDBS3000.Views;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Configuration;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace SDBS3000.ViewModel
@@ -209,6 +200,7 @@ namespace SDBS3000.ViewModel
                 NotifyPropertyChanged("DataResult");
             }
         }
+
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -277,7 +269,36 @@ namespace SDBS3000.ViewModel
                 var rt = Export.ExportToExcel<T_MeasureData>(DataResult);
                 NewMessageBox.Show(rt);
             });
+            SelectAllCommand = new RelayCommand((age) =>
+            {
+                SelectAll();
+            });
+            SelectNoneCommand = new RelayCommand((age) =>
+            {
+                SelectNone();
+            });
         }
+
+        public void SelectAll()
+        {
+            foreach (var item in result)
+            {
+                item.IsSelected = true; 
+            }
+            GetPageData(result);
+
+        }
+        public void SelectNone()
+        {
+            foreach (var item in result)
+            {
+                item.IsSelected = false;
+
+            }
+            GetPageData(result);
+
+        }
+
         /// <summary>
         /// 下一页
         /// </summary>
@@ -314,6 +335,14 @@ namespace SDBS3000.ViewModel
         /// 导出到excel
         /// </summary>
         public ICommand ExportToExcelCommand { get; set; }
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public ICommand SelectAllCommand { get; set; }
+        /// <summary>
+        /// 取消全选
+        /// </summary>
+        public ICommand SelectNoneCommand { get; set; }
         /// <summary>
         /// 初次切换按钮时更新数据集、页数、总数量
         /// </summary>

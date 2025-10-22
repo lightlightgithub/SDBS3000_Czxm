@@ -69,7 +69,7 @@
                 <Button x:Name="look4" Content="{Binding [thisyear], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ThisYearCommand}"/>
                 <Button x:Name="export" Content="{Binding [export], Source={x:Static loc:LanguageManager.Instance}}"/>
                 <Button x:Name="clear" Content="{Binding [Clear data], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ClearCommand}"/>
-                <Button Visibility="Hidden" Content="test"  Margin="20,0,0,0" Width="120" Height="38" FontSize="18" VerticalAlignment="Center" Style="{StaticResource btnselect}" Click="Button_Click"/>
+                <Button   Content="test"  Margin="20,0,0,0" Width="120" Height="38" FontSize="18" VerticalAlignment="Center" Style="{StaticResource btnselect}" Command="{Binding CalCommand}"/>
 
             </WrapPanel>
         </WrapPanel>
@@ -137,13 +137,7 @@
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn Header="选择" Width="auto">
-                            <DataGridTemplateColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox IsChecked="{Binding IsAllSelected, Mode=TwoWay}" Content="全选"   Style="{DynamicResource calCheckbox}" 
-                                              VerticalAlignment="Center"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn Header="勾选" Width="80">                            
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Style="{DynamicResource calCheckbox}"
@@ -192,7 +186,7 @@
             </StackPanel>
         </Border>
 
-        <WrapPanel Margin="1160,800,0,0">
+        <WrapPanel Margin="900,800,0,0">
             <WrapPanel.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Margin" Value="20,0,0,0"/>
@@ -240,6 +234,9 @@
                     <Setter Property="Margin" Value="20,0,0,0" ></Setter>
                 </Style>
             </WrapPanel.Resources>
+            <Button Command="{Binding SelectAllCommand}">全选</Button>
+
+            <Button Command="{Binding SelectNoneCommand}">取消</Button>
             <Button x:Name="lastPage"   Content="上一页"  Margin="20,0,0,0" Width="120" Height="38"  Command="{Binding LastPageCommand}"/>
             <Button x:Name="nextPage"  Content="下一页"  Margin="20,0,0,0" Width="120" Height="38"  Command="{Binding NextPageCommand}"/>
             <Label Foreground="Black" FontSize="22">页码:</Label>
@@ -251,7 +248,6 @@
 
 
         </WrapPanel>
-
 
     </Grid>
 </Page>
