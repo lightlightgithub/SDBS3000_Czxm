@@ -219,6 +219,11 @@ namespace SDBS3000.ViewModel
                     NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
                     return;
                 }
+                if (list.Count > 150)
+                {
+                    NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至多150条");
+                    return;
+                }
                 var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
                 NewMessageBox.Show(data);
             });
