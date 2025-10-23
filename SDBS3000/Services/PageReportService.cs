@@ -163,6 +163,8 @@ namespace SDBS3000.Services
         /// <summary>
         /// 导出CPK报告
         /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public string ExportToCPK(ObservableCollection<RecordList> list)
         {
             string filePath = string.Empty;
@@ -233,9 +235,9 @@ namespace SDBS3000.Services
         /// 获取sheet
         /// </summary>
         /// <param name="workbook"></param>
-        /// <param name="sheet"></param>
+        /// <param name="sheetIndex"></param>
         /// <param name="measureValue"></param>
-        /// <param name="model"></param>
+        /// <param name="allowValue"></param>
         /// <returns></returns>
         public XSSFSheet GetSheet(XSSFWorkbook workbook, int sheetIndex, List<double> measureValue, double allowValue)
         {
