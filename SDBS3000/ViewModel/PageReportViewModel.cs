@@ -211,9 +211,15 @@ namespace SDBS3000.ViewModel
             {
                 SelectNone();
             });
-            ExportToCPK = new RelayCommand((age) =>
+            ExportToCPKCommand = new RelayCommand((age) =>
             {
-                var select = result.Where(x => x.IsSelected).ToList();
+                var list = result.Where(x => x.IsSelected).ToList();
+               
+                if (list.Count < 5)
+                {
+                    NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
+                }
+                pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
             });
         }
 
@@ -284,7 +290,7 @@ namespace SDBS3000.ViewModel
         /// <summary>
         /// 导出cpk
         /// </summary>
-        public ICommand ExportToCPK { get; set; }
+        public ICommand ExportToCPKCommand { get; set; }
         /// <summary>
         /// 初次切换按钮时更新数据集、页数、总数量
         /// </summary>

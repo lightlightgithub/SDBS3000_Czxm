@@ -107,5 +107,6 @@ namespace SDBSEntity.Model
         /// </summary>
         [NotMapped]
         public bool IsSelected { get; set; }
+        public  string OperateTime { get; set; }
     }
 }

@@ -70,7 +70,7 @@
                 <Button x:Name="export" Content="{Binding [export], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ExportToExcelCommand}"/>
                 <Button x:Name="clear" Content="{Binding [Clear data], Source={x:Static loc:LanguageManager.Instance}}" Command="{Binding ClearCommand}"/>
                 <Button   Content="test"  Margin="20,0,0,0" Width="120" Height="38" FontSize="18" VerticalAlignment="Center" Style="{StaticResource btnselect}" Command="{Binding CalCommand}"/>
-
+                <Button x:Name="exportToCPK" Content="导出CPK" Command="{Binding ExportToCPKCommand}"/>
             </WrapPanel>
         </WrapPanel>
         <Border x:Name="main" Width="1730" Height="680" CornerRadius="20" Padding="10,5,0,5">
@@ -178,7 +178,7 @@
                         <DataGridTextColumn FontSize="16" Header="静加去重" Binding="{Binding Jjjz}" Width="140"/>
                         <DataGridTextColumn FontSize="16" Header="平面一加去重" Binding="{Binding Pmyjjz}" Width="160"/>
                         <DataGridTextColumn FontSize="16" Header="平面二加去重" Binding="{Binding Pmejjz}" Width="160"/>
-                        <DataGridTextColumn FontSize="16" Header="保存时间" Binding="{Binding MODIFYTIME}" Width="120"/>
+                        <DataGridTextColumn FontSize="16" Header="保存时间" Binding="{Binding OperateTime}" Width="180"/>
 
                     </DataGrid.Columns>
                 </DataGrid>

@@ -80,6 +80,7 @@ namespace SDBS3000.Services
                             a.Pmyjjz,
                             a.Pmejjz,
                             a.MODIFYTIME,
+                            CONVERT(VARCHAR, a.MODIFYTIME, 120) as OperateTime,
                             a.isclear,
                             a.timestamp
                             from T_MeasureData  a
