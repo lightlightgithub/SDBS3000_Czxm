@@ -1,5 +1,6 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.POIFS.FileSystem;
+using NPOI.XSSF.UserModel;
 using SDBS3000.Resources;
 using SDBSEntity;
 using SDBSEntity.Model;
@@ -162,86 +163,103 @@ namespace SDBS3000.Services
         /// <summary>
         /// 导出CPK报告
         /// </summary>
-        public void ExportToCPK(ObservableCollection<RecordList> list)
+        public string ExportToCPK(ObservableCollection<RecordList> list)
         {
             string filePath = string.Empty;
-            HSSFWorkbook workbook = null;//Excel实例
-            HSSFSheet sheet1 = null;//表实例
-            HSSFSheet sheet2 = null;//表实例
-            HSSFSheet sheet3 = null;//表实例
+            XSSFWorkbook workbook = null;//Excel实例
+            XSSFSheet sheet = null;//表实例
+            string data = string.Empty;
             List<double> measureValues = new List<double>();
-            var model = list.FirstOrDefault();
-            //模板路径   
-            string excelTempPath = System.Environment.CurrentDirectory + @"\CpK.xls";
-
-            //读取Excel模板
-            using (FileStream fs = new FileStream(excelTempPath, FileMode.Open, FileAccess.ReadWrite))
+            try
             {
-                workbook = new HSSFWorkbook(fs);
-            }
+                var model = list.FirstOrDefault();
+                //模板路径   
+                string excelTempPath = System.Environment.CurrentDirectory + @"\Resources\CPK.xlsx";
+                string targetDir = $"D:\\Export\\CPK\\{DateTime.Now.ToString("yyyy-MM-dd")}\\";
+                if (!Directory.Exists(targetDir))
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(targetDir);
+                    directoryInfo.Create();
+                }
 
-            if (Convert.ToInt32(model.Clms) == (int)MeasureMode.TwoPlaneDynamicBalance) //动平衡
-            {
-                measureValues = list.Select(x => x.fl).ToList();  //左量值
-                sheet1 = CreateSheet(workbook, 0, measureValues, Convert.ToDouble(model.Pmyyxl));
+                string targetPath = string.Concat(targetDir, $"{DateTime.Now.ToString("HHmmss")} .xls");
 
-                measureValues = list.Select(x => x.fr).ToList();  //右量值
-                sheet2 = CreateSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmeyxl));
-            }
-            else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.StaticBalance) //静平衡
-            {
-                measureValues = list.Select(x => x.fm).ToList();  //静量值
-                sheet1 = CreateSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
-            }
-            else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.DynamicStaticBalance)  //动静平衡
-            {
-                measureValues = list.Select(x => x.fm).ToList();  //静量值
-                sheet1 = CreateSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
+                //读取Excel模板
+                using (FileStream fs = new FileStream(excelTempPath, FileMode.Open, FileAccess.ReadWrite))
+                {
+                    workbook = new XSSFWorkbook(fs);
+                }
+                if (Convert.ToInt32(model.Clms) == (int)MeasureMode.TwoPlaneDynamicBalance) //动平衡
+                {
+                    measureValues = list.Select(x => x.fl).ToList();  //左量值
+                    sheet = GetSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmyyxl));
+                    measureValues = list.Select(x => x.fr).ToList();  //右量值
+                    sheet = GetSheet(workbook, 2, measureValues, Convert.ToDouble(model.Pmeyxl));
+                    workbook.RemoveSheetAt(0);
+                }
+                else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.StaticBalance) //静平衡
+                {
+                    measureValues = list.Select(x => x.fm).ToList();  //静量值
+                    sheet = GetSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
+                    workbook.RemoveSheetAt(1);
+                    workbook.RemoveSheetAt(2);
+                }
+                else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.DynamicStaticBalance)  //动静平衡
+                {
+                    measureValues = list.Select(x => x.fm).ToList();  //静量值
+                    sheet = GetSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
 
-                measureValues = list.Select(x => x.fl).ToList();  //左量值
-                sheet2 = CreateSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmyyxl));
+                    measureValues = list.Select(x => x.fl).ToList();  //左量值
+                    sheet = GetSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmyyxl));
 
-                measureValues = list.Select(x => x.fr).ToList();  //右量值
-                sheet3 = CreateSheet(workbook, 2, measureValues, Convert.ToDouble(model.Pmeyxl));
+                    measureValues = list.Select(x => x.fr).ToList();  //右量值
+                    sheet = GetSheet(workbook, 2, measureValues, Convert.ToDouble(model.Pmeyxl));
+                }
+                using (FileStream fs = File.Create(targetPath))
+                {
+                    workbook.SetForceFormulaRecalculation(true);
+                    workbook.Write(fs);
+                    fs.Close();
+                }
+                return targetPath;
             }
-            using (FileStream fs = File.Create(@"D:\\Exceldemos.xls"))
+            catch (Exception ex)
             {
-                workbook.ForceFormulaRecalculation = true;  //强制重新计算所有单元格的公式
-                workbook.Write(fs);
-                fs.Close();
+                data = ex.Message;
             }
+            return data;
         }
         /// <summary>
-        /// 创建sheet
+        /// 获取sheet
         /// </summary>
         /// <param name="workbook"></param>
         /// <param name="sheet"></param>
         /// <param name="measureValue"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public HSSFSheet CreateSheet(HSSFWorkbook workbook, int sheetIndex, List<double> measureValue, double allowValue)
+        public XSSFSheet GetSheet(XSSFWorkbook workbook, int sheetIndex, List<double> measureValue, double allowValue)
         {
-            HSSFSheet sheet = (HSSFSheet)workbook.GetSheetAt(sheetIndex);
+            XSSFSheet sheet = (XSSFSheet)workbook.GetSheetAt(sheetIndex);
+
             int rowBegin = 9;//当前行10,索引是0开始
             int colBegin = 1;
             var rowIndex = 0;
             var colIndex = 0;
-            for (int i = 1; i <= measureValue.Count; i++)
+            for (int i = 0; i < measureValue.Count; i++)
             {
                 if (rowIndex >= 5)
                 {
-                    if ((i - 1) % 50 != 0) //50条记录为一批测量值
+                    if (i % 50 != 0) //50条记录为一批测量值
                         colIndex++;
                     else  //超过50条记录，列从头开始
                     {
-                        rowBegin += 6;  //起始行重置，5行+序号共间隔6行
+                        rowBegin += 6;  //起始行重置，共间隔6行
                         colBegin = 1;   //起始列重置为1
                         colIndex = 0;   //列索引重置为0
                     }
                     rowIndex = 0;
-
                 }
-                var cell = sheet.GetRow(rowBegin + rowIndex).GetCell(colBegin + colIndex); //15
+                var cell = sheet.GetRow(rowBegin + rowIndex).GetCell(colBegin + colIndex); 
                 cell.SetCellValue(measureValue[i]); //测量值 
                 rowIndex++;
             }

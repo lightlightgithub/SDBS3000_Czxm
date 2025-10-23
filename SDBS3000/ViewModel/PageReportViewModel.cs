@@ -214,12 +214,13 @@ namespace SDBS3000.ViewModel
             ExportToCPKCommand = new RelayCommand((age) =>
             {
                 var list = result.Where(x => x.IsSelected).ToList();
-               
                 if (list.Count < 5)
                 {
                     NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
+                    return;
                 }
-                pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
+                var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
+                NewMessageBox.Show(data);
             });
         }
 
