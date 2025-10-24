@@ -8,6 +8,7 @@ using SDBS3000.Views;
 using System.Windows.Threading;
 using static SDBS3000.Log.Log;
 using System.Drawing;
+using SDBS3000.Utils.AppSettings;
 
 namespace SDBS3000
 {

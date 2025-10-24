@@ -1,4 +1,5 @@
-﻿using SDBS3000.ViewModel;
+﻿using SDBS3000.Utils.AppSettings;
+using SDBS3000.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

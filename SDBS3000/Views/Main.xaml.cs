@@ -11,6 +11,7 @@ using System.Windows.Media;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging; 
 using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using SDBS3000.ViewModel;
 using SDBSEntity;
 using static SDBS3000.Views.Main;

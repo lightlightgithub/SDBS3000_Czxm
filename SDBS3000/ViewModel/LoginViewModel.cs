@@ -10,6 +10,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using SDBS3000.Views;
 using SDBSEntity;
 using SDBSEntity.Model;

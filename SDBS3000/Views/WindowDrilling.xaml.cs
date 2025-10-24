@@ -1,4 +1,5 @@
 ﻿using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using SDBS3000.ViewModel;
 using SDBSEntity;
 using SDBSEntity.Model;

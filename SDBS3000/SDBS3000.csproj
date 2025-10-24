@@ -260,7 +260,7 @@
     <Compile Include="Views\Authorization.xaml.cs">
       <DependentUpon>Authorization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GlobalVar.cs" />
+    <Compile Include="Utils\AppSettings\GlobalVar.cs" />
     <Compile Include="Views\HarewareCheck.xaml.cs">
       <DependentUpon>HarewareCheck.xaml</DependentUpon>
     </Compile>
@@ -893,6 +893,7 @@
   <ItemGroup>
     <Resource Include="Utils\Image\LightImg\框.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

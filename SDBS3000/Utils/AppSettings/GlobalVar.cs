@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using SDBS3000.Log;
 using SDBS3000.ViewModel;
+using SDBS3000.Views;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using static SDBS3000.Log.Log;
 
-namespace SDBS3000.Views
+namespace SDBS3000.Utils.AppSettings
 {
     public static class GlobalVar
     {

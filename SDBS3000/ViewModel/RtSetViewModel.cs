@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Ioc;
 using NPOI.POIFS.FileSystem;
 using SDBS3000.Resources;
 using SDBS3000.Ucs.Controls;
+using SDBS3000.Utils.AppSettings;
 using SDBS3000.Views;
 using SDBSEntity;
 using SDBSEntity.Model;

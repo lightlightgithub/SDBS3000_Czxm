@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDBS3000.Utils.AppSettings;
+using System;
 using System.Configuration;
 using System.Windows.Controls;
 using System.Windows.Markup;

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
@@ -20,7 +21,7 @@ namespace SDBS3000.ViewModel
             using (CodeFirstDbContext Entity = new CodeFirstDbContext())
             {
                 Users = new ObservableCollection<T_USER>(Entity.T_Users);
-                User = Entity.T_Users.First(p => p.NAME == Views.GlobalVar.user.NAME);
+                User = Entity.T_Users.First(p => p.NAME == GlobalVar.user.NAME);
                 //currentUser = CloneExtend.DeepClone(Entity.T_Users.First(p => p.NAME == GlobalVariable.username));
             }
             UserPermissionEnum = Enum.GetNames(typeof(SDBSEntity.UserPermissionEnum)).ToArray();

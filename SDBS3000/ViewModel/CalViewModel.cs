@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Runtime.Remoting.Contexts;
 using NPOI.POIFS.FileSystem;
 using SDBS3000.Control;
+using SDBS3000.Utils.AppSettings;
 
 namespace SDBS3000.ViewModel
 {
