@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using SDBS3000.Services;
+using SDBS3000.Utils.AppSettings;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
@@ -30,7 +31,7 @@ namespace SDBS3000.ViewModel
         /// <summary>
         /// 总页数
         /// </summary>
-        private int pageCount = 0;
+        private int pageCount;
         public int PageCount
         {
             get { return pageCount; }
@@ -43,16 +44,7 @@ namespace SDBS3000.ViewModel
         /// <summary>
         /// 每页数量
         /// </summary>
-        private int pageSize  = 15;
-        public int PageSize
-        {
-            get { return pageSize; }
-            set
-            {
-                pageSize = value;
-                NotifyPropertyChanged("PageSize");
-            }
-        }
+        public int PageSize = Convert.ToInt32(GlobalVar.GetStr("pageSize"));
         /// <summary>
         /// 页码
         /// </summary>
