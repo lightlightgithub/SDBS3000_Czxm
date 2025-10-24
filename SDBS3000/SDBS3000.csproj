@@ -249,7 +249,6 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\PageReportViewModel.cs" />
     <Compile Include="ViewModel\PosViewModel.cs" />
-    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\RtSetViewModel.cs" />
     <Compile Include="ViewModel\SetViewModel.cs" />
     <Compile Include="ViewModel\SingleStepViewModel.cs" />

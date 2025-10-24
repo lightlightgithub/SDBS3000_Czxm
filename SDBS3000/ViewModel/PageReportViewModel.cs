@@ -1,4 +1,5 @@
-﻿using SDBS3000.Services;
+﻿using GalaSoft.MvvmLight.Command;
+using SDBS3000.Services;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
@@ -147,7 +148,7 @@ namespace SDBS3000.ViewModel
             result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
             GetPageData(result);
 
-            LastPageCommand = new RelayCommand((age) =>
+            LastPageCommand = new RelayCommand(() =>
             {
                 if (PageNum-1 >0)
                 {
@@ -155,7 +156,7 @@ namespace SDBS3000.ViewModel
                     DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
                 }
             });
-            NextPageCommand = new RelayCommand((age) =>
+            NextPageCommand = new RelayCommand(() =>
             {
                 if (PageNum+1 <= PageCount)
                 {
@@ -163,33 +164,33 @@ namespace SDBS3000.ViewModel
                     DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
                 }
             });
-            SearchCommand = new RelayCommand((age) =>
+            SearchCommand = new RelayCommand(() =>
             {
                 result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
                 GetPageData(result);
             });
-            TodayCommand = new RelayCommand((age) =>
+            TodayCommand = new RelayCommand(() =>
             {
                 result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Today, false, PageNum, PageSize);
                 GetPageData(result);
             });
-            YesterdayCommand = new RelayCommand((age) =>
+            YesterdayCommand = new RelayCommand(() =>
             {
                 result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Yesterday, false, PageNum, PageSize);
                 GetPageData(result);
             });
-            ThisMonthCommand = new RelayCommand((age) =>
+            ThisMonthCommand = new RelayCommand(() =>
             {
                 result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Month, false, PageNum, PageSize);
                 GetPageData(result);
             });
-            ThisYearCommand= new RelayCommand((age) =>
+            ThisYearCommand= new RelayCommand(() =>
             {
                
                 result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Year, false, PageNum, PageSize);
                 GetPageData(result);
             });
-            ClearCommand = new RelayCommand((age) =>
+            ClearCommand = new RelayCommand(() =>
             {
                 var isDelete = pageReportService.ClearData();
                 if (isDelete)
@@ -198,20 +199,20 @@ namespace SDBS3000.ViewModel
                     GetPageData(result);
                 }
             });
-            ExportToExcelCommand = new RelayCommand((age) =>
+            ExportToExcelCommand = new RelayCommand(() =>
             {
                 var rt = Export.ExportToExcel<T_MeasureData>(DataResult);
                 NewMessageBox.Show(rt);
             });
-            SelectAllCommand = new RelayCommand((age) =>
+            SelectAllCommand = new RelayCommand(() =>
             {
                 SelectAll();
             });
-            SelectNoneCommand = new RelayCommand((age) =>
+            SelectNoneCommand = new RelayCommand(() =>
             {
                 SelectNone();
             });
-            ExportToCPKCommand = new RelayCommand((age) =>
+            ExportToCPKCommand = new RelayCommand(() =>
             {
                 var list = result.Where(x => x.IsSelected).ToList();
                 if (list.Count < 5)
