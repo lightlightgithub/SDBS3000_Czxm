@@ -148,62 +148,6 @@ namespace SDBS3000.ViewModel
             result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
             GetPageData(result);
 
-            LastPageCommand = new RelayCommand(() =>
-            {
-                if (PageNum-1 >0)
-                {
-                    PageNum -= 1;
-                    DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
-                }
-            });
-            NextPageCommand = new RelayCommand(() =>
-            {
-                if (PageNum+1 <= PageCount)
-                {
-                    PageNum += 1;
-                    DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
-                }
-            });
-            SearchCommand = new RelayCommand(() =>
-            {
-                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
-                GetPageData(result);
-            });
-            TodayCommand = new RelayCommand(() =>
-            {
-                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Today, false, PageNum, PageSize);
-                GetPageData(result);
-            });
-            YesterdayCommand = new RelayCommand(() =>
-            {
-                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Yesterday, false, PageNum, PageSize);
-                GetPageData(result);
-            });
-            ThisMonthCommand = new RelayCommand(() =>
-            {
-                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Month, false, PageNum, PageSize);
-                GetPageData(result);
-            });
-            ThisYearCommand= new RelayCommand(() =>
-            {
-               
-                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Year, false, PageNum, PageSize);
-                GetPageData(result);
-            });
-            ClearCommand = new RelayCommand(() =>
-            {
-                var isDelete = pageReportService.ClearData();
-                if (isDelete)
-                {
-                    result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
-                    GetPageData(result);
-                }
-            });
-            ExportToExcelCommand = new RelayCommand(() =>
-            {
-                var rt = Export.ExportToExcel<T_MeasureData>(DataResult);
-                NewMessageBox.Show(rt);
-            });
             SelectAllCommand = new RelayCommand(() =>
             {
                 SelectAll();
@@ -211,22 +155,6 @@ namespace SDBS3000.ViewModel
             SelectNoneCommand = new RelayCommand(() =>
             {
                 SelectNone();
-            });
-            ExportToCPKCommand = new RelayCommand(() =>
-            {
-                var list = result.Where(x => x.IsSelected).ToList();
-                if (list.Count < 5)
-                {
-                    NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
-                    return;
-                }
-                if (list.Count > 150)
-                {
-                    NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至多150条");
-                    return;
-                }
-                var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
-                NewMessageBox.Show(data);
             });
         }
 
@@ -251,41 +179,88 @@ namespace SDBS3000.ViewModel
         }
 
         /// <summary>
-        /// 下一页
-        /// </summary>
-        public ICommand LastPageCommand { get; set; }
-        /// <summary>
         /// 上一页
         /// </summary>
-        public ICommand NextPageCommand { get; set; }
+        public ICommand LastPageCommand => new RelayCommand(() =>
+        {
+            if (PageNum - 1 > 0)
+            {
+                PageNum -= 1;
+                DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
+            }
+        });
+        /// <summary>
+        /// 下一页
+        /// </summary>
+        public ICommand NextPageCommand => new RelayCommand(() =>
+        {
+            if (PageNum + 1 <= PageCount)
+            {
+                PageNum += 1;
+                DataResult = pageReportService.GetPageData(result, PageNum, PageSize);
+            }
+        });
         /// <summary>
         /// 查询
         /// </summary>
-        public ICommand SearchCommand { get; set; }
+        public ICommand SearchCommand => new RelayCommand(() =>
+        {
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
+            GetPageData(result);
+        });
         /// <summary>
         /// 查询当日
         /// </summary>
-        public ICommand TodayCommand { get; set; }
+        public ICommand TodayCommand => new RelayCommand(() =>
+        {
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Today, false, PageNum, PageSize);
+            GetPageData(result);
+        });
         /// <summary>
         /// 查询昨日
         /// </summary>
-        public ICommand YesterdayCommand { get; set;}
+        public ICommand YesterdayCommand => new RelayCommand(() =>
+        {
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Yesterday, false, PageNum, PageSize);
+            GetPageData(result);
+        });
         /// <summary>
         /// 查询当月
         /// </summary>
-        public ICommand ThisMonthCommand { get; set; }
+        public ICommand ThisMonthCommand => new RelayCommand(() =>
+        {
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Month, false, PageNum, PageSize);
+            GetPageData(result);
+        });
         /// <summary>
         /// 查询当年
         /// </summary>
-        public ICommand ThisYearCommand { get; set; }
+        public ICommand ThisYearCommand => new RelayCommand(() =>
+        {
+
+            result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Year, false, PageNum, PageSize);
+            GetPageData(result);
+        });
         /// <summary>
-        /// 清楚数据
+        /// 清除数据
         /// </summary>
-        public ICommand ClearCommand { get; set; }
+        public ICommand ClearCommand => new RelayCommand(() =>
+        {
+            var isDelete = pageReportService.ClearData();
+            if (isDelete)
+            {
+                result = pageReportService.GetData(BeginTime, EndTime, CurrentRotor?.RotorID, (int)ListSelectType.Select, false, PageNum, PageSize);
+                GetPageData(result);
+            }
+        });
         /// <summary>
         /// 导出到excel
         /// </summary>
-        public ICommand ExportToExcelCommand { get; set; }
+        public ICommand ExportToExcelCommand => new RelayCommand(() =>
+        {
+            var rt = Export.ExportToExcel<T_MeasureData>(DataResult);
+            NewMessageBox.Show(rt);
+        });
         /// <summary>
         /// 全选
         /// </summary>
@@ -297,7 +272,22 @@ namespace SDBS3000.ViewModel
         /// <summary>
         /// 导出cpk
         /// </summary>
-        public ICommand ExportToCPKCommand { get; set; }
+        public ICommand ExportToCPKCommand => new RelayCommand(() =>
+        {
+            var list = result.Where(x => x.IsSelected).ToList();
+            if (list.Count < 5)
+            {
+                NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
+                return;
+            }
+            if (list.Count > 150)
+            {
+                NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至多150条");
+                return;
+            }
+            var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
+            NewMessageBox.Show(data);
+        });
         /// <summary>
         /// 初次切换按钮时更新数据集、页数、总数量
         /// </summary>
