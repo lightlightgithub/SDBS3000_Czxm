@@ -268,5 +268,65 @@ namespace SDBS3000.Services
             sheet.GetRow(7).GetCell(9).SetCellValue(Convert.ToDouble(allowValue)); //允许量
             return sheet;
         }
+        /// <summary>
+        /// 查看CPK测量数据
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public ObservableCollection<MeasureInfo> GetCPKMeasure(List<RecordList> list)
+        {
+            var result = new List<MeasureInfo>();
+            var item = list.FirstOrDefault();
+           // 静平衡
+            var staticList = list.Select(x => x.fm).ToList();
+            var staticData = CalculateCPK(staticList, item,0);
+           // 左平面
+            var leftList = list.Select(x => x.fl).ToList();
+            var leftData = CalculateCPK(leftList, item,1);
+            // 右平面
+            var rightList = list.Select(x => x.fr).ToList();
+            var rightData = CalculateCPK(rightList, item,2);
+            switch (Convert.ToInt32(item.Clms))
+            {
+                case (int)MeasureMode.TwoPlaneDynamicBalance:
+                     result.Add(leftData); 
+                     result.Add(rightData);
+                break;
+                case (int)MeasureMode.StaticBalance:
+                    result.Add(staticData);
+                break;
+                case (int)MeasureMode.DynamicStaticBalance:
+                    result.Add(staticData);
+                    result.Add(leftData);
+                    result.Add(rightData);
+                break;
+            }
+            return new ObservableCollection<MeasureInfo>(result);
+        }
+        /// <summary>
+        /// 测量值数据函数计算
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
+        /// <param name="side"></param>
+        /// <returns></returns>
+        public MeasureInfo CalculateCPK(List<double> list,RecordList item,int side)
+        {
+            var averge = Math.Round(list.Average(), 3);
+            //计算标准差
+            double sSum = list.Sum(x => Math.Pow(x - averge, 2));
+            double stdev = Math.Round(Convert.ToDouble(Math.Sqrt((sSum / (list.Count - 1))).ToString()), 3);
+            var data = new MeasureInfo()
+            {
+                MeasureType = item.Clms,
+                Side = side, 
+                MaxMeasure = list.Max(), //左量值最大
+                MinMeasure = list.Min(), //左量值最小
+                Average = averge, //平均值
+                StandardDeviation = stdev, //标准差
+                Allow = side==0?Convert.ToDouble(item.Jyxl) :side==1?Convert.ToDouble(item.Pmyyxl) :Convert.ToDouble(item.Pmeyxl)
+            };
+            return data;
+        }
     }
 }

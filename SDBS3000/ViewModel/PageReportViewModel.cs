@@ -112,6 +112,19 @@ namespace SDBS3000.ViewModel
                 NotifyPropertyChanged("CurrentRotor");
             }
         }
+        /// <summary>
+        /// 测量信息
+        /// </summary>
+        private ObservableCollection<MeasureInfo> measureInfo;
+        public ObservableCollection<MeasureInfo> MeasureInfo
+        {
+            get { return measureInfo; }
+            set
+            {
+                measureInfo = value;
+                NotifyPropertyChanged("MeasureInfo");
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// 列表集合
@@ -266,19 +279,38 @@ namespace SDBS3000.ViewModel
         /// </summary>
         public ICommand ExportToCPKCommand => new RelayCommand(() =>
         {
-            var list = result.Where(x => x.IsSelected).ToList();
-            if (list.Count < 5)
+            var selectList = result.Where(x => x.IsSelected).ToList();
+            if (selectList.Count < 5)
+            {
+                NewMessageBox.Show("导出CPK报告需要勾选的样本检测量至少5条");
+                return;
+            }
+            if (selectList.Count > 150)
+            {
+                NewMessageBox.Show("导出CPK报告需要勾选的样本检测量至多150条");
+                return;
+            }
+            var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(selectList));
+            NewMessageBox.Show(data);
+
+        });
+        /// <summary>
+        /// 查看CPK报告
+        /// </summary>
+        public ICommand SelectCPKCommand => new RelayCommand(() =>
+        {
+            var selectList = result.Where(x => x.IsSelected).ToList();
+            if (selectList.Count < 5)
             {
                 NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至少5条");
                 return;
             }
-            if (list.Count > 150)
+            if (selectList.Count > 150)
             {
                 NewMessageBox.Show("查看CPK报告需要勾选的样本检测量至多150条");
                 return;
             }
-            var data = pageReportService.ExportToCPK(new ObservableCollection<RecordList>(list));
-            NewMessageBox.Show(data);
+            MeasureInfo = pageReportService.GetCPKMeasure(selectList);
         });
         /// <summary>
         /// 初次切换按钮时更新数据集、页数、总数量

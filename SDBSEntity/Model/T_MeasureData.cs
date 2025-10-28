@@ -109,4 +109,44 @@ namespace SDBSEntity.Model
         public bool IsSelected { get; set; }
         public  string OperateTime { get; set; }
     }
+    public class MeasureInfo
+    {
+        /// <summary>
+        /// 测量模式
+        /// </summary>
+        public string MeasureType { get; set; }
+        /// <summary>
+        /// 面，0:静平衡，1：左面；2：右面
+        /// </summary>
+        public int Side {  get; set; }
+        /// <summary>
+        /// 最大测量值
+        /// </summary>
+        public double MaxMeasure {  get; set; }
+        /// <summary>
+        /// 最小测量值
+        /// </summary>
+        public double MinMeasure { get; set; }
+  
+        /// <summary>
+        /// 极差（Max-Min）
+        /// </summary>
+        public double Range =>MaxMeasure - MinMeasure;
+        /// <summary>
+        /// 标准差
+        /// </summary>
+        public double StandardDeviation { get; set; }
+        /// <summary>
+        /// 平均值
+        /// </summary>
+        public double Average { get; set; }
+        /// <summary>
+        /// 允许不平衡量
+        /// </summary>
+        public double Allow {  get; set; }
+        /// <summary>
+        /// (允许不平衡量-平均值)/3/标准差
+        /// </summary>
+        public double CPK => Convert.ToDouble($"{(Allow - Average) / 3 / StandardDeviation:f2}");
+    }
 }
