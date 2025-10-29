@@ -220,7 +220,7 @@
     <Compile Include="Communicate\Servo\ServoTrans.cs" />
     <Compile Include="Control\balance.cs" />
     <Compile Include="Control\MacControl.cs" />
-    <Compile Include="ExportToExcel.cs" />
+    <Compile Include="Utils\Excel\ExportToExcel.cs" />
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -2,6 +2,7 @@
 using NPOI.POIFS.FileSystem;
 using NPOI.XSSF.UserModel;
 using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using SDBSEntity;
 using SDBSEntity.Model;
 using System;
@@ -177,7 +178,7 @@ namespace SDBS3000.Services
                 var model = list.FirstOrDefault();
                 //模板路径   
                 string excelTempPath = System.Environment.CurrentDirectory + @"\Resources\CPK.xlsx";
-                string targetDir = $"D:\\Export\\CPK\\{DateTime.Now.ToString("yyyy-MM-dd")}\\";
+                string targetDir = string.Concat(GlobalVar.GetStr("exportPath"), $"{DateTime.Now.ToString("yyyy-MM-dd")}\\CPK\\");
                 if (!Directory.Exists(targetDir))
                 {
                     DirectoryInfo directoryInfo = new DirectoryInfo(targetDir);

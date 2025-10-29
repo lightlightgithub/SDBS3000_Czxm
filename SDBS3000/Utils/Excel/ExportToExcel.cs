@@ -1,6 +1,7 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using SDBS3000.Resources;
+using SDBS3000.Utils.AppSettings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SDBS3000
+namespace SDBS3000.Utils.Excel
 {
     public class Export
     {
@@ -106,12 +107,7 @@ namespace SDBS3000
                 }
 
                 //设置导出文件路径
-                StringBuilder sb = new StringBuilder();
-                sb.Append("D:");
-                sb.Append("\\Export\\");
-                sb.Append(DateTime.Now.ToString("yyyy-MM-dd"));
-                sb.Append("\\");
-                string path = sb.ToString();
+                string path = string.Concat(GlobalVar.GetStr("exportPath"), DateTime.Now.ToString("yyyy-MM-dd"),"\\");
                 //HttpContext.Current.Server.MapPath("Export/");
                 if (!Directory.Exists(path))
                 {
