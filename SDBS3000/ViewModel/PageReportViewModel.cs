@@ -276,7 +276,7 @@ namespace SDBS3000.ViewModel
         /// </summary>
         public ICommand SelectNoneCommand { get; set; }
         /// <summary>
-        /// 导出cpk
+        /// 导出CPK报告
         /// </summary>
         public ICommand ExportToCPKCommand => new RelayCommand(() =>
         {

@@ -108,6 +108,10 @@ namespace SDBSEntity.Model
         [NotMapped]
         public bool IsSelected { get; set; }
         public  string OperateTime { get; set; }
+        /// <summary>
+        /// 操作者名称
+        /// </summary>
+        public string UserName { get; set; }
     }
     public class MeasureInfo
     {
@@ -148,5 +152,9 @@ namespace SDBSEntity.Model
         /// (允许不平衡量-平均值)/3/标准差
         /// </summary>
         public double CPK => Convert.ToDouble($"{(Allow - Average) / 3 / StandardDeviation:f2}");
+        /// <summary>
+        /// 测量值
+        /// </summary>
+        public List<double> MeasureVal { get; set; }
     }
 }
