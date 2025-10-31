@@ -84,8 +84,10 @@ namespace SDBS3000.Services
                             a.MODIFYTIME,
                             CONVERT(VARCHAR, a.MODIFYTIME, 120) as OperateTime,
                             a.isclear,
-                            a.timestamp
+                            a.timestamp,
+							u.NAME as UserName
                             from T_MeasureData  a
+                            left join T_USER u on a.UserID = u.ID
                             where a.isclear = 0 ";
             string paramSql = string.Empty;
             switch (SelectType)
@@ -168,11 +170,11 @@ namespace SDBS3000.Services
         /// <returns></returns>
         public string ExportToCPK(ObservableCollection<RecordList> list)
         {
-            string filePath = string.Empty;
             XSSFWorkbook workbook = null;//Excel实例
-            XSSFSheet sheet = null;//表实例
-            string data = string.Empty;
-            List<double> measureValues = new List<double>();
+            string msg = string.Empty;
+            List<double> sMeasureVal = list.Select(x => x.fm).ToList(); //静平衡测量值
+            List<double> lMeasureVal = list.Select(x => x.fl).ToList(); //左面平衡测量值
+            List<double> rMeasureVal = list.Select(x => x.fr).ToList(); //右面平衡测量值
             try
             {
                 var model = list.FirstOrDefault();
@@ -185,7 +187,7 @@ namespace SDBS3000.Services
                     directoryInfo.Create();
                 }
 
-                string targetPath = string.Concat(targetDir, $"{DateTime.Now.ToString("HHmmss")} .xls");
+                string targetPath = string.Concat(targetDir, $"{DateTime.Now.ToString("HHmmss")}.xls");
 
                 //读取Excel模板
                 using (FileStream fs = new FileStream(excelTempPath, FileMode.Open, FileAccess.ReadWrite))
@@ -194,29 +196,21 @@ namespace SDBS3000.Services
                 }
                 if (Convert.ToInt32(model.Clms) == (int)MeasureMode.TwoPlaneDynamicBalance) //动平衡
                 {
-                    measureValues = list.Select(x => x.fl).ToList();  //左量值
-                    sheet = GetSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmyyxl));
-                    measureValues = list.Select(x => x.fr).ToList();  //右量值
-                    sheet = GetSheet(workbook, 2, measureValues, Convert.ToDouble(model.Pmeyxl));
+                    SetSheet(workbook, 1, lMeasureVal, Convert.ToDouble(model.Pmyyxl), model.UserName, model.OperateTime);
+                    SetSheet(workbook, 2, rMeasureVal, Convert.ToDouble(model.Pmeyxl), model.UserName, model.OperateTime);
                     workbook.RemoveSheetAt(0);
                 }
                 else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.StaticBalance) //静平衡
                 {
-                    measureValues = list.Select(x => x.fm).ToList();  //静量值
-                    sheet = GetSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
+                    SetSheet(workbook, 0, sMeasureVal, Convert.ToDouble(model.Jyxl), model.UserName, model.OperateTime);
                     workbook.RemoveSheetAt(1);
                     workbook.RemoveSheetAt(2);
                 }
                 else if (Convert.ToInt32(model.Clms) == (int)MeasureMode.DynamicStaticBalance)  //动静平衡
                 {
-                    measureValues = list.Select(x => x.fm).ToList();  //静量值
-                    sheet = GetSheet(workbook, 0, measureValues, Convert.ToDouble(model.Jyxl));
-
-                    measureValues = list.Select(x => x.fl).ToList();  //左量值
-                    sheet = GetSheet(workbook, 1, measureValues, Convert.ToDouble(model.Pmyyxl));
-
-                    measureValues = list.Select(x => x.fr).ToList();  //右量值
-                    sheet = GetSheet(workbook, 2, measureValues, Convert.ToDouble(model.Pmeyxl));
+                    SetSheet(workbook, 0, sMeasureVal, Convert.ToDouble(model.Jyxl), model.UserName, model.OperateTime);
+                    SetSheet(workbook, 1, lMeasureVal, Convert.ToDouble(model.Pmyyxl), model.UserName, model.OperateTime);
+                    SetSheet(workbook, 2, rMeasureVal, Convert.ToDouble(model.Pmeyxl), model.UserName, model.OperateTime);
                 }
                 using (FileStream fs = File.Create(targetPath))
                 {
@@ -228,9 +222,9 @@ namespace SDBS3000.Services
             }
             catch (Exception ex)
             {
-                data = ex.Message;
+                msg = ex.Message;
             }
-            return data;
+            return msg;
         }
         /// <summary>
         /// 获取sheet
@@ -239,8 +233,9 @@ namespace SDBS3000.Services
         /// <param name="sheetIndex"></param>
         /// <param name="measureValue"></param>
         /// <param name="allowValue"></param>
-        /// <returns></returns>
-        public XSSFSheet GetSheet(XSSFWorkbook workbook, int sheetIndex, List<double> measureValue, double allowValue)
+        /// <param name="operUser"></param>
+        /// <param name="datetime"></param>
+        public void SetSheet(XSSFWorkbook workbook, int sheetIndex, List<double> measureValue, double allowValue, string operUser, string datetime)
         {
             XSSFSheet sheet = (XSSFSheet)workbook.GetSheetAt(sheetIndex);
 
@@ -267,7 +262,8 @@ namespace SDBS3000.Services
                 rowIndex++;
             }
             sheet.GetRow(7).GetCell(9).SetCellValue(Convert.ToDouble(allowValue)); //允许量
-            return sheet;
+            sheet.GetRow(5).GetCell(3).SetCellValue(operUser);
+            sheet.GetRow(5).GetCell(9).SetCellValue(datetime);
         }
         /// <summary>
         /// 查看CPK测量数据
@@ -325,7 +321,8 @@ namespace SDBS3000.Services
                 MinMeasure = list.Min(), //左量值最小
                 Average = averge, //平均值
                 StandardDeviation = stdev, //标准差
-                Allow = side==0?Convert.ToDouble(item.Jyxl) :side==1?Convert.ToDouble(item.Pmyyxl) :Convert.ToDouble(item.Pmeyxl)
+                Allow = side==0?Convert.ToDouble(item.Jyxl) :side==1?Convert.ToDouble(item.Pmyyxl) :Convert.ToDouble(item.Pmeyxl),
+                MeasureVal = list
             };
             return data;
         }
