@@ -70,4 +70,20 @@ namespace SDBSEntity
         [Description("立式动静平衡")]
         VerticalDynamicStaticBalance = 4
     }
+    /// <summary>
+    /// 运行模式  1测量中  3停止  6 测量准备 7预热期过滤 死区滤波 8夹具补偿完成  
+    /// </summary>
+    public enum RunMode
+    {
+        [Description("测量中")]
+        Measuring = 1,
+        [Description("停止")]
+        Stop = 3,
+        [Description("测量准备")]
+        Ready = 6,
+        [Description("预热期过滤")]
+        PreFilter = 7,
+        [Description("夹具补偿")]
+        ClampComp = 8
+    }
 }

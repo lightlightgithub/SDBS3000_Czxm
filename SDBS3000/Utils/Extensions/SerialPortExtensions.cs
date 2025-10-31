@@ -31,15 +31,15 @@ namespace SDBS3000.Utils.Extensions
                     if (!serialPort.IsOpen)
                     {
                         serialPort.Open();
+                        //SDBS3000.Log.Log.Write(LogType.INFO, $"串口连接成功,端口：{serialPort.PortName}");
                         return true;
                     }
-                    SDBS3000.Log.Log.Write(LogType.INFO, $"串口连接失败\r\n,Msg：{JsonConvert.SerializeObject(serialPort)}");
                 }
                 return false;
             }
             catch (Exception ex)
             {
-                SDBS3000.Log.Log.Write(LogType.ERROR, $"串口连接异常: {ex.Message}\r\n,端口名：{serialPort.PortName}");
+                SDBS3000.Log.Log.Write(LogType.ERROR, $"串口连接异常: {ex.Message}\r\n,端口：{serialPort.PortName}");
                 return false;
             }
         }
@@ -62,7 +62,7 @@ namespace SDBS3000.Utils.Extensions
         {
             if (serialPort == null || !serialPort.IsOpen)
             {
-                SDBS3000.Log.Log.Write(LogType.INFO, $"指令写入失败,串口未连接\r\n,Msg：串口-{JsonConvert.SerializeObject(serialPort)}\r\n指令-{data}");
+                SDBS3000.Log.Log.Write(LogType.INFO, $"指令写入失败,串口未连接，端口:{serialPort.PortName}");
                 return false;
             }
             try
@@ -72,7 +72,7 @@ namespace SDBS3000.Utils.Extensions
             }
             catch (Exception ex)
             {
-                SDBS3000.Log.Log.Write(LogType.ERROR, $"指令写入异常: {ex.Message},Msg：{data}");
+                SDBS3000.Log.Log.Write(LogType.ERROR, $"指令写入异常: {ex.Message}\r\n,端口：{serialPort.PortName}");
                 return false;
             }
         }
@@ -105,7 +105,7 @@ namespace SDBS3000.Utils.Extensions
             catch (Exception ex)
             {
                 // 如果发送失败，直接抛出异常
-                throw new Exception("发送命令失败: " + ex.Message);
+                throw new Exception($"发送命令失败: {ex.Message}");
             }
 
             // 等待响应任务完成，或者超时
