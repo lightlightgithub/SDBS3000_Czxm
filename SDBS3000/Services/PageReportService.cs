@@ -185,7 +185,7 @@ namespace SDBS3000.Services
                     directoryInfo.Create();
                 }
 
-                string targetPath = string.Concat(targetDir, $"{DateTime.Now.ToString("HHmmss")} .xls");
+                string targetPath = string.Concat(targetDir, $"{DateTime.Now.ToString("HHmmss")}.xls");
 
                 //读取Excel模板
                 using (FileStream fs = new FileStream(excelTempPath, FileMode.Open, FileAccess.ReadWrite))

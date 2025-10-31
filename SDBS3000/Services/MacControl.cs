@@ -1,5 +1,8 @@
 ﻿using NPOI.SS.Formula.Functions;
+using SDBS3000.Communicate;
+using SDBS3000.Communicate;
 using SDBS3000.Utils.AppSettings;
+using SDBS3000.Utils.Extensions;
 using SDBS3000.ViewModel;
 using SDBS3000.Views;
 using System;
@@ -8,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SDBS3000.Control
+namespace SDBS3000.Services
 {
     public class MacControl
     {
@@ -66,7 +69,7 @@ namespace SDBS3000.Control
                 try
                 {
                     // 使用新的异步方法发送命令并等待响应
-                    byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(startCommand);
+                    byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(startCommand);
 
                     if (response != null && response.Length >= 6)
                     {
@@ -118,7 +121,7 @@ namespace SDBS3000.Control
 
                 try
                 {
-                    byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(startCommand);
+                    byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(startCommand);
 
                     if (response != null && response.Length >= 6)
                     {
@@ -156,7 +159,7 @@ namespace SDBS3000.Control
 
             try
             {
-                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+                byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(command);
 
                 if (response != null && response.Length >= 6)
                 {
@@ -193,7 +196,7 @@ namespace SDBS3000.Control
 
             try
             {
-                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+                byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(command);
 
                 if (response != null && response.Length >= 6)
                 {
@@ -229,7 +232,7 @@ namespace SDBS3000.Control
 
             try
             {
-                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+                byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(command);
 
                 if (response != null && response.Length >= 6)
                 {
@@ -292,7 +295,7 @@ namespace SDBS3000.Control
 
             try
             {
-                byte[] response = await MainViewModel.hc.SendCommandAndWaitForResponse(command);
+                byte[] response = await GlobalVar.HardwareSerialPort.WriteAsync(command);
 
                 if (response != null && response.Length >= 6)
                 {

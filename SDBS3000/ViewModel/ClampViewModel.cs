@@ -115,7 +115,7 @@ namespace SDBS3000.ViewModel
 
                     SingleL = MainViewModel.bal._runDB.bal_result.singleL;
                     SingleR = MainViewModel.bal._runDB.bal_result.singleR;
-                    Progress = 20 * MainViewModel.bal.ki / MainViewModel.bal._runDB.set_test.ki_max;
+                    Progress = 20 * MainViewModel.bal._balanceData.ki / MainViewModel.bal._runDB.set_test.ki_max;
                     Rpm = MainViewModel.bal._runDB.bal_result.rpm;
                     Data1 = MainViewModel.bal._runDB.bal_result.fl;
                     Data2 = MainViewModel.bal._runDB.bal_result.ql;

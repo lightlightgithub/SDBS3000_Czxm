@@ -38,10 +38,10 @@ namespace SDBS3000.Views
         public Authorization()
         {
             InitializeComponent();
-            sqm.Text = MainViewModel.bal.License;
-            xlh.Text = MainViewModel.bal.DeviceNo;
-            syts.Content = MainViewModel.bal.remainDays;
-            xkpd.Content = MainViewModel.bal.remainDays > 0 ? "Pass" : "";
+            sqm.Text = MainViewModel.bal._balanceData.License;
+            xlh.Text = MainViewModel.bal._balanceData.DeviceNo;
+            syts.Content = MainViewModel.bal._balanceData.remainDays;
+            xkpd.Content = MainViewModel.bal._balanceData.remainDays > 0 ? "Pass" : "";
         }
 
         private void Sup_Loaded(object sender, RoutedEventArgs e)
@@ -55,12 +55,12 @@ namespace SDBS3000.Views
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainViewModel.bal.License = sqm.Text;
+            MainViewModel.bal._balanceData.License = sqm.Text;
             MainViewModel.bal.Decrypt();
-            syts.Content = MainViewModel.bal.remainDays;
-            xkpd.Content = MainViewModel.bal.remainDays > 0 ? "Pass" : "";
+            syts.Content = MainViewModel.bal._balanceData.remainDays;
+            xkpd.Content = MainViewModel.bal._balanceData.remainDays > 0 ? "Pass" : "";
 
-            if (MainViewModel.bal.remainDays > 0)
+            if (MainViewModel.bal._balanceData.remainDays > 0)
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 config.AppSettings.Settings["License"].Value = sqm.Text;

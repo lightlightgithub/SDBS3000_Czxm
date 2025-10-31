@@ -1,10 +1,9 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using SDBS3000.Communicate.Drive;
-using SDBS3000.Communicate.Servo;
-using SDBS3000.Control;
+using SDBS3000.Communicate;
 using SDBS3000.Resources;
+using SDBS3000.Services;
 using SDBS3000.Utils.AppSettings;
 using SDBS3000.Views;
 using SDBSEntity;
@@ -29,9 +28,8 @@ namespace SDBS3000.ViewModel
         #endregion
 
         bool authorizationshow = false;
-        public static balance bal = new balance();
-        public static ServoTrans svTrans = new ServoTrans();
-        public static HardwareCon hc = new HardwareCon();
+        public static BalanceSerialPortCommunicate bal = new BalanceSerialPortCommunicate();
+        public static HardwareSerialPortCommunicate hc = new HardwareSerialPortCommunicate();
         public static MacControl macControl = new MacControl();
         public MainViewModel()
         {
@@ -43,15 +41,15 @@ namespace SDBS3000.ViewModel
             {
                 ObservableCollection<T_RotorSet> RotorSets = new ObservableCollection<T_RotorSet>(entity.T_RotorSet);
                 int rtid = GlobalVar.Getushort("lastrotor");
-                bal.License = ConfigurationManager.AppSettings["License"];
+                bal._balanceData.License = ConfigurationManager.AppSettings["License"];
                 bal.Decrypt();
-                if (bal.remainDays == 0)
+                if (bal._balanceData.remainDays == 0)
                 {
                     NewMessageBox.Show("授权已到期");
                 }
-                else if (bal.remainDays < 10)
+                else if (bal._balanceData.remainDays < 10)
                 {
-                    NewMessageBox.Show("授权剩余天数：" + bal.remainDays);
+                    NewMessageBox.Show("授权剩余天数：" + bal._balanceData.remainDays);
                 }
                 if (rtid == 0 || RotorSets.Where(p => p.ID == rtid).Count() == 0)
                     Rotor = entity.T_RotorSet.FirstOrDefault();

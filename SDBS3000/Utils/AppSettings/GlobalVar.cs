@@ -7,6 +7,7 @@ using SDBSEntity.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO.Ports;
 using static SDBS3000.Log.Log;
 
 namespace SDBS3000.Utils.AppSettings
@@ -38,8 +39,9 @@ namespace SDBS3000.Utils.AppSettings
 
 
         public static Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-
+        private static readonly object _lock = new object();
+        private static SerialPort _balanceSerialPort;
+        private static SerialPort _hardwareSerialPort;
         private static int flagofSFSpeed;
         public static int FlagofSFSpeed
         {
@@ -203,6 +205,62 @@ namespace SDBS3000.Utils.AppSettings
             catch
             {
                 return "";
+            }
+        }
+        /// <summary>
+        /// 获取采集卡串口实例
+        /// </summary>
+        public static SerialPort BalanceSerialPort
+        {
+            get
+            {
+                if (_balanceSerialPort == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_balanceSerialPort == null)
+                        {
+                            //按照通信规则设置
+                            _balanceSerialPort = new SerialPort()
+                            {
+                                PortName = GlobalVar.portcjb,//获取下拉框的串口
+                                BaudRate = 115200,//波特率
+                                DataBits = 8,
+                                StopBits = StopBits.One,
+                                Parity = Parity.None
+                            };
+                        }
+                    }
+                }
+                return _balanceSerialPort;
+            }
+        }
+        /// <summary>
+        /// 控制板串口实例
+        /// </summary>
+        public static SerialPort HardwareSerialPort
+        {
+            get
+            {
+                if (_hardwareSerialPort == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_hardwareSerialPort == null)
+                        {
+                            //按照通信规则设置
+                            _hardwareSerialPort = new SerialPort()
+                            {
+                                PortName = GlobalVar.portkzb,//获取下拉框的串口
+                                BaudRate = 38400,//波特率
+                                DataBits = 8,
+                                StopBits = StopBits.Two,
+                                Parity = Parity.None
+                            };
+                        }
+                    }
+                }
+                return _hardwareSerialPort;
             }
         }
     }

@@ -65,6 +65,7 @@
       <DependentUpon>202406130152012_InitialCreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\BalanceData.cs" />
     <Compile Include="Model\Enums.cs" />
     <Compile Include="Model\Language.cs" />
     <Compile Include="Model\RUN_DB.cs" />

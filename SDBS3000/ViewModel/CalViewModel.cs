@@ -16,8 +16,8 @@ using SDBS3000.Resources;
 using System.Threading.Tasks;
 using System.Runtime.Remoting.Contexts;
 using NPOI.POIFS.FileSystem;
-using SDBS3000.Control;
 using SDBS3000.Utils.AppSettings;
+using SDBS3000.Communicate;
 
 namespace SDBS3000.ViewModel
 {
@@ -77,7 +77,7 @@ namespace SDBS3000.ViewModel
                     Data3 = MainViewModel.bal._runDB.bal_result.fr;
                     Data4 = MainViewModel.bal._runDB.bal_result.qr;
 
-                    Progress = 20 * MainViewModel.bal.ki / MainViewModel.bal._runDB.set_test.ki_max;
+                    Progress = 20 * MainViewModel.bal._balanceData.ki / MainViewModel.bal._runDB.set_test.ki_max;
                     RaisePropertyChanged("SingleL");
                     RaisePropertyChanged("SingleR");
                     RaisePropertyChanged("Progress");

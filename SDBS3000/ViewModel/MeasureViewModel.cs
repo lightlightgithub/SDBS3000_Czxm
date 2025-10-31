@@ -14,8 +14,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using SDBS3000.Communicate;
 using SDBS3000.Resources;
 using SDBS3000.Utils.AppSettings;
+using SDBS3000.Utils.Extensions;
 using SDBS3000.Views;
 using SDBSEntity;
 using SDBSEntity.Model;
@@ -138,17 +140,17 @@ namespace SDBS3000.ViewModel
 
         private void Time_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (!MainViewModel.bal.IsConnected)
+            if (!GlobalVar.BalanceSerialPort.IsConnected())
             {
-                MainViewModel.bal.Connect(GlobalVar.portcjb);
+                GlobalVar.BalanceSerialPort.Connect();
             }
-            CardIsonline = MainViewModel.bal.IsConnected;
+            CardIsonline = GlobalVar.BalanceSerialPort.IsConnected();
 
-            if (!MainViewModel.hc.IsConnected)
+            if (!GlobalVar.HardwareSerialPort.IsConnected())
             {
-                MainViewModel.hc.Connect(GlobalVar.portkzb);
+                GlobalVar.HardwareSerialPort.Connect();
             }
-            ConCardIsonline = MainViewModel.hc.IsConnected;
+            ConCardIsonline = GlobalVar.HardwareSerialPort.IsConnected();
             
         }
 
@@ -165,7 +167,7 @@ namespace SDBS3000.ViewModel
             Times = 0;
             RaisePropertyChanged("Data1");
             dtbegin = DateTime.Now;
-            MainViewModel.bal.start_AVE = 0;
+            MainViewModel.bal._balanceData.start_AVE = 0;
         }
         
 
@@ -197,7 +199,7 @@ namespace SDBS3000.ViewModel
                         Data0.fm = Math.Round(xs * MainViewModel.bal._runDB.bal_result.fm, 3);
                         Data0.qm = Math.Round(MainViewModel.bal._runDB.bal_result.qm, 3);
 
-                        Progress = 20 * MainViewModel.bal.ki / MainViewModel.bal._runDB.set_test.ki_max;
+                        Progress = 20 * MainViewModel.bal._balanceData.ki / MainViewModel.bal._runDB.set_test.ki_max;
                         Jjbc = MainViewModel.bal._runDB.set_clamp.compesation;
                         RunState = 1;
                         RaisePropertyChanged("Progress");

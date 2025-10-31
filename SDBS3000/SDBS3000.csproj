@@ -215,12 +215,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Communicate\Drive\HardwareCon.cs" />
-    <Compile Include="Communicate\FrequencyConverter\Inverter.cs" />
-    <Compile Include="Communicate\Servo\ServoTrans.cs" />
-    <Compile Include="Control\balance.cs" />
-    <Compile Include="Control\MacControl.cs" />
+    <Compile Include="Communicate\BalanceSerialPortCommunicate.cs" />
+    <Compile Include="Communicate\HardwareSerialPortCommunicate.cs" />
     <Compile Include="Utils\Excel\ExportToExcel.cs" />
+    <Compile Include="Utils\Extensions\SerialPortExtensions.cs" />
+    <Compile Include="Services\MacControl.cs" />
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -893,7 +892,11 @@
   <ItemGroup>
     <Resource Include="Utils\Image\LightImg\框.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Communicate\FrequencyConverter\" />
+    <Folder Include="Communicate\SelfDriven\" />
+    <Folder Include="Communicate\Servo\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
