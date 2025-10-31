@@ -1213,6 +1213,7 @@ namespace SDBS3000.Communicate
                     _runDB.set0.cal_ai[index] = 0.0;
                     _runDB.set0.cal_ar[index] = 0.0;
                     _runDB.set0.cal_h[index] = 0.0;
+
                 }
                 double num1 = _runDB.set_run.set_rpm * (Math.PI / 30.0);
                 double num2 = 0.0;
